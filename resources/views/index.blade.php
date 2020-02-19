@@ -1,3 +1,5 @@
+@extends('layout')
+
 
 @extends('layout')
 
@@ -48,9 +50,7 @@
                         <div class="etiquetas">
                             {{$pregunta->eqtiquetas}}
                         </div>
-
                         <span>modificada hace {{$pregunta->updated_at}} {{$pregunta->usuario->nombre}}</span>
-
                     </div>
                 @endforeach
             </div>
