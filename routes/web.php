@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'PreguntaController@index');
+Route::get('/', 'PreguntaController@index')->name('index');
 
 
 Route::get('/index', function () {
