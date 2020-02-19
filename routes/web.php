@@ -11,4 +11,15 @@
 |
 */
 
+
 Route::get('/', 'PreguntaController@index');
+
+
+Route::get('/index', function () {
+    return view('createQuestion');
+});
+
+Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
+
+Route::post('/', 'PreguntaController@store')->name('pregunta.store');
+
