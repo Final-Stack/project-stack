@@ -11,12 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+
+Route::get('/', 'PreguntaController@index');
+
+
+Route::get('/index', function () {
+    return view('createQuestion');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
+Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
+
+Route::post('/', 'PreguntaController@store')->name('pregunta.store');
+
