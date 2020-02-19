@@ -47,8 +47,8 @@ Enlace app [Heroku](https://final-stack.herokuapp.com)
     </a><br /><a href="https://github.com/fnexus/Reto2/commits?author=inakicl" title="Commits">📖</a>
   👀
     </td>
-    <td align="center"><a href="https://github.com/AdrianDanlos"><img src="https://avatars3.githubusercontent.com/u/27602026?s=400&v=4" width="100px;" alt="julen-C"/><br /><sub><b>Adrian</b></sub></a><br/>
-      </a><br /><a href="https://github.com/fnexus/Reto2/commits?author=AdrianDanlos" title="Commits">📖</a>👀
+    <td align="center"><a href="https://github.com/AdrianDanlos"><img src="https://avatars3.githubusercontent.com/u/27602026?s=400&v=4" width="100px;" alt="Miguel"/><br /><sub><b>Miguel</b></sub></a><br/>
+      </a><br /><a href="https://github.com/fnexus/Reto2/commits?author=miguelbarrosv" title="Commits">📖</a>👀
     </td>
     <td align="center"><a href="https://github.com/JulenOZegibide"><img src="https://avatars3.githubusercontent.com/u/43949194?s=400&v=4" width="100px;" alt="Julen-Ortzi"/><br /><sub><b>Julen</b></sub></a><br />
       </a><br /><a href="https://github.com/fnexus/Reto2/commits?author=JulenOZegibide" title="Commits">📖</a>   
