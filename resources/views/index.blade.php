@@ -1,9 +1,10 @@
+@extends('layout')
 
-
+@section('content')
     <div class="container ">
         <div class="main">
             <h1>Preguntas más recientes</h1>
-            <a class="grid--cell s-btn s-btn__muted s-btn__outlined" href="/preguntas/formular" data-value="active">
+            <a class="grid--cell s-btn s-btn__muted s-btn__outlined" href="/create" data-value="active">
                 Hacer una pregunta</a>
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
@@ -42,7 +43,7 @@
                 <div>
                     <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                     <div class="etiquetas">
-                        {{$pregunta->eqtiquetas}}
+                        {{$pregunta->etiquetas}}
                     </div>
 
                     <span>modificada hace {{$pregunta->updated_at}} {{$pregunta->usuario->nombre}}</span>
@@ -51,3 +52,4 @@
             @endforeach
         </div>
     </div>
+@endsection
