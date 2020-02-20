@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Pregunta;
 use App\rc;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PreguntaController extends Controller
@@ -44,14 +46,21 @@ class PreguntaController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario=User::find(Auth::id());
+
         $pregunta = new Pregunta();
 
         $pregunta->titulo = request('titulo');
         $pregunta->descripcion = request('descripcion');
-        $pregunta->etiquetas = request('tag');
+        $pregunta->etiquetas = request('tag_block');
+        $pregunta->estado = 0;
+        $pregunta->visita = 0;
+        $pregunta->id_usuario = $usuario->id;
+
 
         $pregunta->save();
 
+        return redirect(route('index'));
     }
 
     /**
