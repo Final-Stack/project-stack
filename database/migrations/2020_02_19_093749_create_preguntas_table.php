@@ -19,8 +19,8 @@ class CreatePreguntasTable extends Migration
             $table->string('descripcion', 240);
             $table->boolean('estado')->default(0);
             $table->integer('visita');
-            //$table->json('etiquetas'); // por ahora casca el json en clearDB
-            $table->unsignedBigInteger('users_id');
+            $table->string('etiquetas');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

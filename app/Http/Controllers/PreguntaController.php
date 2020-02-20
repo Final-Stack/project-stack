@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pregunta;
 use App\rc;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +70,7 @@ class PreguntaController extends Controller
         $pregunta->etiquetas = request('tag_block');
         $pregunta->estado = 0;
         $pregunta->visita = 0;
-        $pregunta->id_usuario = $usuario->id;
+        $pregunta->user_id = $usuario->id;
 
 
         $pregunta->save();
@@ -83,11 +84,13 @@ class PreguntaController extends Controller
      * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $usuario=User::find(Auth::id());
+        $pregunta=Pregunta::find($id);
 
-        return view('user_profile' , ['usuario' => $usuario]);
+        return view('question', [
+            'pregunta' => $pregunta
+        ]);
     }
 
     /**

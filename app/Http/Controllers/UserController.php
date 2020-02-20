@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pregunta;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,19 @@ class UserController extends Controller
         $usuario=User::find(Auth::id());
         $preguntas=$usuario->preguntas;
 
-        return view('user_profile' , ['usuario' => $usuario , 'preguntas' => $preguntas]);
+
+        $fechaCreacion = Carbon::parse($usuario->created_at);
+        $fechaActual = Carbon::now();
+        $diferencia = $fechaActual->diffInDays($fechaCreacion);
+        if($diferencia>360){
+            $diasDiferencia = 'Miembro desde hace' . $fechaActual->diffInYears($fechaCreacion) . 'año(s)';
+        }elseif ($diferencia<1){
+            $diasDiferencia = "La cuenta ha sido creada hoy";
+        }else{
+            $diasDiferencia = 'Miembro desde hace' . $fechaActual->diffInYears($fechaCreacion) . 'dias';
+        }
+
+        return view('user_profile' , ['usuario' => $usuario , 'preguntas' => $preguntas , 'tiempo' =>$diasDiferencia]);
     }
 
     /**
