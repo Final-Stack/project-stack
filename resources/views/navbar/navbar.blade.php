@@ -12,6 +12,10 @@
                 <button type="submit" class="searchButton">
                     <img id="lupa" src="{{secure_asset('img/magnifying-glass.png')}}">
                 </button>
+                <div id="registerlogin">
+                    <button type="submit" class="btn" name="signIn" value="sign in" formaction="/login">sign in</button>
+                    <button type="submit" class="btn" name="logIn"  value="log in" formaction="/register">log in</button>
+                </div>
             </div>
         </div>
     </form>
