@@ -5,10 +5,11 @@
     </a>
 
     <!-- Contenedor con el buscador por titulo -->
-    <form id="buscador">
+    <form id="buscador" action="{{route('index.buscar')}}">
+        @csrf
         <div>
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <input type="text" class="searchTerm" name="buscar">
                 <button type="submit" class="searchButton">
                     <img id="lupa" src="{{secure_asset('img/magnifying-glass.png')}}">
                 </button>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Pregunta;
-use App\rc;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,12 +16,11 @@ class PreguntaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.id_usuario')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+        $preguntasUsuario = DB::table('preguntas')
+            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -43,6 +41,22 @@ class PreguntaController extends Controller
     }
 
     /**
+     * Busca y devuelve todas las preguntas que hayan coincidido con el criterio dado
+     */
+    public function buscarPor(Request $request)
+    {
+        $preguntasUsuario = DB::table('preguntas')
+            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->paginate(10);
+
+
+        return view('index', [
+            'preguntas' => $preguntasUsuario
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -55,12 +69,12 @@ class PreguntaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $usuario=User::find(Auth::id());
+        $usuario = User::find(Auth::id());
 
         $pregunta = new Pregunta();
 
@@ -80,20 +94,20 @@ class PreguntaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $usuario=User::find(Auth::id());
+        $usuario = User::find(Auth::id());
 
-        return view('user_profile' , ['usuario' => $usuario]);
+        return view('user_profile', ['usuario' => $usuario]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function edit(rc $rc)
@@ -104,8 +118,8 @@ class PreguntaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rc  $rc
+     * @param \Illuminate\Http\Request $request
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, rc $rc)
@@ -116,7 +130,7 @@ class PreguntaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function destroy(rc $rc)
