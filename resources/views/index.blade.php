@@ -13,19 +13,19 @@
                         <a class="nav-link"  href="{{route('index.reciente')}}">Mas recientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link "  href="/activas">Activas</a>
+                        <a class="nav-link "  href="{{route('index.activas')}}">Activas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="/populares">Populares</a>
+                        <a class="nav-link"  href="{{route('index.populares')}}">Populares</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="/hoy">Hoy</a>
+                        <a class="nav-link"  href="{{route('index.hoy')}}">Hoy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="/semana">Semana</a>
+                        <a class="nav-link"  href="{{route('index.semana')}}">Semana</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="/mes">Mes</a>
+                        <a class="nav-link"  href="{{route('index.mes')}}">Mes</a>
                     </li>
                 </ul>
             </div>
