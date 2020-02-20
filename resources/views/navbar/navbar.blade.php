@@ -1,7 +1,7 @@
 <nav id="nav_container">
     <!-- Contenedor con el logo y/o nombre -->
     <a href="/" id="logo_container">
-        <img id="logo" src="{{secure_asset('img/StackLogo.png')}}">
+        <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}">
     </a>
 
     <!-- Contenedor con el buscador por titulo -->
@@ -12,11 +12,9 @@
                 <button type="submit" class="searchButton">
                     <img id="lupa" src="{{secure_asset('img/magnifying-glass.png')}}">
                 </button>
-                <div id="registerlogin">
-                    <a class="btn btn-outline-primary" href="{{route('login')}}"> Iniciar sesión</a>
-                    <a class="btn btn-outline-primary" href="{{route('register')}}"> Resgistrarse</a>
-                </div>
             </div>
         </div>
     </form>
+    <a class="btn btn-outline-primary actionbutton" href="{{route('login')}}"> Iniciar sesión</a>
+    <a class="btn btn-outline-primary actionbutton" href="{{route('register')}}"> Resgistrarse</a>
 </nav>
