@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <form action="/" method="post">
@@ -10,9 +10,10 @@
         <p><textarea name="descripcion"></textarea></p>
         <strong>Etiquetas</strong>
         <p><input type="text" id="tag" name="tag"><input type="button" id="add_tag" value="Añadir etiqueta"></p>
-        <div id="tag_container"  name="tag_container">
+        <div id="tag_container" name="tag_container">
 
         </div>
+        <input type="hidden" id="tag_block" name="tag_block">
         <input type="submit" value="Formular pregunta">
     </form>
 
