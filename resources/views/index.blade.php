@@ -34,30 +34,30 @@
                 <div class="pregunta row border-bottom p-3 ">
                         <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->id}}'">
                             <div class="votos text-center  col-4">
+                                <span class="col-12">Votos</span>
                                 @foreach($votos as $voto)
                                     @if($pregunta->id = $voto->id_pregunta)
                                         <span class="col-12">{{$voto->numVotos}}</span>
                                     @endif
                                 @endforeach
-                                <span class="col-12">Votos</span>
                             </div>
                             <div class="respuestas text-center  col-4">
+                                <span>Respuestas</span>
                                 @foreach($respuestas as $respuesta)
                                     @if($pregunta->id = $respuesta->id_pregunta)
                                         <span class="col-12">{{$respuesta->numPreguntas}}</span>
                                     @endif
                                 @endforeach
-                                <span>Respuestas</span>
                             </div>
                             <div class="visitas text-center col-4 ">
-                                <span class="col-12">{{$pregunta->visita}}</span>
                                 <span class="col-12">Visitas</span>
+                                <span class="col-12">{{$pregunta->visita}}</span>
                             </div>
                         </div>
                         <div class="col-5 ">
                             <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                             <div class="etiquetas float-left">
-                                <mark class="p-1">{{json_decode($pregunta->etiquetas)->a}}</mark>
+                                <mark class="p-1">{{json_decode($pregunta->etiquetas)}}</mark>
                             </div>
                             <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
                         </div>
