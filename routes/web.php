@@ -24,11 +24,14 @@ Route::get('/reciente', 'PreguntaController@reciente')->name('index.reciente');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/**
+ * Rutas de inicio de sesion con google
+ */
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
 Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
+Route::get('/profile', 'PreguntaController@show')->name('user.profile');
 
 Route::post('/', 'PreguntaController@store')->name('pregunta.store');
 

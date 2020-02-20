@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Pregunta;
 use App\rc;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PreguntaController extends Controller
@@ -17,6 +19,7 @@ class PreguntaController extends Controller
      */
     public function index()
     {
+
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.id_usuario')
             ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
@@ -57,7 +60,21 @@ class PreguntaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario=User::find(Auth::id());
+
+        $pregunta = new Pregunta();
+
+        $pregunta->titulo = request('titulo');
+        $pregunta->descripcion = request('descripcion');
+        $pregunta->etiquetas = request('tag_block');
+        $pregunta->estado = 0;
+        $pregunta->visita = 0;
+        $pregunta->id_usuario = $usuario->id;
+
+
+        $pregunta->save();
+
+        return redirect(route('index'));
     }
 
     /**
@@ -66,9 +83,11 @@ class PreguntaController extends Controller
      * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function show(rc $rc)
+    public function show()
     {
-        //
+        $usuario=User::find(Auth::id());
+
+        return view('user_profile' , ['usuario' => $usuario]);
     }
 
     /**
