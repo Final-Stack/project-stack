@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Pregunta;
-use App\rc;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,16 +13,25 @@ class PreguntaController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Busca y devuelve todas las preguntas que hayan coincidido con el criterio dado
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->paginate(10);
+        $preguntas = "";
+        if ($request->buscar != null) {
+            $preguntas = DB::table('preguntas')
+                ->join('users', 'users.id', '=', 'preguntas.users_id')
+                ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+                ->where('titulo', 'like', '%' . $request->buscar . '%')
+                ->paginate(10);
+        } else {
+            $preguntas = DB::table('preguntas')
+                ->join('users', 'users.id', '=', 'preguntas.users_id')
+                ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+                ->paginate(10);
+        }
 
         $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
@@ -37,7 +45,7 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
@@ -55,12 +63,12 @@ class PreguntaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $usuario=User::find(Auth::id());
+        $usuario = User::find(Auth::id());
 
         $pregunta = new Pregunta();
 
@@ -69,7 +77,7 @@ class PreguntaController extends Controller
         $pregunta->etiquetas = request('tag_block');
         $pregunta->estado = 0;
         $pregunta->visita = 0;
-        $pregunta->id_usuario = $usuario->id;
+        $pregunta->user_id = $usuario->id;
 
 
         $pregunta->save();
@@ -80,20 +88,20 @@ class PreguntaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $usuario=User::find(Auth::id());
+        $usuario = User::find(Auth::id());
 
-        return view('user_profile' , ['usuario' => $usuario]);
+        return view('user_profile', ['usuario' => $usuario]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function edit(rc $rc)
@@ -104,8 +112,8 @@ class PreguntaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rc  $rc
+     * @param \Illuminate\Http\Request $request
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, rc $rc)
@@ -116,7 +124,7 @@ class PreguntaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function destroy(rc $rc)
@@ -124,10 +132,11 @@ class PreguntaController extends Controller
         //
     }
 
-    public function semana() {
+    public function semana()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->where('preguntas.created_at', '>', Carbon::now()->startOfWeek())
             ->where('preguntas.created_at', '<', Carbon::now()->endOfWeek())
             ->paginate(10);
@@ -144,15 +153,16 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
 
-    public function dia() {
+    public function dia()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereDate('preguntas.created_at', Carbon::today())
             ->paginate(10);
 
@@ -168,15 +178,16 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
 
-    public function mes() {
+    public function mes()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereMonth('preguntas.created_at', '=', Carbon::now()->month)
             ->paginate(10);
 
@@ -192,16 +203,17 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
 
-    public function populares() {
+    public function populares()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->orderBy('preguntas.visita','DESC')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->orderBy('preguntas.visita', 'DESC')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -216,16 +228,17 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
 
-    public function reciente() {
+    public function reciente()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->orderBy('preguntas.id','DESC')
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->orderBy('preguntas.id', 'DESC')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -240,16 +253,17 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
 
-    public function activas() {
+    public function activas()
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->where('preguntas.estado','=', 1)
+            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->where('preguntas.estado', '=', 1)
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -264,7 +278,7 @@ class PreguntaController extends Controller
 
         return view('index', [
             'preguntas' => $preguntas,
-            'respuestas' =>$respuestas,
+            'respuestas' => $respuestas,
             'votos' => $votos
         ]);
     }
