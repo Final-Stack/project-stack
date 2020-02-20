@@ -20,7 +20,7 @@ class CreatePreguntasTable extends Migration
             $table->boolean('estado')->default(0);
             $table->integer('visita')->default(0);
             $table->string('etiquetas'); // con separaciones por ,
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

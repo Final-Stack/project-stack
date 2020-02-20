@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Pregunta;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +19,7 @@ class PreguntaController extends Controller
      */
     public function index(Request $request)
     {
+
         $preguntas = "";
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
@@ -32,6 +33,7 @@ class PreguntaController extends Controller
                 ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
                 ->paginate(10);
         }
+
 
         $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
@@ -91,11 +93,14 @@ class PreguntaController extends Controller
      * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $usuario = User::find(Auth::id());
+        $pregunta=Pregunta::find($id);
 
-        return view('user_profile', ['usuario' => $usuario]);
+        return view('question', [
+            'pregunta' => $pregunta
+        ]);
+
     }
 
     /**
