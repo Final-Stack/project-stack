@@ -36,4 +36,4 @@ Route::get('/profile', 'PreguntaController@show')->name('user.profile');
 Route::post('/', 'PreguntaController@store')->name('pregunta.store');
 
 // buscador
-Route::get('buscar','PreguntaController@buscarPor')->name('index.buscar');
+Route::get('buscar','PreguntaController@index')->name('index.buscar');
