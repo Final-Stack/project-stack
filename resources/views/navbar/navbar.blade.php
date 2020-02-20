@@ -1,7 +1,7 @@
 <nav id="nav_container">
     <!-- Contenedor con el logo y/o nombre -->
     <a href="/" id="logo_container">
-        <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}">
+        <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}" alt="logo">
     </a>
 
     <!-- Contenedor con el buscador por titulo -->
@@ -16,7 +16,7 @@
         </div>
     </form>
     <!-- Right Side Of Navbar -->
-    <ul class="navbar-nav  d-flex flex-row">
+    <ul class="navbar-nav m-auto  d-flex flex-row">
         <!-- Authentication Links -->
         @guest
             <li class="nav-item">
@@ -29,7 +29,8 @@
             @endif
         @else
             <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->nombre }} <span class="caret"></span>
                 </a>
 
@@ -39,7 +40,6 @@
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
-    <img src="{{asset(Auth::user()->url_foto)}}">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
