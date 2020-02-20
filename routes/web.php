@@ -21,6 +21,12 @@ Route::get('/hoy', 'PreguntaController@dia')->name('index.hoy');
 Route::get('/semana', 'PreguntaController@semana')->name('index.semana');
 Route::get('/reciente', 'PreguntaController@reciente')->name('index.reciente');
 
+//Busqueda de trabajadores
+Route::get('/users', function () {
+    return view('busquedaUsuarios');
+})->name('users');
+
+Route::get('buscar','UserController@search')->name('users.buscar');
 
 Auth::routes();
 
