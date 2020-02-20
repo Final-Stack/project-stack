@@ -19,8 +19,8 @@ class PreguntaController extends Controller
     public function index()
     {
         $preguntasUsuario = DB::table('preguntas')
-            ->join('usuarios', 'usuarios.id', '=', 'preguntas.id_usuario')
-            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'usuarios.nombre')
+            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->paginate(10);
 
         return view('index', [
@@ -69,9 +69,11 @@ class PreguntaController extends Controller
      * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function show(rc $rc)
+    public function show()
     {
-        //
+        $usuario=User::find(Auth::id());
+
+        return view('user_profile' , ['usuario' => $usuario]);
     }
 
     /**

@@ -17,7 +17,9 @@ body{
 }
 
 #logo{
-    max-width: 180px;
+    max-width: 90px;
+    margin-top: -24px;
+    margin-right: 10px;
 }
 .search {
     width: 100%;
@@ -52,9 +54,7 @@ body{
     cursor: pointer;
     font-size: 20px;
 }
-#registerlogin{
-    display: inline-flex;
-}
-#registerlogin>button{
-    width: 100px;
+.actionbutton {
+    padding: 13px !important;
+    height: 48px;
 }

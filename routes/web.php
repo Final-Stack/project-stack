@@ -25,6 +25,7 @@ Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
 Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
+Route::get('/profile', 'PreguntaController@show')->name('user.profile');
 
 Route::post('/', 'PreguntaController@store')->name('pregunta.store');
 
