@@ -15,6 +15,6 @@
             </div>
         </div>
     </form>
-    <input type="button" name="signIn" value="sign in">
-    <input type="button" name="logIn"  value="log in">
+    <a class="btn btn-outline-primary" href="{{route('login')}}"> Iniciar sesión</a>
+    <a class="btn btn-outline-primary" href="{{route('register')}}"> Resgistrarse</a>
 </nav>
