@@ -1,16 +1,16 @@
 @extends('layout')
 
 @section('content')
-    <form action="/">
+    <form action="/" method="post">
         @csrf
         <h2>Formula una pregunta</h2>
         <strong>Titulo</strong>
-        <p><input type="text"></p>
+        <p><input type="text" name="titulo"></p>
         <strong>Descripcion</strong>
-        <p><textarea></textarea></p>
+        <p><textarea name="descripcion"></textarea></p>
         <strong>Etiquetas</strong>
-        <p><input type="text" id="tag"><input type="button" id="add_tag" value="Añadir etiqueta"></p>
-        <div id="tag_container">
+        <p><input type="text" id="tag" name="tag"><input type="button" id="add_tag" value="Añadir etiqueta"></p>
+        <div id="tag_container"  name="tag_container">
 
         </div>
         <input type="submit" value="Formular pregunta">

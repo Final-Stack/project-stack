@@ -44,7 +44,14 @@ class PreguntaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pregunta = new Pregunta();
+
+        $pregunta->titulo = request('titulo');
+        $pregunta->descripcion = request('descripcion');
+        $pregunta->etiquetas = request('tag');
+
+        $pregunta->save();
+
     }
 
     /**
