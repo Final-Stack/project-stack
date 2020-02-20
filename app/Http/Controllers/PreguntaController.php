@@ -16,12 +16,13 @@ class PreguntaController extends Controller
      */
     public function index()
     {
-        $preguntas = DB::table('preguntas')
-            ->orderBy('created_at', 'DESC')
+        $preguntasUsuario = DB::table('preguntas')
+            ->join('usuarios', 'usuarios.id', '=', 'preguntas.id_usuario')
+            ->select('preguntas.titulo','preguntas.id','preguntas.visita','preguntas.updated_at','preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'usuarios.nombre')
             ->paginate(10);
 
         return view('index', [
-            'preguntas' => $preguntas
+            'preguntas' => $preguntasUsuario
         ]);
     }
 
@@ -32,7 +33,7 @@ class PreguntaController extends Controller
      */
     public function create()
     {
-        //
+        return view('createQuestion');
     }
 
     /**
