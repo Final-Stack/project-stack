@@ -57,7 +57,7 @@
                         <div class="col-5 ">
                             <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                             <div class="etiquetas float-left">
-                                <mark class="p-1">{{json_decode($pregunta->etiquetas)->a}}</mark>
+                                <mark class="p-1">{{json_decode($pregunta->etiquetas)}}</mark>
                             </div>
                             <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
                         </div>
