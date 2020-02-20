@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>FinalStack</title>
-    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="{{secure_asset('css/navbar.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{secure_asset('css/index.css')}}">
     <!-- Bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -14,7 +15,7 @@
     <nav id="nav_container">
         <!-- Contenedor con el logo y/o nombre -->
         <a href="/" id="logo_container">
-            <img id="logo" src="../../public/img/StackLogo.png">
+            <img id="logo" src="{{secure_asset('img/StackLogo.png')}}">
         </a>
 
         <!-- Contenedor con el buscador por titulo -->
@@ -23,7 +24,7 @@
                 <div class="search">
                     <input type="text" class="searchTerm" placeholder="What are you looking for?">
                     <button type="submit" class="searchButton">
-                        <img src="../../public/img/magnifying-glass.png">
+                        <img id="logo" src="{{secure_asset('img/magnifying-glass.png')}}">
                     </button>
                 </div>
             </div>
@@ -31,10 +32,10 @@
         <input type="button" name="signIn" value="sign in">
         <input type="button" name="logIn"  value="log in">
     </nav>
-    <div id="container">
-        @yield('content')
-    </div>
 </header>
+<div id="container">
+    @yield('content')
+</div>
 </body>
 </html>
 
