@@ -64,12 +64,6 @@
                                         {{ __('Login') }}
                                     </button>
 
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-
                                     <a href="{{ url('auth/google') }}" style="margin-top: 20px;"
                                        class="btn btn-lg btn-success btn-block disabled">
                                         <strong>Login With Google</strong>

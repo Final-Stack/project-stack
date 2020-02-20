@@ -18,8 +18,8 @@ class CreatePreguntasTable extends Migration
             $table->string('titulo',240);
             $table->string('descripcion', 240);
             $table->boolean('estado')->default(0);
-            $table->integer('visita');
-            $table->string('etiquetas');
+            $table->integer('visita')->default(0);
+            $table->string('etiquetas'); // con separaciones por ,
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
