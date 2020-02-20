@@ -17,6 +17,7 @@
 <div id="container">
     @yield('content')
 </div>
+<script src="{{ secure_asset('js/tags.js') }}"></script>
 </body>
 </html>
 
