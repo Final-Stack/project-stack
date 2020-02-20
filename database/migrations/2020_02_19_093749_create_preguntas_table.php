@@ -15,12 +15,12 @@ class CreatePreguntasTable extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo');
-            $table->string('descripcion');
+            $table->string('titulo',240);
+            $table->string('descripcion', 240);
             $table->boolean('estado')->default(0);
             $table->integer('visita');
-            $table->json('etiquetas');
-            $table->unsignedBigInteger('id_usuario');
+            //$table->json('etiquetas'); // por ahora casca el json en clearDB
+            $table->unsignedBigInteger('users_id');
             $table->timestamps();
         });
     }

@@ -19,4 +19,6 @@
             </div>
         </div>
     </form>
+    <a class="btn btn-outline-primary" href="{{route('login')}}"> Iniciar sesión</a>
+    <a class="btn btn-outline-primary" href="{{route('register')}}"> Resgistrarse</a>
 </nav>

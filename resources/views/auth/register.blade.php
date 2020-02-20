@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -61,6 +61,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="sector_donde_trabaja" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="sector_donde_trabaja" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required >
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -68,7 +82,7 @@
                                 </button>
                             </div>
                         </div>
-                        <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                        <a href="{{ url('auth/google') }}" class="btn btn-lg btn-success btn-block mt-3">
                             <strong>Registrarse Con Google</strong>
                         </a>
                     </form>
