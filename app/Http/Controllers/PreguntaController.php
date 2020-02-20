@@ -18,7 +18,7 @@ class PreguntaController extends Controller
      */
     public function index(Request $request)
     {
-        $preguntasUsuario = DB::table('preguntas')
+        $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.users_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->paginate(10);
