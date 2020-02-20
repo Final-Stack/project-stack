@@ -14,9 +14,18 @@
 
 Route::get('/', 'PreguntaController@index')->name('index');
 
+
+Route::get('/index', function () {
+    return view('createQuestion');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Rutas de inicio de sesion con google
+ */
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 

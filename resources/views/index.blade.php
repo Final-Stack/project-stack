@@ -5,7 +5,7 @@
             <div class="main">
                 <div>
                     <h2 class="mb-3 float-left">Preguntas más recientes</h2>
-                    <a class="float-right btn btn-primary" href="/preguntas/formular" data-value="active">Hacer una pregunta</a>
+                    <a class="float-right btn btn-primary" href="/create" data-value="active">Hacer una pregunta</a>
                 </div>
 
                 <ul class="w-100 nav nav-tabs" role="tablist">
