@@ -13,12 +13,10 @@
                     <img id="lupa" src="{{secure_asset('img/magnifying-glass.png')}}">
                 </button>
                 <div id="registerlogin">
-                    <button type="submit" class="btn" name="signIn" value="sign in" formaction="/login">sign in</button>
-                    <button type="submit" class="btn" name="logIn"  value="log in" formaction="/register">log in</button>
+                    <a class="btn btn-outline-primary" href="{{route('login')}}"> Iniciar sesión</a>
+                    <a class="btn btn-outline-primary" href="{{route('register')}}"> Resgistrarse</a>
                 </div>
             </div>
         </div>
     </form>
-    <a class="btn btn-outline-primary" href="{{route('login')}}"> Iniciar sesión</a>
-    <a class="btn btn-outline-primary" href="{{route('register')}}"> Resgistrarse</a>
 </nav>
