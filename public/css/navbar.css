@@ -1,26 +1,29 @@
-body{
+body {
     margin: 0 auto;
 }
-#buscador{
+
+#buscador {
     width: 45%;
     height: 20%;
 
 }
-#nav_container{
+
+#nav_container {
     height: 50px;
     display: flex;
     width: 100%;
     justify-content: center;
     position: fixed;
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, .2);
     background-color: #f2f2f2;
 }
 
-#logo{
+#logo {
     max-width: 90px;
     margin-top: -24px;
     margin-right: 10px;
 }
+
 .search {
     width: 100%;
     position: relative;
@@ -29,32 +32,27 @@ body{
 }
 
 .searchTerm {
-    width: 100%;
-    border: 0;
-    padding: 5px;
-    height: 48px;
-    border-radius: 5px 0 0 5px;
+    height: 40px;
+    border-color: #f7941d;
     outline: none;
-    color: #9DBFAF;
-
+    color: #bf8751;
 }
 
-.searchTerm:focus{
-    color: #00B4CC;
+.searchTerm:focus {
+    color: #11a89e;
 }
 
-.searchButton {
-    width: 65px;
-    height: 48px;
-    border: 0;
-    background: #00B4CC;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-}
 .actionbutton {
     padding: 13px !important;
     height: 48px;
+}
+
+#lupa {
+    position: absolute;
+    z-index: 9999;
+    margin-left: 5px;
+    margin-top: 15px;
+    width: 18px;
+    height: 18px;
+    color: gainsboro;
 }
