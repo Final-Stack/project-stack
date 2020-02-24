@@ -9,6 +9,7 @@
     <!-- CSS  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/navbar.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/index.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
 </head>
