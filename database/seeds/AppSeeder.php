@@ -53,7 +53,7 @@ class AppSeeder extends Seeder
                         'estado' => false,
                         'visita' => 1,
                         'etiquetas' => $tags,
-                        'users_id' => $value->id,
+                        'user_id' => $value->id,
                         'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
                         'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
                     ]);

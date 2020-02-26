@@ -57,3 +57,6 @@ Route::get('/getFavorito/{idUsuario}/{idPregunta}', 'UserController@getFavorito'
 Route::get('/setFavorito/{idUsuario}/{idPregunta}', 'UserController@setFavorito')->name('user.setFavorito');
 Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavorito')->name('user.unsetFavorito');
 
+
+// Respuestas
+Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder');
