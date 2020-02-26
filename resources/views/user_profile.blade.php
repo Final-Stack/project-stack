@@ -33,15 +33,18 @@
 <table class="table table-borderless">
     <thead>
     <tr>
-        <th scope="col">Estado</th>
-        <th scope="col">Visitas</th>
         <th scope="col">Titulo</th>
         <th scope="col">Descripcion</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Visitas</th>
+        <th scope="col">Etiquetas</th>
     </tr>
     </thead>
     <tbody>
 @foreach($preguntas as $pregunta)
         <tr>
+            <td><a href="/preguntas/{{$pregunta->id}}">{{$pregunta->titulo}}</a></td>
+            <td>{{$pregunta->descripcion}}</td>
             <td>
                 @switch($pregunta->estado)
                     @case(0)
@@ -53,8 +56,7 @@
                 @endswitch
             </td>
             <td>{{$pregunta->visita}}</td>
-            <td>{{$pregunta->titulo}}</td>
-            <td>{{$pregunta->descripcion}}</td>
+            <td>{{$pregunta->etiquetas}}</td>
         </tr>
 @endforeach
     </tbody>

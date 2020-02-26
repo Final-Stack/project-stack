@@ -140,7 +140,7 @@ class PreguntaController extends Controller
     public function semana()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->where('preguntas.created_at', '>', Carbon::now()->startOfWeek())
             ->where('preguntas.created_at', '<', Carbon::now()->endOfWeek())
@@ -166,7 +166,7 @@ class PreguntaController extends Controller
     public function dia()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereDate('preguntas.created_at', Carbon::today())
             ->paginate(10);
@@ -191,7 +191,7 @@ class PreguntaController extends Controller
     public function mes()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereMonth('preguntas.created_at', '=', Carbon::now()->month)
             ->paginate(10);
@@ -216,7 +216,7 @@ class PreguntaController extends Controller
     public function populares()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->orderBy('preguntas.visita', 'DESC')
             ->paginate(10);
@@ -241,7 +241,7 @@ class PreguntaController extends Controller
     public function reciente()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->orderBy('preguntas.id', 'DESC')
             ->paginate(10);
@@ -266,9 +266,9 @@ class PreguntaController extends Controller
     public function activas()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->where('preguntas.estado', '=', 1)
+            ->where('preguntas.estado', '=', 0)
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
