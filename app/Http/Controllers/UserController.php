@@ -63,7 +63,6 @@ class UserController extends Controller
         $usuario=User::find(Auth::id());
         $preguntas=$usuario->preguntas;
 
-
         $fechaCreacion = Carbon::parse($usuario->created_at);
         $fechaActual = Carbon::now();
         $diferencia = $fechaActual->diffInDays($fechaCreacion);

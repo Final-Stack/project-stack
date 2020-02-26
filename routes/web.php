@@ -49,3 +49,6 @@ Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
 
 // Perfil de usuario
 Route::post('/user/{id}', 'UserController@update')->name('pregunta.actualizar');
+
+// Respuestas
+Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder');

@@ -10,8 +10,8 @@ class Pregunta extends Model
       'etiquetas' => 'array'
     ];
 
-    public function usuario() {
-        return $this->belongsTo('App\Usuario');
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 
     public function favorito() {

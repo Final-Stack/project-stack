@@ -36,13 +36,13 @@ class PreguntaController extends Controller
 
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -96,9 +96,12 @@ class PreguntaController extends Controller
     public function show($id)
     {
         $pregunta=Pregunta::find($id);
+        $respuestas=$pregunta->respuestas;
+
 
         return view('question', [
-            'pregunta' => $pregunta
+            'pregunta' => $pregunta,
+            'respuestas' => $respuestas
         ]);
 
     }
@@ -147,13 +150,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -172,13 +175,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -197,13 +200,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -222,13 +225,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -247,13 +250,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -272,13 +275,13 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [

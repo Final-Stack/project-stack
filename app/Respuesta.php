@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Respuesta extends Model
 {
-    public function usuario() {
-        return $this->belongsTo('App\Usuario');
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 
     public function pregunta() {
