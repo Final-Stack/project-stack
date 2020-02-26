@@ -47,8 +47,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Respuesta');
     }
 
-    public function favoritos()
-    {
-        return $this->hasMany('App\Pregunta');
+    public function favoritos() {
+        return $this->hasMany('App\Favorito');
     }
 }

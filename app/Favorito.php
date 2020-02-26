@@ -10,7 +10,7 @@ class Favorito extends Model
         return $this->belongsTo('App\Pregunta');
     }
 
-    public function usuario() {
+    public function user() {
         return $this->belongsTo('App\Usuario');
     }
 }
