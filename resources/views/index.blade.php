@@ -3,10 +3,13 @@
     @section('content')
         <div class="container ">
             <div class="main">
-                <div>
-                    <h2 class="mb-3 float-left">Preguntas más recientes</h2>
-                        <a class="float-right btn btn-primary" href="{{ route('pregunta.create')}} " data-value="active">Hacer una pregunta</a>
-                </div>
+                @if(Auth::user() != null)
+                    <div>
+                        <h2 class="mb-3 float-left">Preguntas más recientes</h2>
+                        <a class="float-right btn btn-primary" href="{{ route('pregunta.create')}} "
+                           data-value="active">Hacer una pregunta</a>
+                    </div>
+                @endif
 
                 <ul class="w-100 nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -57,7 +60,7 @@
                         <div class="col-5 ">
                             <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                             <div class="etiquetas float-left">
-                                <mark class="p-1">{{json_decode($pregunta->etiquetas)}}</mark>
+                                <mark class="p-1">{{($pregunta->etiquetas)}}</mark>
                             </div>
                             <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
                         </div>

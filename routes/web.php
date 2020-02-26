@@ -49,3 +49,8 @@ Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
 
 // Perfil de usuario
 Route::post('/user/{id}', 'UserController@update')->name('pregunta.actualizar');
+
+// coger el favorito, añadir y borrar
+Route::get('/getFavorito/{idUsuario}/{idPregunta}', 'UserController@getFavorito')->name('user.getFavorito');
+Route::get('/setFavorito/{idUsuario}/{idPregunta}', 'UserController@setFavorito')->name('user.setFavorito');
+Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavorito')->name('user.unsetFavorito');

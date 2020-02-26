@@ -57,3 +57,9 @@ body {
     height: 18px;
     color: gainsboro;
 }
+#profile_img{
+    border: 1px solid #bbf2f7;
+    border-radius: 100%;
+    width: 3%;
+    height: auto;
+}
