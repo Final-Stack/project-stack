@@ -18,6 +18,9 @@
             </div>
         </div>
     </form>
+
+    <img src="{{Storage::url( Auth::user()->url_foto ?? 'upload/transparente.png')}}" id="profile_img">
+    <input type="hidden" value="{{ Auth::user()->id ?? ''}}" id="user_id">
     <!-- Right Side Of Navbar -->
     <ul class="navbar-nav m-auto  d-flex flex-row">
         <!-- Authentication Links -->
@@ -31,6 +34,9 @@
                 </li>
             @endif
         @else
+            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="user_img">
+            <input type="hidden" value="{{ Auth::user()->id }}" id="user_id">
+
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" v-pre>
