@@ -90,12 +90,15 @@ class PreguntaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\rc $rc
-     * @return \Illuminate\Http\Response
+     * @param integer $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
-        $pregunta=Pregunta::find($id);
+        $pregunta = Pregunta::find($id);
+        // sumarle +1 a las visitas
+        $pregunta->visita -= -1;
+        $pregunta->save();
 
         return view('question', [
             'pregunta' => $pregunta
