@@ -19,8 +19,8 @@
         </div>
     </form>
 
-    <img src="{{Storage::url( Auth::user()->url_foto)}}" id="user_img">
-    <input type="hidden" value="{{ Auth::user()->id }}" id="user_id">
+    <img src="{{Storage::url( Auth::user()->url_foto ?? 'upload/transparente.png')}}" id="user_img">
+    <input type="hidden" value="{{ Auth::user()->id ?? ''}}" id="user_id">
     <!-- Right Side Of Navbar -->
     <ul class="navbar-nav m-auto  d-flex flex-row">
         <!-- Authentication Links -->
