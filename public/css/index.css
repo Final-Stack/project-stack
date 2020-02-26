@@ -8,3 +8,12 @@ aside{
     width: 20%;
     float: left;
 }
+
+.dar-fav {
+    color: whitesmoke;
+}
+
+.quitar-fav{
+    color: #fff000;
+
+}

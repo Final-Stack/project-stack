@@ -13,7 +13,8 @@
 
                         <!-- Nombre -->
                             <div class="form-group row">
-                                <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <label for="nombre"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="nombre" type="text"
@@ -96,9 +97,22 @@
                             </div>
 
                             <!-- Subir foto -->
-                           <div>
-                               <input type="file" name="url_foto">
-                           </div>
+                            <div>
+                                <input type="file" name="url_foto">
+                            </div>
+
+                            <!-- Biografia -->
+                            <div class="form-group row">
+                                <label for="nombre"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Biografia') }}</label>
+
+                                <div class="col-md-6">
+                                    <textarea id="biografia" type="text"
+                                              class="form-control"
+                                              name="biografia" autofocus>
+                                    </textarea>
+                                </div>
+                            </div>
 
                             <!-- Registro normal -->
                             <div class="form-group row mb-0">

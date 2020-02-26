@@ -40,15 +40,23 @@ Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
 Route::get('/user/{id}', 'UserController@show')->name('user.profile');
 Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
-Route::post('/', 'PreguntaController@store')->name('pregunta.store');
+Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
 
 // Buscador Index
 Route::get('buscar','PreguntaController@index')->name('index.buscar');
 // Buscador usuarios
 Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
+// Buscador Etiquetas
+Route::post('create/buscarEtiquetas','PreguntaController@buscarEtiquetas')->name('etiquetas.buscar');
 
 // Perfil de usuario
 Route::post('/user/{id}', 'UserController@update')->name('pregunta.actualizar');
+
+// coger el favorito, añadir y borrar
+Route::get('/getFavorito/{idUsuario}/{idPregunta}', 'UserController@getFavorito')->name('user.getFavorito');
+Route::get('/setFavorito/{idUsuario}/{idPregunta}', 'UserController@setFavorito')->name('user.setFavorito');
+Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavorito')->name('user.unsetFavorito');
+
 
 // Respuestas
 Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder');

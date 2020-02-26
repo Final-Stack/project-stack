@@ -65,13 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data, Request $request)
     {
-        $ruta = $request->file('url_foto')->store('public/upload');
+        $ruta = 'public/upload/default.png';
+        if ($request->file('url_foto') != null) {
+            $ruta = $request->file('url_foto')->store('public/upload');
+        }
         return User::create([
             'nombre' => $data['nombre'],
+            'biografia' => $data['biografia'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'sector_donde_trabaja' => $data['sector_donde_trabaja'],
-            'url_foto' =>$ruta
+            'url_foto' => $ruta
         ]);
     }
 
