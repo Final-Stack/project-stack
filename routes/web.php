@@ -47,4 +47,5 @@ Route::get('buscar','PreguntaController@index')->name('index.buscar');
 // Buscador usuarios
 Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
 
-
+// Perfil de usuario
+Route::post('/user/{id}', 'UserController@update')->name('pregunta.actualizar');
