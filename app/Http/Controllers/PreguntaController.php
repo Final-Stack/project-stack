@@ -23,13 +23,13 @@ class PreguntaController extends Controller
         $preguntas = "";
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
-                ->join('users', 'users.id', '=', 'preguntas.user_id')
+                ->join('users', 'users.id', '=', 'preguntas.users_id')
                 ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
                 ->where('titulo', 'like', '%' . $request->buscar . '%')
                 ->paginate(10);
         } else {
             $preguntas = DB::table('preguntas')
-                ->join('users', 'users.id', '=', 'preguntas.user_id')
+                ->join('users', 'users.id', '=', 'preguntas.users_id')
                 ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
                 ->paginate(10);
         }
@@ -289,5 +289,16 @@ class PreguntaController extends Controller
             'respuestas' => $respuestas,
             'votos' => $votos
         ]);
+    }
+
+    public function buscarEtiquetas(Request $request) {
+        $etiqueta = request()->all()['etiqueta'];
+
+        $etiquetas = DB::table('preguntas')
+            ->select('etiquetas')
+            ->where('etiquetas', 'like','%' . $etiqueta . '%')
+            ->get();
+
+        return $etiquetas;
     }
 }
