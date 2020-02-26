@@ -65,7 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data, Request $request)
     {
-        $ruta = null;
+        $ruta = 'public/upload/default.png';
         if ($request->file('url_foto') != null) {
             $ruta = $request->file('url_foto')->store('public/upload');
         }

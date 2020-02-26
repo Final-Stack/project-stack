@@ -9,6 +9,8 @@ body {
 }
 
 #nav_container {
+    z-index: 9999;
+
     height: 50px;
     display: flex;
     width: 100%;
@@ -49,7 +51,6 @@ body {
 
 #lupa {
     position: absolute;
-    z-index: 9999;
     margin-left: 5px;
     margin-top: 15px;
     width: 18px;
