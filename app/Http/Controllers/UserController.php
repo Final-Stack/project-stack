@@ -171,13 +171,10 @@ class UserController extends Controller
      */
     public function getFavorito(int $idUsuario, int $idPregunta)
     {
-        /* DB::select("Select * from favoritos where id_usuario = " . $idUsuario . " AND id_pregunta = " . $idPregunta)
-         ->get();
-        */
         $fav = DB::table('favoritos')
             ->select("*")
-            ->where('id_usuario', "=", $idUsuario, "and")
-            ->where('id_pregunta', "=", $idPregunta)
+            ->where('user_id', "=", $idUsuario, "and")
+            ->where('pregunta_id', "=", $idPregunta)
             ->get();
         $favorito = null;
 
@@ -199,9 +196,9 @@ class UserController extends Controller
     {
         try {
             DB::table('favoritos')->insert(
-                ['id_usuario' => $idUsuario, 'id_pregunta' => $idPregunta]
+                ['user_id' => $idUsuario, 'pregunta_id' => $idPregunta]
             );
-            return 'correcto';
+            return 'Set favorito correcto';
         } catch (\Exception $e) {
             return $e;
         }
@@ -217,10 +214,10 @@ class UserController extends Controller
     public function unsetFavorito(int $idUsuario, int $idPregunta)
     {
         try {
-            DB::table('favoritos')->where('id_usuario', '=', $idUsuario, 'and')
-                ->where('id_pregunta', '=', $idPregunta)
+            DB::table('favoritos')->where('user_id', '=', $idUsuario, 'and')
+                ->where('pregunta_id', '=', $idPregunta)
                 ->delete();
-            return 'correcto';
+            return 'Unset favorito correcto';
         } catch (\Exception $e) {
             return $e;
         }
