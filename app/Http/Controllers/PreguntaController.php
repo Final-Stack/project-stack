@@ -79,7 +79,7 @@ class PreguntaController extends Controller
         $pregunta->etiquetas = request('tag_block');
         $pregunta->estado = 0;
         $pregunta->visita = 0;
-        $pregunta->user_id = $usuario->id;
+        $pregunta->users_id = $usuario->id;
 
 
         $pregunta->save();
