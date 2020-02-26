@@ -16,9 +16,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->buscar != null) {
+            $usuarios = DB::table('users')
+                ->where('nombre', 'like', '%' . $request->nombre . '%')
+                ->get();
+        } else {
+            $usuarios = User::all();
+        }
+
+        return view('busquedaUsuarios', [
+            'usuarios' => $usuarios
+        ]);
     }
 
     /**
@@ -100,5 +110,41 @@ class UserController extends Controller
     public function destroy(rc $rc)
     {
         //
+    }
+
+    public function reciente() {
+        $usuarios = DB::table('users')
+            ->orderBy('created_at', 'ASC')
+            ->get();
+
+        return view('busquedaUsuarios', [
+            'usuarios' => $usuarios
+        ]);
+    }
+
+    public function preguntas() {
+        $usuarios = DB::table('users')
+            ->join('preguntas', 'preguntas.user_id', '=', 'users.id')
+            ->select(DB::raw('count(preguntas.id)'),'users.id', 'users.nombre', 'users.email','users.url_foto')
+            ->orderBy(DB::raw('count(preguntas.id)'), 'ASC')
+            ->groupBy('users.id')
+            ->get();
+
+        return view('busquedaUsuarios', [
+            'usuarios' => $usuarios
+        ]);
+    }
+
+    public function respuestas() {
+        $usuarios = DB::table('users')
+            ->join('respuestas', 'respuestas.user_id', '=', 'users.id')
+            ->select(DB::raw('count(respuestas.id)'),'users.id', 'users.nombre', 'users.email','users.url_foto')
+            ->orderBy(DB::raw('count(respuestas.id)'),'ASC')
+            ->groupBy('users.id')
+            ->get();
+
+        return view('busquedaUsuarios', [
+            'usuarios' => $usuarios
+        ]);
     }
 }
