@@ -108,14 +108,9 @@
 
                                 <div class="col-md-6">
                                     <textarea id="biografia" type="text"
-                                              class="form-control @error('biografia') is-invalid @enderror"
-                                              name="biografia" required autocomplete="biografia" autofocus>
+                                              class="form-control"
+                                              name="biografia" autofocus>
                                     </textarea>
-                                    @error('biografia')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                             </div>
 
