@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 240);
-            $table->string('biografia', 240);
+            $table->string('biografia', 240)->nullable();
             $table->string('email')->unique();
             $table->string('password', 240);
             $table->string('sector_donde_trabaja')->nullable(); // inventarse unos lugares internos de la empresa; ej: S-1, S-2, A-2...
