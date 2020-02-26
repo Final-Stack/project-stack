@@ -27,9 +27,12 @@
 <div id="container">
     @yield('content')
 </div>
-<aside>
-    @include('aside.aside')
-</aside>
+
+@if(Request::path() != 'login' && Request::path() != 'register' )
+    <aside>
+        @include('aside.aside')
+    </aside>
+@endif
 <script src="{{ secure_asset('js/tags.js') }}"></script>
 <script src="{{ secure_asset('js/profile.js') }}"></script>
 <script src="{{ secure_asset('js/navbar.js') }}"></script>
