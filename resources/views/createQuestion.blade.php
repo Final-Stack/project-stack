@@ -1,20 +1,41 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="/" method="post">
-        @csrf
-        <h2>Formula una pregunta</h2>
-        <strong>Titulo</strong>
-        <p><input type="text" name="titulo"></p>
-        <strong>Descripcion</strong>
-        <p><textarea name="descripcion"></textarea></p>
-        <strong>Etiquetas</strong>
-        <p><input type="text" id="tag" name="tag"><input type="button" id="add_tag" value="Añadir etiqueta"></p>
-        <div id="tag_container" name="tag_container">
+    <div class="container">
+        <form action="{{route('pregunta.store')}}" method="post">
+            @csrf
+            <div class="form-group">
+                <h2>Formula una pregunta</h2>
+            </div>
+            <div class="form-group">
+                <strong>Titulo</strong> <br>
+                <input type="text" name="titulo">
+            </div>
+            <div class="form-group">
+                <strong>Descripcion</strong> <br>
+                <textarea name="descripcion"></textarea>
+            </div>
+            <div class="form-group">
+                <strong>Etiquetas</strong> <br>
+                <input type="text" onkeyup="buscarEtiquetas()" id="tag" name="tag">
+            </div>
 
-        </div>
-        <input type="hidden" id="tag_block" name="tag_block">
-        <input type="submit" value="Formular pregunta">
-    </form>
+            <div id="tag_container" name="tag_container" class="mb-3">
+
+            </div>
+
+            <div id="vacioContainer" class="mb-3">
+                <span>No se ha encontrado ninguna etiqueta</span>
+            </div>
+
+            <div type="text" id="etiquetas" class="mb-3">
+
+            </div>
+
+            <input type="hidden" id="tag_block" name="tag_block">
+            <input type="submit" value="Formular pregunta">
+        </form>
+    </div>
+
 
 @endsection
