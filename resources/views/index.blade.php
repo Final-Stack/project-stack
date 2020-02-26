@@ -60,7 +60,13 @@
                         <div class="col-5 ">
                             <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                             <div class="etiquetas float-left">
-                                <mark class="p-1">{{($pregunta->etiquetas)}}</mark>
+                                @php
+                                    $tag = $pregunta->etiquetas;
+                                    $tags = explode(",", $tag);
+                                    foreach ($tags as $t){
+                                    echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
+                                    }
+                                @endphp
                             </div>
                             <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
                         </div>
