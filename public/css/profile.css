@@ -1,0 +1,21 @@
+#user_img{
+    border-radius: 100%;
+    max-width: 45%;
+    max-height: 100px;
+}
+#profile_container{
+    display:flex;
+    justify-content: space-between;
+}
+#user_data{
+    display: flex;
+    flex-direction: row;
+}
+#user_information img{
+    width: 10%;
+    height: auto;
+}
+#confirmar_cambio,#cancelar_cambio{
+    width: 50%;
+    float: right;
+}

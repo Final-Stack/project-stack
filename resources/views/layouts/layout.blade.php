@@ -9,6 +9,7 @@
     <!-- CSS  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/navbar.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/index.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{secure_asset('css/profile.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
@@ -21,6 +22,8 @@
     @yield('content')
 </div>
 <script src="{{ secure_asset('js/tags.js') }}"></script>
+<script src="{{ secure_asset('js/profile.js') }}"></script>
+<script src="{{ secure_asset('js/navbar.js') }}"></script>
 </body>
 <!-- Jquery popper y Bootstrap-JS  -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
