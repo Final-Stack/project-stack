@@ -40,11 +40,11 @@ Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
 Route::get('/user/{id}', 'UserController@show')->name('user.profile');
 Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
-Route::post('/', 'PreguntaController@store')->name('pregunta.store');
+Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
 
 // Buscador Index
 Route::get('buscar','PreguntaController@index')->name('index.buscar');
 // Buscador usuarios
 Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
 
-
+Route::post('create/buscarEtiquetas','PreguntaController@buscarEtiquetas')->name('etiquetas.buscar');
