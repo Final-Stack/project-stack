@@ -25,9 +25,40 @@
         <p><img src="{{secure_asset('img/work.png')}}">{{$usuario->sector_donde_trabaja}}</p>
         <p><img src="{{secure_asset('img/passage-of-time.png')}}">{{$tiempo}}</p>
     </div>
-    @foreach($preguntas as $pregunta)
-        <p>{{$pregunta}}</p>
-    @endforeach
-</div>
 
+</div>
+<br>
+<h2>Preguntas</h2>
+<hr>
+<table class="table table-borderless">
+    <thead>
+    <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Visitas</th>
+        <th scope="col">Etiquetas</th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach($preguntas as $pregunta)
+        <tr>
+            <td><a href="/preguntas/{{$pregunta->id}}">{{$pregunta->titulo}}</a></td>
+            <td>{{$pregunta->descripcion}}</td>
+            <td>
+                @switch($pregunta->estado)
+                    @case(0)
+                    Sin resolver
+                    @break
+                    @case(1)
+                    Resuelta
+                    @break
+                @endswitch
+            </td>
+            <td>{{$pregunta->visita}}</td>
+            <td>{{$pregunta->etiquetas}}</td>
+        </tr>
+@endforeach
+    </tbody>
+</table>
 @endsection

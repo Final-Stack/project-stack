@@ -1,5 +1,12 @@
 #container{
     padding-top: 70px;
+    width: 80%;
+    float: left;
+}
+aside{
+    padding-top: 70px;
+    width: 20%;
+    float: left;
 }
 
 .dar-fav {
