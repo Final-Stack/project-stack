@@ -44,7 +44,7 @@ class RespuestaController extends Controller
 
         $respuesta->descripcion = request('solucion');
         $respuesta->pregunta_id = request('pregunta_id');
-        $respuesta->users_id = $usuario->id;
+        $respuesta->user_id = $usuario->id;
 
 
         $respuesta->save();
