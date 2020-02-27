@@ -37,6 +37,7 @@
             <textarea class="form-control" name="comentario"></textarea>
             <input class="form-control" type="submit" value="Comentar" id="comentar">
             <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
+            <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
         </form>
         <hr>
     @endforeach

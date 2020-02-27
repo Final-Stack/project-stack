@@ -42,10 +42,11 @@ class ComentarioController extends Controller
 
         $comentario->descripcion = request('comentario');
         $comentario->respuesta_id = request('respuesta_id');
+        $idpregunta =  request('pregunta_id');
 
         $comentario->save();
 
-        return redirect('/');
+        return redirect('preguntas/' . $idpregunta);
     }
 
     /**
