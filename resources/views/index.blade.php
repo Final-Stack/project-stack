@@ -33,26 +33,66 @@
                     </li>
                 </ul>
             </div>
+                @foreach($preguntas as $pregunta)
 
-            @foreach($preguntas as $pregunta)
                 <div class="pregunta row border-bottom p-3 ">
-                    <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->id}}'">
-                        <div class="votos text-center  col-4">
-                            <span class="col-12">Votos</span>
-                            {{--                                @foreach($votos as $voto)--}}
-                            {{--                                    @if($pregunta->id = $voto->pregunta_id)--}}
-                            {{--                                        <span class="col-12">{{$voto->numVotos}}</span>--}}
-                            {{--                                    @endif--}}
-                            {{--                                @endforeach--}}
-                        </div>
-                        <div class="respuestas text-center  col-4">
-                            <span>Respuestas</span>
-                            {{--                                @foreach($respuestas as $respuesta)--}}
-                            {{--                                    @if($pregunta->id = $respuesta->pregunta_id)--}}
-                            {{--                                        <span class="col-12">{{$respuesta->numPreguntas}}</span>--}}
-                            {{--                                    @endif--}}
-                            {{--                                @endforeach--}}
-                        </div>
+                        <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->id}}'">
+                            <div class="votos text-center  col-4">
+                                <span class="col-12">Votos</span>
+
+                                @foreach($votos as $voto)
+                                    @php
+                                        $existenVotos = false;
+                                        $votoNum = -1;
+
+                                        if($pregunta->id == $voto->pregunta_id)
+                                        {
+                                        $existenVotos = true;
+                                        $votoNum = $voto->numVotos;
+                                        }
+                                    @endphp
+                                    @if($existenVotos)
+                                        @break
+                                    @endif
+                                @endforeach
+                                @if($existenVotos)
+                                    <span class="col-12">{{$votoNum}}</span>
+                                @else
+                                    <span class="col-12">0</span>
+                                @endif
+
+                            </div>
+                            <div class="respuestas text-center  col-4">
+                                <span>Respuestas</span>
+                                @foreach($respuestas as $respuesta)
+                                    @php
+                                        $existenRespuestas = false;
+                                        $respuestasNum = -1;
+
+                                        if($pregunta->id == $respuesta->pregunta_id)
+                                        {
+                                        $existenRespuestas = true;
+                                        $respuestasNum = $respuesta->numRespuestas;
+                                        }
+                                    @endphp
+                                    @if($existenRespuestas)
+                                        @break
+                                    @endif
+                                @endforeach
+
+                                @if($existenRespuestas)
+                                    <span class="col-12">{{$respuestasNum}}</span>
+                                @else
+                                    <span class="col-12">0</span>
+                                @endif
+
+
+
+                            </div>
+                            <div class="visitas text-center col-4 ">
+                                <span class="col-12">Visitas</span>
+                                <span class="col-12">{{$pregunta->visita}}</span>
+                            </div>
                         <div class="visitas text-center col-4 ">
                             <span class="col-12">Visitas</span>
                             <span class="col-12">{{$pregunta->visita}}</span>
