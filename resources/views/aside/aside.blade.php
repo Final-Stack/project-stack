@@ -1,4 +1,4 @@
-<?php
+@php
 
 use App\Pregunta;
 
@@ -11,11 +11,13 @@ foreach ($preguntas as $pregunta) {
     foreach ($tags as $t) {
         if (!in_array($t, $evitarRepetidos)) {
             array_push($evitarRepetidos, $t);
+            $d = route('index.etiquetas',['etiqueta'=>$t]);
             echo '<div class="row border">
-                        <mark class="rounded col text-capitalize">
+                        <a href="'.$d.'"><mark class="rounded col text-capitalize">
                             <i class="fas fa-tag"></i>
-                            ' . $t . '</mark>
+                            ' . $t . '</mark><a/>
                   </div>';
         }
     }
 }
+@endphp
