@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row mt-4">
-        <div class="col-9">
+        <div class="col-md-9">
             <div class="main">
                 @if(Auth::user() != null)
                     <div>
@@ -76,7 +76,7 @@
             {{$preguntas->links()}}
         </div>
 
-        <aside class="col-2 h-100 sticky-top">
+        <aside class="col-md-2 h-100 sticky-top">
             <div class="row etiquetas-titulo border">
                 Etiquetas más usadas
             </div>
