@@ -1,6 +1,6 @@
-<nav id="nav_container" class="navbar navbar-expand-md navbar-light bg-light shadow">
+<nav id="nav_container" class="navbar navbar-expand-sm navbar-light bg-light shadow sticky-top">
     <!-- Contenedor con el logo y/o nombre -->
-    <a href="{{route('index')}}" id="logo_container" class="navbar-brand mb-0 h1">
+    <a class="navbar-brand" href="{{route('index')}}">
         <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}" alt="logo">
     </a>
 
@@ -23,7 +23,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <!-- Authentication Links -->
             @guest
@@ -40,7 +40,8 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="user_img"> <span class="caret"></span>
+                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="user_img" class="border"> <span
+                            class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
