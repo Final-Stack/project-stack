@@ -69,14 +69,14 @@
                                 }
                             @endphp
                         </div>
-                        <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
+                        <span class="float-right ">creada por <a href="{{route('user.profile',['id'=>$pregunta->id])}}">{{$pregunta->nombre}}</a></span>
                     </div>
                 </div>
             @endforeach
             {{$preguntas->links()}}
         </div>
 
-        <aside class="col-md-2 h-100 sticky-top">
+        <aside class="col-md-2 h-100">
             <div class="row etiquetas-titulo border">
                 Etiquetas más usadas
             </div>

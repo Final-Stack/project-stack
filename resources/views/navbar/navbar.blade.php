@@ -1,4 +1,4 @@
-<nav id="nav_container" class="navbar navbar-expand-sm navbar-light bg-light shadow sticky-top">
+<nav id="nav_container" class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top">
     <!-- Contenedor con el logo y/o nombre -->
     <a class="navbar-brand" href="{{route('index')}}">
         <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}" alt="logo">

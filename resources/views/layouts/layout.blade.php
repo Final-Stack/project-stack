@@ -25,7 +25,7 @@
     @include('navbar.navbar')
 </header>
 
-<div class="container-fluid">
+<div class="container-fluid mt-5 pt-5">
     @yield('content')
 </div>
 <script src="{{ secure_asset('js/tags.js') }}"></script>
