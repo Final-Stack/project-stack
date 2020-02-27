@@ -3,7 +3,7 @@
 @section('content')
 <div id="profile_container">
 
-    <div id="user_data">
+    <div id="user_data" class="col-8 mt-4">
         <img src="{{Storage::url($usuario->url_foto)}}" id="user_img">
         <div id="user">
             <h1 id="username">{{$usuario->nombre}}</h1>
@@ -20,10 +20,10 @@
     </div>
 
 
-    <div id="user_information">
-        <p><img src="{{secure_asset('img/mail.png')}}">{{$usuario->email}}</p>
-        <p><img src="{{secure_asset('img/work.png')}}">{{$usuario->sector_donde_trabaja}}</p>
-        <p><img src="{{secure_asset('img/passage-of-time.png')}}">{{$tiempo}}</p>
+    <div id="user_information" class="col-4 mt-4">
+        <p><img class="mr-2" src="{{secure_asset('img/mail.png')}}">{{$usuario->email}}</p>
+        <p><img class="mr-2" src="{{secure_asset('img/work.png')}}">{{$usuario->sector_donde_trabaja}}</p>
+        <p><img class="mr-2" src="{{secure_asset('img/passage-of-time.png')}}">{{$tiempo}}</p>
     </div>
 
 </div>

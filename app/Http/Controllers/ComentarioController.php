@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Comentario;
 use App\Respuesta;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class RespuestaController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,18 +38,14 @@ class RespuestaController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = User::find(Auth::id());
+        $comentario = new Comentario();
 
-        $respuesta = new Respuesta();
+        $comentario->descripcion = request('comentario');
+        $comentario->respuesta_id = request('respuesta_id');
 
-        $respuesta->descripcion = request('solucion');
-        $idpregunta = $respuesta->pregunta_id = request('pregunta_id');
-        $respuesta->user_id = $usuario->id;
+        $comentario->save();
 
-
-        $respuesta->save();
-
-        return redirect('preguntas/' . $idpregunta);
+        return redirect('/');
     }
 
     /**
@@ -96,5 +92,4 @@ class RespuestaController extends Controller
     {
         //
     }
-
 }

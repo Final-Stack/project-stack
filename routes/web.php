@@ -60,3 +60,7 @@ Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavor
 
 // Respuestas
 Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder');
+
+//comentarios
+Route::get('/commentform', 'RespuestaController@comments');
+Route::post('/comentar', 'ComentarioController@store');
