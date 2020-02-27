@@ -40,6 +40,7 @@
                             <div class="votos text-center  col-4">
                                 <span class="col-12">Votos</span>
 
+
                                 @foreach($votos as $voto)
                                     @php
                                         $existenVotos = false;
@@ -55,7 +56,7 @@
                                         @break
                                     @endif
                                 @endforeach
-                                @if($existenVotos)
+                                @if($existenVotos ?? '')
                                     <span class="col-12">{{$votoNum}}</span>
                                 @else
                                     <span class="col-12">0</span>
@@ -85,6 +86,7 @@
                                 @else
                                     <span class="col-12">0</span>
                                 @endif
+
                             </div>
                         <div class="visitas text-center col-4 ">
                             <span class="col-12">Visitas</span>

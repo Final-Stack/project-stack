@@ -36,8 +36,10 @@ class PreguntaController extends Controller
         }
 
 
+
        $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
+
             ->groupBy('pregunta_id')
             ->get();
 
