@@ -39,7 +39,7 @@ function mostrarEtiquetas(data) {
             arrayEtiquetas.push(data[i].etiquetas)
         }
     }
-    
+
     divEtiquetas.innerHTML= "";
     for (let x = 0; x < arrayEtiquetas.length; x++) {
         let span = document.createElement('mark');
