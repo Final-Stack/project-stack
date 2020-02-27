@@ -1,5 +1,5 @@
 #user{
-    max-width: 900px;
+    width: 900px;
     overflow-wrap: break-word;
 }
 #user_img{
@@ -24,7 +24,7 @@
     float: right;
 }
 #boton_cambio{
-    max-width: 50%;
+    width: 50%;
     margin-left: 30%;
 }
 #formu_cambio{

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
-    protected $casts = [
+    /*protected $casts = [
       'etiquetas' => 'array'
-    ];
+    ];*/
 
-    public function usuario() {
-        return $this->belongsTo('App\Usuario');
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 
     public function favorito() {

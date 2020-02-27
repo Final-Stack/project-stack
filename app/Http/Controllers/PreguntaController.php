@@ -23,26 +23,26 @@ class PreguntaController extends Controller
         $preguntas = "";
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
-                ->join('users', 'users.id', '=', 'preguntas.users_id')
+                ->join('users', 'users.id', '=', 'preguntas.user_id')
                 ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
                 ->where('titulo', 'like', '%' . $request->buscar . '%')
                 ->paginate(10);
         } else {
             $preguntas = DB::table('preguntas')
-                ->join('users', 'users.id', '=', 'preguntas.users_id')
+                ->join('users', 'users.id', '=', 'preguntas.user_id')
                 ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
                 ->paginate(10);
         }
 
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -79,7 +79,7 @@ class PreguntaController extends Controller
         $pregunta->etiquetas = request('tag_block');
         $pregunta->estado = 0;
         $pregunta->visita = 0;
-        $pregunta->user_id = $usuario->id;
+        $pregunta->users_id = $usuario->id;
 
 
         $pregunta->save();
@@ -99,9 +99,12 @@ class PreguntaController extends Controller
         // sumarle +1 a las visitas
         $pregunta->visita -= -1;
         $pregunta->save();
+        $respuestas=$pregunta->respuestas;
+
 
         return view('question', [
-            'pregunta' => $pregunta
+            'pregunta' => $pregunta,
+            'respuestas' => $respuestas
         ]);
 
     }
@@ -143,20 +146,20 @@ class PreguntaController extends Controller
     public function semana()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->where('preguntas.created_at', '>', Carbon::now()->startOfWeek())
             ->where('preguntas.created_at', '<', Carbon::now()->endOfWeek())
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -169,19 +172,19 @@ class PreguntaController extends Controller
     public function dia()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereDate('preguntas.created_at', Carbon::today())
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -194,19 +197,19 @@ class PreguntaController extends Controller
     public function mes()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->whereMonth('preguntas.created_at', '=', Carbon::now()->month)
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -219,19 +222,19 @@ class PreguntaController extends Controller
     public function populares()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->orderBy('preguntas.visita', 'DESC')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -244,19 +247,19 @@ class PreguntaController extends Controller
     public function reciente()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->orderBy('preguntas.id', 'DESC')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
@@ -269,19 +272,19 @@ class PreguntaController extends Controller
     public function activas()
     {
         $preguntas = DB::table('preguntas')
-            ->join('users', 'users.id', '=', 'preguntas.users_id')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
             ->where('preguntas.estado', '=', 0)
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         $votos = DB::table('votos')
-            ->select(DB::raw('count(*) as numVotos, id_pregunta'))
-            ->groupBy('id_pregunta')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
             ->get();
 
         return view('index', [
