@@ -58,9 +58,9 @@ class UserController extends Controller
      * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $usuario = User::find(Auth::id());
+        $usuario = User::find($id);
         $preguntas = $usuario->preguntas;
 
         $fechaCreacion = Carbon::parse($usuario->created_at);

@@ -18,14 +18,28 @@
     <h2>Respuestas</h2>
     <hr>
 
-        @foreach($respuestas as $respuesta)
-            {{$respuesta->descripcion}}
-            {{$respuesta->created_at}}
-            {{$respuesta->user->nombre}}
-            <hr>
-                <h4>Comentarios</h4>
-            <hr>
+    @foreach($respuestas as $respuesta)
+        {{$respuesta->descripcion}}
+        {{$respuesta->created_at}}
+        {{$respuesta->user->nombre}}
+        @php
+            $comentarios = \App\Comentario::where('respuesta_id' , '=' , $respuesta->id)->get();
+        @endphp
+        <h4>Comentarios</h4>
+        <hr>
+        @foreach($comentarios as $comentario)
+            {{$comentario}}
         @endforeach
+        <a id="add_comment_{{$respuesta->id}}" class="add_comment">Añadir comentario</a>
+        '
+        <form id="formu_comentar_{{$respuesta->id}}" action="/comentar" method="post" class="ocultar">
+            @csrf
+            <textarea class="form-control" name="comentario"></textarea>
+            <input class="form-control" type="submit" value="Comentar" id="comentar">
+            <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
+        </form>
+        <hr>
+    @endforeach
 
 
     <h2>Solucionar pregunta</h2>
@@ -44,4 +58,5 @@
             <script src="{{secure_asset('js/favoritos.js')}}"></script>
         </div>
     @endif
+
 @endsection
