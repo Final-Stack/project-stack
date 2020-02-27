@@ -148,8 +148,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->where('preguntas.created_at', '>', Carbon::now()->startOfWeek())
-            ->where('preguntas.created_at', '<', Carbon::now()->endOfWeek())
+            ->groupBy(DB::raw('week(preguntas.created_at)'))
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -174,7 +173,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->whereDate('preguntas.created_at', Carbon::today())
+            ->groupBy(DB::raw('DATE(preguntas.created_at)'))
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -199,7 +198,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->whereMonth('preguntas.created_at', '=', Carbon::now()->month)
+            ->groupBy(DB::raw('month(preguntas.created_at)'))
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
