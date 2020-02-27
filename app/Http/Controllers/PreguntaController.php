@@ -148,7 +148,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('week(preguntas.created_at)'))
+            ->groupBy(DB::raw('week(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -173,7 +173,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('DATE(preguntas.created_at)'))
+            ->groupBy(DB::raw('DATE(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -198,7 +198,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('month(preguntas.created_at)'))
+            ->groupBy(DB::raw('month(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
