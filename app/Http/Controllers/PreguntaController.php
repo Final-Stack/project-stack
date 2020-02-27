@@ -25,18 +25,18 @@ class PreguntaController extends Controller
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
                 ->join('users', 'users.id', '=', 'preguntas.user_id')
-                ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre','users.id')
+                ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
                 ->where('titulo', 'like', '%' . $request->buscar . '%')
                 ->paginate(10);
         } else {
             $preguntas = DB::table('preguntas')
                 ->join('users', 'users.id', '=', 'preguntas.user_id')
-                ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id')
+                ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
                 ->paginate(10);
         }
 
 
-       $respuestas = DB::table('respuestas')
+        $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
@@ -100,7 +100,7 @@ class PreguntaController extends Controller
         // sumarle +1 a las visitas
         $pregunta->visita -= -1;
         $pregunta->save();
-        $respuestas=$pregunta->respuestas;
+        $respuestas = $pregunta->respuestas;
 
 
         return view('question', [
@@ -149,7 +149,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('week(preguntas.created_at)'),'preguntas.id')
+            ->groupBy(DB::raw('week(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -174,7 +174,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('DATE(preguntas.created_at)'),'preguntas.id')
+            ->groupBy(DB::raw('DATE(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -199,7 +199,7 @@ class PreguntaController extends Controller
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->groupBy(DB::raw('month(preguntas.created_at)'),'preguntas.id')
+            ->groupBy(DB::raw('month(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
@@ -294,12 +294,13 @@ class PreguntaController extends Controller
         ]);
     }
 
-    public function buscarEtiquetas(Request $request) {
+    public function buscarEtiquetas(Request $request)
+    {
         $etiqueta = request()->all()['etiqueta'];
 
         $etiquetas = DB::table('preguntas')
             ->select('etiquetas')
-            ->where('etiquetas', 'like','%' . $etiqueta . '%')
+            ->where('etiquetas', 'like', '%' . $etiqueta . '%')
             ->get();
 
         return $etiquetas;

@@ -33,73 +33,69 @@
                     </li>
                 </ul>
             </div>
-                @foreach($preguntas as $pregunta)
 
+
+
+
+            @foreach($preguntas as $pregunta)
                 <div class="pregunta row border-bottom p-3 ">
-                        <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->id}}'">
-                            <div class="votos text-center  col-4">
-                                <span class="col-12">Votos</span>
+                    <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
+                        <div class="votos text-center  col-4">
+                            <span class="col-12">Votos</span>
 
-                                @foreach($votos as $voto)
-                                    @php
-                                        $existenVotos = false;
-                                        $votoNum = -1;
+                            @foreach($votos as $voto)
+                                @php
+                                    $existenVotos = false;
+                                    $votoNum = -1;
 
-                                        if($pregunta->id == $voto->pregunta_id)
-                                        {
-                                        $existenVotos = true;
-                                        $votoNum = $voto->numVotos;
-                                        }
-                                    @endphp
-                                    @if($existenVotos)
-                                        @break
-                                    @endif
-                                @endforeach
+                                    if($pregunta->pregunta_id == $voto->pregunta_id)
+                                    {
+                                    $existenVotos = true;
+                                    $votoNum = $voto->numVotos;
+                                    }
+                                @endphp
                                 @if($existenVotos)
-                                    <span class="col-12">{{$votoNum}}</span>
-                                @else
-                                    <span class="col-12">0</span>
+                                    @break
                                 @endif
+                            @endforeach
+                            @if($existenVotos ?? '')
+                                <span class="col-12">{{$votoNum}}</span>
+                            @else
+                                <span class="col-12">0</span>
+                            @endif
 
-                            </div>
-                            <div class="respuestas text-center  col-4">
-                                <span>Respuestas</span>
-                                @foreach($respuestas as $respuesta)
-                                    @php
-                                        $existenRespuestas = false;
-                                        $respuestasNum = -1;
+                        </div>
+                        <div class="respuestas text-center  col-4">
+                            <span>Respuestas</span>
+                            @foreach($respuestas as $respuesta)
+                                @php
+                                    $existenRespuestas = false;
+                                    $respuestasNum = -1;
 
-                                        if($pregunta->id == $respuesta->pregunta_id)
-                                        {
-                                        $existenRespuestas = true;
-                                        $respuestasNum = $respuesta->numRespuestas;
-                                        }
-                                    @endphp
-                                    @if($existenRespuestas)
-                                        @break
-                                    @endif
-                                @endforeach
-
+                                    if($pregunta->pregunta_id == $respuesta->pregunta_id)
+                                    {
+                                    $existenRespuestas = true;
+                                    $respuestasNum = $respuesta->numRespuestas;
+                                    }
+                                @endphp
                                 @if($existenRespuestas)
-                                    <span class="col-12">{{$respuestasNum}}</span>
-                                @else
-                                    <span class="col-12">0</span>
+                                    @break
                                 @endif
+                            @endforeach
 
-
-
-                            </div>
-                            <div class="visitas text-center col-4 ">
-                                <span class="col-12">Visitas</span>
-                                <span class="col-12">{{$pregunta->visita}}</span>
-                            </div>
+                            @if($existenRespuestas ?? '')
+                                <span class="col-12">{{$respuestasNum}}</span>
+                            @else
+                                <span class="col-12">0</span>
+                            @endif
+                        </div>
                         <div class="visitas text-center col-4 ">
                             <span class="col-12">Visitas</span>
                             <span class="col-12">{{$pregunta->visita}}</span>
                         </div>
                     </div>
                     <div class="col-5 ">
-                        <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
+                        <h3><a href="preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                         <div class="etiquetas float-left">
                             @php
                                 $tag = $pregunta->etiquetas;
@@ -109,7 +105,8 @@
                                 }
                             @endphp
                         </div>
-                        <span class="float-right ">creada por <a href="{{route('user.profile',['id'=>$pregunta->id])}}">{{$pregunta->nombre}}</a></span>
+                        <span class="float-right ">creada por <a
+                                href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></span>
                     </div>
                 </div>
             @endforeach
