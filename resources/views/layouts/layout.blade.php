@@ -24,7 +24,7 @@
 <header>
     @include('navbar.navbar')
 </header>
-<div id="container">
+<div class="container">
     @yield('content')
 </div>
 
