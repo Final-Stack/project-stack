@@ -48,14 +48,25 @@
                                     $existenVotos = false;
                                     $votoNum = -1;
 
-                                    if($pregunta->pregunta_id == $voto->pregunta_id)
-                                    {
-                                    $existenVotos = true;
-                                    $votoNum = $voto->numVotos;
-                                    }
-                                @endphp
-                                @if($existenVotos)
-                                    @break
+                                @foreach($votos as $voto)
+                                    @php
+                                        $existenVotos = false;
+                                        $votoNum = -1;
+
+                                        if($pregunta->id == $voto->pregunta_id)
+                                        {
+                                        $existenVotos = true;
+                                        $votoNum = $voto->numVotos;
+                                        }
+                                    @endphp
+                                    @if($existenVotos)
+                                        @break
+                                    @endif
+                                @endforeach
+                                @if($existenVotos ?? '')
+                                    <span class="col-12">{{$votoNum}}</span>
+                                @else
+                                    <span class="col-12">0</span>
                                 @endif
                             @endforeach
                             @if($existenVotos ?? '')
