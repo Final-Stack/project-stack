@@ -46,7 +46,7 @@ class PreguntaController extends Controller
         $votos = DB::table('votos')
             ->select(DB::raw('count(*) as numVotos, pregunta_id'))
             ->groupBy('pregunta_id')
-            ->get();*/
+            ->get();
 
         return view('index', [
             'preguntas' => $preguntas,

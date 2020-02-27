@@ -56,7 +56,7 @@
                                         @break
                                     @endif
                                 @endforeach
-                                @if($existenVotos)
+                                @if($existenVotos ?? '')
                                     <span class="col-12">{{$votoNum}}</span>
                                 @else
                                     <span class="col-12">0</span>
