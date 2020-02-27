@@ -56,7 +56,15 @@
                 @endswitch
             </td>
             <td>{{$pregunta->visita}}</td>
-            <td>{{$pregunta->etiquetas}}</td>
+            <td>
+                @php
+                    $tag = $pregunta->etiquetas;
+                    $tags = explode(",", $tag);
+                    foreach ($tags as $t){
+                    echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
+                    }
+                @endphp
+            </td>
         </tr>
 @endforeach
     </tbody>
