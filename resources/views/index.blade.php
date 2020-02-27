@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
     @section('content')
-        <div class="container ">
+        <div class="mt-3">
             <div class="main">
                 @if(Auth::user() != null)
                     <div>
@@ -38,19 +38,19 @@
                         <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->id}}'">
                             <div class="votos text-center  col-4">
                                 <span class="col-12">Votos</span>
-                                @foreach($votos as $voto)
-                                    @if($pregunta->id = $voto->pregunta_id)
-                                        <span class="col-12">{{$voto->numVotos}}</span>
-                                    @endif
-                                @endforeach
+{{--                                @foreach($votos as $voto)--}}
+{{--                                    @if($pregunta->id = $voto->pregunta_id)--}}
+{{--                                        <span class="col-12">{{$voto->numVotos}}</span>--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
                             </div>
                             <div class="respuestas text-center  col-4">
                                 <span>Respuestas</span>
-                                @foreach($respuestas as $respuesta)
-                                    @if($pregunta->id = $respuesta->pregunta_id)
-                                        <span class="col-12">{{$respuesta->numPreguntas}}</span>
-                                    @endif
-                                @endforeach
+{{--                                @foreach($respuestas as $respuesta)--}}
+{{--                                    @if($pregunta->id = $respuesta->pregunta_id)--}}
+{{--                                        <span class="col-12">{{$respuesta->numPreguntas}}</span>--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
                             </div>
                             <div class="visitas text-center col-4 ">
                                 <span class="col-12">Visitas</span>

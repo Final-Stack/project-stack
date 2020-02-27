@@ -34,8 +34,9 @@ class PreguntaController extends Controller
                 ->paginate(10);
         }
 
-
-        $respuestas = DB::table('respuestas')
+$respuestas = null;
+        $votos = null;
+      /*  $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
@@ -44,7 +45,7 @@ class PreguntaController extends Controller
             ->select(DB::raw('count(*) as numVotos, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
-
+*/
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
