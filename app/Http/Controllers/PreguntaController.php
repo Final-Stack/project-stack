@@ -149,7 +149,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->groupBy(DB::raw('week(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
@@ -174,7 +174,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->groupBy(DB::raw('DATE(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
@@ -199,7 +199,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->groupBy(DB::raw('month(preguntas.created_at)'), 'preguntas.id')
             ->paginate(10);
 
@@ -224,7 +224,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->orderBy('preguntas.visita', 'DESC')
             ->paginate(10);
 
@@ -249,7 +249,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->orderBy('preguntas.id', 'DESC')
             ->paginate(10);
 
@@ -274,7 +274,7 @@ class PreguntaController extends Controller
     {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
             ->where('preguntas.estado', '=', 0)
             ->paginate(10);
 

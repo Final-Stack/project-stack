@@ -35,8 +35,6 @@
             </div>
 
 
-
-
             @foreach($preguntas as $pregunta)
                 <div class="pregunta row border-bottom p-3 ">
                     <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
@@ -47,28 +45,17 @@
                                 @php
                                     $existenVotos = false;
                                     $votoNum = -1;
-
-                                @foreach($votos as $voto)
-                                    @php
-                                        $existenVotos = false;
-                                        $votoNum = -1;
-
                                         if($pregunta->id == $voto->pregunta_id)
                                         {
                                         $existenVotos = true;
                                         $votoNum = $voto->numVotos;
                                         }
-                                    @endphp
-                                    @if($existenVotos)
-                                        @break
-                                    @endif
-                                @endforeach
-                                @if($existenVotos ?? '')
-                                    <span class="col-12">{{$votoNum}}</span>
-                                @else
-                                    <span class="col-12">0</span>
+                                @endphp
+                                @if($existenVotos)
+                                    @break
                                 @endif
                             @endforeach
+
                             @if($existenVotos ?? '')
                                 <span class="col-12">{{$votoNum}}</span>
                             @else
