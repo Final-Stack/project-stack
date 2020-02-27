@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 
-    @section('content')
-        <div class="mt-3">
+@section('content')
+    <div class="row mt-4">
+        <div class="col-md-9">
             <div class="main">
                 @if(Auth::user() != null)
                     <div>
@@ -13,22 +14,22 @@
 
                 <ul class="w-100 nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index.reciente')}}">Mas recientes</a>
+                        <a class="nav-link" href="{{route('index.reciente')}}">Mas recientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link "  href="{{route('index.activas')}}">Activas</a>
+                        <a class="nav-link " href="{{route('index.activas')}}">Activas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index.populares')}}">Populares</a>
+                        <a class="nav-link" href="{{route('index.populares')}}">Populares</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index.hoy')}}">Hoy</a>
+                        <a class="nav-link" href="{{route('index.hoy')}}">Hoy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index.semana')}}">Semana</a>
+                        <a class="nav-link" href="{{route('index.semana')}}">Semana</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index.mes')}}">Mes</a>
+                        <a class="nav-link" href="{{route('index.mes')}}">Mes</a>
                     </li>
                 </ul>
             </div>
@@ -92,22 +93,34 @@
                                 <span class="col-12">Visitas</span>
                                 <span class="col-12">{{$pregunta->visita}}</span>
                             </div>
+                        <div class="visitas text-center col-4 ">
+                            <span class="col-12">Visitas</span>
+                            <span class="col-12">{{$pregunta->visita}}</span>
                         </div>
-                        <div class="col-5 ">
-                            <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
-                            <div class="etiquetas float-left">
-                                @php
-                                    $tag = $pregunta->etiquetas;
-                                    $tags = explode(",", $tag);
-                                    foreach ($tags as $t){
-                                    echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
-                                    }
-                                @endphp
-                            </div>
-                            <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
+                    </div>
+                    <div class="col-5 ">
+                        <h3><a href="preguntas/{{$pregunta->id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
+                        <div class="etiquetas float-left">
+                            @php
+                                $tag = $pregunta->etiquetas;
+                                $tags = explode(",", $tag);
+                                foreach ($tags as $t){
+                                echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
+                                }
+                            @endphp
                         </div>
+                        <span class="float-right ">creada por <a href="">{{$pregunta->nombre}}</a></span>
+                    </div>
                 </div>
-                @endforeach
+            @endforeach
             {{$preguntas->links()}}
-         </div>
-    @endsection
+        </div>
+
+        <aside class="col-md-2 h-100 sticky-top">
+            <div class="row etiquetas-titulo border">
+                Etiquetas más usadas
+            </div>
+            @include('aside.aside')
+        </aside>
+    </div>
+@endsection

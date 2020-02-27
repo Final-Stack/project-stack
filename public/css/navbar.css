@@ -1,14 +1,9 @@
 
 #buscador {
-    width: 45%;
+    width: 50%;
     height: 20%;
 }
 
-#nav_container {
-    z-index: 9999;
-    height: 60px;
-    background-color: #f2f2f2;
-}
 
 #logo {
     max-width: 90px;
