@@ -1,5 +1,6 @@
 .dar-fav {
-    color: whitesmoke;
+    color: #f5f07d;
+
 }
 
 .quitar-fav {
@@ -10,4 +11,19 @@
     color: gray;
     background: #fbf59a;
     padding: 1em;
+}
+
+.resuelta {
+    border-color: #47ff31 !important;
+    -webkit-box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
+    -moz-box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
+    box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
+
+
+}
+
+.no-resuelta {
+    background: red !important;
+    border: 12px yellow !important;
+
 }

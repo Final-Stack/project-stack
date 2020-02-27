@@ -44,8 +44,8 @@ $(document).ready(function () {
      */
     function ponerBoton(option) {
         if (option === 1) {
-            favContainer.append('<button class="page-link bg-secondary" id="dar-fav">' +
-                ' <i class="far fa-star fav dar-fav"></i>' +
+            favContainer.append('<button class="btn btn-link" id="dar-fav">' +
+                ' <i class="far fa-star fa-2x dar-fav"></i>' +
                 ' </button>');
 
             $('#dar-fav').on('click', function () {
@@ -55,8 +55,8 @@ $(document).ready(function () {
                 ponerBoton(0);
             })
         } else {
-            favContainer.append('<button class="page-link bg-secondary" id="quitar-fav">' +
-                ' <i class="fas fa-star fav quitar-fav"></i>' +
+            favContainer.append('<button class="btn btn-link" id="quitar-fav">' +
+                ' <i class="fas fa-star fa-2x quitar-fav"></i>' +
                 ' </button>');
             $('#quitar-fav').on('click', function () {
                 console.log('click');
