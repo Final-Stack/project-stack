@@ -14,8 +14,6 @@ function buscarEtiquetas() {
         },
         success: function (data) {
             console.log("Succes");
-            console.log(data);
-            console.log(data.etiqueta)
             if (jQuery.isEmptyObject(data)) {
                 mostrarVacio();
             } else
@@ -31,14 +29,29 @@ function buscarEtiquetas() {
 function mostrarEtiquetas(data) {
     let div = document.getElementById('vacioContainer').style.display = 'none';
     let divEtiquetas = document.getElementById('tag_container');
+    let arraySplit = [];
     let arrayEtiquetas = [];
+    let split = [];
     divEtiquetas.style.display = 'block';
 
     for (let i = 0; i < data.length; i++) {
-        if (!arrayEtiquetas.includes(data[i].etiquetas)) {
-            arrayEtiquetas.push(data[i].etiquetas)
+        split = data[i].etiquetas.split(',');
+        console.log(split)
+        for (let y = 0; y < split.length; y++) {
+            if (split[y] != "") {
+                arraySplit.push(split[y])
+            }
+        }
+
+        console.log(arraySplit);
+
+        for (let u = 0; u < arraySplit.length; u++) {
+            if (!arrayEtiquetas.includes(arraySplit[u])) {
+                arrayEtiquetas.push(arraySplit[u])
+            }
         }
     }
+    console.log(arrayEtiquetas);
 
     divEtiquetas.innerHTML= "";
     for (let x = 0; x < arrayEtiquetas.length; x++) {
@@ -97,9 +110,9 @@ function meterEtiqueta(etiqueta, id) {
     for (let i = 1; i < etiquetas.length; i++) {
         etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
     }
-    input.value = etiquetasIntroducir.join();
+    input.value = etiquetasIntroducir.join().slice(1);
 
-    console.log(etiquetasIntroducir.join());
+    console.log(etiquetasIntroducir.join().slice(1));
 }
 
 
