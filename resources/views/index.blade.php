@@ -85,13 +85,6 @@
                                 @else
                                     <span class="col-12">0</span>
                                 @endif
-
-
-
-                            </div>
-                            <div class="visitas text-center col-4 ">
-                                <span class="col-12">Visitas</span>
-                                <span class="col-12">{{$pregunta->visita}}</span>
                             </div>
                         <div class="visitas text-center col-4 ">
                             <span class="col-12">Visitas</span>
