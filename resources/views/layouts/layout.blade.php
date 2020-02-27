@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
     <!-- JS  -->
     <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
+
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
 </head>
@@ -36,6 +37,7 @@
 <script src="{{ secure_asset('js/tags.js') }}"></script>
 <script src="{{ secure_asset('js/profile.js') }}"></script>
 <script src="{{ secure_asset('js/navbar.js') }}"></script>
+<script src="{{secure_asset('js/comments.js')}}" ></script>
 </body>
 <!-- Font awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
