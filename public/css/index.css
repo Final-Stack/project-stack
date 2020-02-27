@@ -1,19 +1,13 @@
-#container{
-    padding-top: 70px;
-    width: 80%;
-    float: left;
-}
-aside{
-    padding-top: 70px;
-    width: 20%;
-    float: left;
-}
-
 .dar-fav {
     color: whitesmoke;
 }
 
-.quitar-fav{
+.quitar-fav {
     color: #fff000;
+}
 
+.etiquetas-titulo {
+    color: gray;
+    background: #fbf59a;
+    padding: 1em;
 }

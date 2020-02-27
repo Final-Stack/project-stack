@@ -25,7 +25,7 @@
             </div>
 
             <div id="vacioContainer" class="mb-3">
-                <span>No se ha encontrado ninguna etiqueta</span>
+                <p>No se ha encontrado ninguna etiqueta</p>
             </div>
 
             <div type="text" id="etiquetas" class="mb-3">

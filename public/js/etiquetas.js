@@ -31,20 +31,25 @@ function buscarEtiquetas() {
 function mostrarEtiquetas(data) {
     let div = document.getElementById('vacioContainer').style.display = 'none';
     let divEtiquetas = document.getElementById('tag_container');
-
+    let arrayEtiquetas = [];
     divEtiquetas.style.display = 'block';
 
-    console.log('holaaa');
+    for (let i = 0; i < data.length; i++) {
+        if (!arrayEtiquetas.includes(data[i].etiquetas)) {
+            arrayEtiquetas.push(data[i].etiquetas)
+        }
+    }
+
     divEtiquetas.innerHTML= "";
-    for (let x = 0; x < data.length; x++) {
+    for (let x = 0; x < arrayEtiquetas.length; x++) {
         let span = document.createElement('mark');
         span.style.padding = '5px';
         span.style.marginRight = '15px';
         span.addEventListener('click', function () {
-            meterEtiqueta(data[x].etiquetas, x)
+            meterEtiqueta(arrayEtiquetas[x], x)
         });
 
-        let texto = document.createTextNode(data[x].etiquetas);
+        let texto = document.createTextNode(arrayEtiquetas[x]);
 
         span.appendChild(texto);
         divEtiquetas.appendChild(span)
@@ -55,7 +60,6 @@ function mostrarEtiquetas(data) {
 function mostrarVacio() {
     let div = document.getElementById('vacioContainer').style.display = 'block';
     let divEtiquetas = document.getElementById('tag_container').style.display = 'none';
-    console.log('entro')
 }
 
 function meterEtiqueta(etiqueta, id) {

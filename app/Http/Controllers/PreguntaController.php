@@ -21,6 +21,7 @@ class PreguntaController extends Controller
     {
 
         $preguntas = "";
+
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
                 ->join('users', 'users.id', '=', 'preguntas.user_id')
@@ -34,10 +35,11 @@ class PreguntaController extends Controller
                 ->paginate(10);
         }
 
-        $respuestas = null;
-        $votos = null;
-        /*$respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+
+
+       $respuestas = DB::table('respuestas')
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
+
             ->groupBy('pregunta_id')
             ->get();
 
@@ -153,7 +155,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -178,7 +180,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -203,7 +205,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -228,7 +230,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -253,7 +255,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -278,7 +280,7 @@ class PreguntaController extends Controller
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 

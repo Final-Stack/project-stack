@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         if ($request->buscar != null) {
             $usuarios = DB::table('users')
-                ->where('nombre', 'like', '%' . $request->nombre . '%')
+                ->where('nombre', 'like', '%' . $request->buscar . '%')
                 ->get();
         } else {
             $usuarios = User::all();
@@ -126,7 +126,7 @@ class UserController extends Controller
     public function reciente()
     {
         $usuarios = DB::table('users')
-            ->orderBy('created_at', 'ASC')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         return view('busquedaUsuarios', [
