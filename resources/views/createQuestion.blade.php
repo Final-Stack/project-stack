@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <strong>Etiquetas</strong> <br>
-                <input type="text" onkeyup="buscarEtiquetas()" id="tag" name="tag">
+                <input type="text" onkeyup="buscarEtiquetas()" id="tag" name="tag"> <input type="button" value="Añadir Etiqueta" onclick="añadirEtiqueta()">
             </div>
 
             <div id="tag_container" name="tag_container" class="mb-3">
@@ -25,7 +25,7 @@
             </div>
 
             <div id="vacioContainer" class="mb-3">
-                <span>No se ha encontrado ninguna etiqueta</span>
+                <p>No se ha encontrado ninguna etiqueta</p>
             </div>
 
             <div type="text" id="etiquetas" class="mb-3">

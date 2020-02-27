@@ -21,6 +21,7 @@ class PreguntaController extends Controller
     {
 
         $preguntas = "";
+
         if ($request->buscar != null) {
             $preguntas = DB::table('preguntas')
                 ->join('users', 'users.id', '=', 'preguntas.user_id')
@@ -34,10 +35,9 @@ class PreguntaController extends Controller
                 ->paginate(10);
         }
 
-$respuestas = null;
-        $votos = null;
-      /*  $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+
+       $respuestas = DB::table('respuestas')
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -45,7 +45,7 @@ $respuestas = null;
             ->select(DB::raw('count(*) as numVotos, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
-*/
+
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
@@ -80,7 +80,7 @@ $respuestas = null;
         $pregunta->etiquetas = request('tag_block');
         $pregunta->estado = 0;
         $pregunta->visita = 0;
-        $pregunta->users_id = $usuario->id;
+        $pregunta->user_id = $usuario->id;
 
 
         $pregunta->save();
@@ -149,12 +149,11 @@ $respuestas = null;
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->where('preguntas.created_at', '>', Carbon::now()->startOfWeek())
-            ->where('preguntas.created_at', '<', Carbon::now()->endOfWeek())
+            ->groupBy(DB::raw('week(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -175,11 +174,11 @@ $respuestas = null;
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->whereDate('preguntas.created_at', Carbon::today())
+            ->groupBy(DB::raw('DATE(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -200,11 +199,11 @@ $respuestas = null;
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
-            ->whereMonth('preguntas.created_at', '=', Carbon::now()->month)
+            ->groupBy(DB::raw('month(preguntas.created_at)'),'preguntas.id')
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -229,7 +228,7 @@ $respuestas = null;
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -254,7 +253,7 @@ $respuestas = null;
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 
@@ -279,7 +278,7 @@ $respuestas = null;
             ->paginate(10);
 
         $respuestas = DB::table('respuestas')
-            ->select(DB::raw('count(*) as numPreguntas, pregunta_id'))
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
             ->groupBy('pregunta_id')
             ->get();
 

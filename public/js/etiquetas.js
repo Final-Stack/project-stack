@@ -113,3 +113,48 @@ function borrarSpan(id) {
 
     console.log(etiquetasIntroducir.join());
 }
+
+function añadirEtiqueta() {
+    let etiquetaNueva = document.getElementById('tag').value;
+
+    document.getElementById('vacioContainer').style.display = 'none';
+
+    let divEtiquetas = document.getElementById('tag_container');
+    divEtiquetas.innerHTML= "";
+
+
+    let div = document.getElementById('etiquetas');
+    div.style.display = 'block';
+
+    let a = document.createElement('a');
+    let textoA = document.createTextNode('X');
+
+    a.style.marginLeft = '5px';
+    a.addEventListener('click', function () {
+        borrarSpan(etiquetaNueva)
+    });
+    a.appendChild(textoA);
+
+    let span = document.createElement('span');
+    span.id = etiquetaNueva;
+
+    span.style.backgroundColor = '#1DEEDC';
+    span.style.padding = '5px';
+    span.style.marginRight = '10px'
+    let texto = document.createTextNode(etiquetaNueva);
+
+    span.appendChild(texto);
+    span.appendChild(a);
+
+    div.appendChild(span);
+
+    let etiquetas = document.getElementsByTagName("span");
+    let input = document.getElementById('tag_block');
+    let etiquetasIntroducir = [];
+    for (let i = 1; i < etiquetas.length; i++) {
+        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
+    }
+    input.value = etiquetasIntroducir.join();
+
+    console.log(etiquetasIntroducir.join());
+}
