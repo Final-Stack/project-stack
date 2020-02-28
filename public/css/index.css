@@ -1,10 +1,13 @@
 .dar-fav {
-    color: #f5f07d;
+    color: #747474;
 
 }
 
 .quitar-fav {
     color: #fff000;
+    stroke: black;
+    stroke-width: 20;
+
 }
 
 .etiquetas-titulo {
@@ -13,17 +16,30 @@
     padding: 1em;
 }
 
+#fav-container button {
+    background: #ebe6ee;
+}
+
 .resuelta {
-    border-color: #47ff31 !important;
-    -webkit-box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
-    -moz-box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
-    box-shadow: inset 0px 0px 300px -80px rgba(70,255,49,1);
-
-
+    border-color: rgba(79, 219, 51, 1) !important;
+    -webkit-box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
+    -moz-box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
+    box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
 }
 
 .no-resuelta {
-    background: red !important;
-    border: 12px yellow !important;
+    border: 12px #a88c00 !important;
+    -webkit-box-shadow: 0 0 5px 0 #a88c00;
+    -moz-box-shadow: 0 0 5px 0 #a88c00;
+    box-shadow: 0 0 5px 0 #a88c00;
+}
 
+.green:hover {
+    color: green;
+    cursor: pointer;
+}
+
+.red:hover {
+    color: red;
+    cursor: pointer;
 }
