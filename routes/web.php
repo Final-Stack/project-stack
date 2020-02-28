@@ -14,6 +14,7 @@
 // Index
 Route::get('/', 'PreguntaController@index')->name('index');
 
+// buscador tabs
 Route::get('/mes', 'PreguntaController@mes')->name('index.mes');
 Route::get('/activas', 'PreguntaController@activas')->name('index.activas');
 Route::get('/populares', 'PreguntaController@populares')->name('index.populares');
@@ -38,6 +39,7 @@ Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback')
 
 Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
 Route::get('/user/{id}', 'UserController@show')->name('user.profile');
+// ver pregunta
 Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
 Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
