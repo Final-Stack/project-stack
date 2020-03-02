@@ -102,35 +102,41 @@
                                         </div>
                                     @endforeach
                                     <hr>
-                                    <a id="add_comment_{{$respuesta->id}}"
-                                       class="add_comment btn btn-link text-primary">Añadir
-                                        comentario</a>
-                                    <div class="row">
-                                        <form id="formu_comentar_{{$respuesta->id}}"
-                                              action="{{route('respuesta.comentar')}}"
-                                              method="post"
-                                              class="ocultar offset-1 col-10 form-group">
-                                            @csrf
-                                            <textarea class="form-control" name="comentario" maxlength="191"></textarea>
-                                            <input class="form-control btn btn-primary" type="submit" value="Comentar"
-                                                   id="comentar">
-                                            <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
-                                        </form>
-                                    </div>
+                                    @if($pregunta->estado == 0)
+                                        <a id="add_comment_{{$respuesta->id}}"
+                                           class="add_comment btn btn-link text-primary">Añadir
+                                            comentario</a>
+                                        <div class="row">
+                                            <form id="formu_comentar_{{$respuesta->id}}"
+                                                  action="{{route('respuesta.comentar')}}"
+                                                  method="post"
+                                                  class="ocultar offset-1 col-10 form-group">
+                                                @csrf
+                                                <textarea class="form-control" name="comentario"
+                                                          maxlength="191"></textarea>
+                                                <input class="form-control btn btn-primary" type="submit"
+                                                       value="Comentar"
+                                                       id="comentar">
+                                                <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
-                        <div class="no-gutters col border-top">
-                            <div class="h2 mt-3">Añadir respuesta</div>
-                            <form id="formu_solucionar" action="{{route('pregunta.responder')}}" method="post"
-                                  class="form-group">
-                                @csrf
-                                <textarea class="form-control" name="solucion" maxlength="191"></textarea>
-                                <input class="form-control btn btn-primary" type="submit" value="Enviar solucion"
-                                       id="solucionar">
-                                <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
-                            </form>
-                        </div>
+                        @if($pregunta->estado == 0)
+                            <div class="no-gutters col border-top">
+                                <div class="h2 mt-3">Añadir respuesta</div>
+                                <form id="formu_solucionar" action="{{route('pregunta.responder')}}" method="post"
+                                      class="form-group">
+                                    @csrf
+                                    <textarea class="form-control" name="solucion" maxlength="191"></textarea>
+                                    <input class="form-control btn btn-primary" type="submit" value="Enviar respuesta"
+                                           id="solucionar">
+                                    <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
+                                </form>
+                            </div>
+                        @endif
                     </div>
             </div>
     </div>
