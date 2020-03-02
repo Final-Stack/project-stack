@@ -13,7 +13,7 @@ foreach ($preguntas as $pregunta) {
             array_push($evitarRepetidos, $t);
             if ($t != '') {
             echo '<div class="row border">
-                        <a href="/buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">
+                        <a href="/buscarEtiquetas/'.$t.'"><mark class="tag_link rounded col text-capitalize">
                             <i class="fas fa-tag"></i>
                             ' . $t . '</mark><a/>
                   </div>';

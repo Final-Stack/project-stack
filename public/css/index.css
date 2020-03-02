@@ -53,3 +53,7 @@
     color: red;
     cursor: pointer;
 }
+
+.tag_link{
+    background-color: transparent;
+}

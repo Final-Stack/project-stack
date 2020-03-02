@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="col-9 ">
-                        <h3><a href="preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
+                        <h3><a href="/preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                         <div class="etiquetas float-left">
                             @php
                                 $tag = $pregunta->etiquetas;
