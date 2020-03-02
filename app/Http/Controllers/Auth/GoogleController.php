@@ -31,11 +31,11 @@ class GoogleController extends Controller
 
             $user = Socialite::driver('google')->user();
 
-            $finduser = User::where('google_id', $user->id)->first();
+            $existUser = User::where('email',$user->email)->first();
 
-            if ($finduser) {
+            if ($existUser) {
 
-                Auth::login($finduser);
+                Auth::login($existUser);
 
                 return redirect()->route('index');
 
