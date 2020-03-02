@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/index.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/profile.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
-
+    <!-- JS  -->
+    <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
 </head>
