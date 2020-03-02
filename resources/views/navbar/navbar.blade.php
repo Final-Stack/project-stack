@@ -39,7 +39,7 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="user_img" class="border"> <span
+                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img" class="border"> <span
                             class="caret"></span>
                     </a>
 

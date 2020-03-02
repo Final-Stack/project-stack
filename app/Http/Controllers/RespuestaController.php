@@ -33,7 +33,7 @@ class RespuestaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +55,7 @@ class RespuestaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -66,7 +66,7 @@ class RespuestaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function edit(rc $rc)
@@ -77,8 +77,8 @@ class RespuestaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rc  $rc
+     * @param \Illuminate\Http\Request $request
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -89,7 +89,7 @@ class RespuestaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function destroy(rc $rc)

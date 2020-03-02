@@ -1,11 +1,20 @@
 #user{
     width: 900px;
     overflow-wrap: break-word;
+    margin-left: 10%;
+    letter-spacing: 2px;
+}
+#user_container{
+    width: 75%;
+    margin-left: 12.5%;
+}
+#user_information{
+    max-width: 255px !important;
 }
 #user_img{
     border-radius: 100%;
-    max-width: 60%;
-    max-height: 100px;
+    max-width: 70%;
+    max-height: 120px;
 }
 #profile_container{
     display:flex;
@@ -16,7 +25,7 @@
     flex-direction: row;
 }
 #user_information img{
-    width: 10%;
+    width: 14%;
     height: auto;
 }
 #confirmar_cambio,#cancelar_cambio{
@@ -30,4 +39,28 @@
 #formu_cambio{
     width: 50%;
     margin-left: 30%;
+}
+#answer{
+    font-size: 20px;
+}
+@media screen and (max-width: 1016px){
+    #user_container{
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 505px){
+    #user{
+        width: 500px;
+        margin-left: 2%;
+        letter-spacing: 0;
+        font-size: 1px !important;
+    }
+    #user_information{
+        min-width: 125px !important;
+    }
+    #user_data{
+        max-width: 50% !important;
+    }
 }
