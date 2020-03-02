@@ -37,6 +37,5 @@
             </div>
         </form>
 
-
-
+        <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
 @endsection
