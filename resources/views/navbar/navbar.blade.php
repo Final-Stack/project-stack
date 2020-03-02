@@ -5,28 +5,28 @@
     </a>
 
     <!-- Contenedor con el buscador por titulo -->
-    <form id="buscador" action="{{route('index.buscar')}}" class="form-inline border w-100">
+    <form id="buscador" action="{{route('index.buscar')}}" class="form-inline">
         @csrf
-            <div class="search w-100 d-flex">
-                <input type="text" class="w-100 searchTerm" name="buscar">
-                <svg id="lupa">
-                    <path
-                        d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
-                </svg>
-            </div>
+        <div class="search w-100 d-flex">
+            <input type="text" class="w-100 searchTerm" name="buscar">
+            <svg id="lupa">
+                <path
+                    d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
+            </svg>
+        </div>
     </form>
-    <div class="nav-item m-3">
-        <a class="btn btn-warning text-nowrap" href="{{route('users')}}">
-            Buscar usuarios
-        </a>
-
-    </div>
-    <!-- Right Side Of Navbar -->
+       <!-- Right Side Of Navbar -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse bg-white" id="navbarNav">
+        <div class="nav-item m-3">
+            <a class="btn btn-warning text-nowrap" href="{{route('users')}}">
+                Buscar usuarios
+            </a>
+        </div>
         <ul class="navbar-nav">
             <!-- Authentication Links -->
             @guest
@@ -44,7 +44,8 @@
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
                         @if(Auth::user()->google_id == null)
-                            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img" class="border rounded-circle">
+                            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img"
+                                 class="border rounded-circle">
                         @else
                             <img src="{{ Auth::user()->url_foto}}" id="profile_img" class="border rounded-circle">
                         @endif
