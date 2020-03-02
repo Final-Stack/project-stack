@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Exception;
-use App\User;
+use App\User as u;
 
 class GoogleController extends Controller
 {
@@ -31,7 +31,7 @@ class GoogleController extends Controller
 
             $user = Socialite::driver('google')->user();
 
-            $existUser = User::where('email',$user->email)->first();
+            $existUser = u::where('email',$user->email)->first();
 
             if ($existUser) {
 
@@ -40,7 +40,7 @@ class GoogleController extends Controller
                 return redirect()->route('index');
 
             } else {
-                $newUser = App\User::create([
+                $newUser = u::create([
                     'name' => $user->nombre,
                     'email' => $user->email,
                     'google_id' => $user->id,
