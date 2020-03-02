@@ -14,6 +14,7 @@
 // Index
 Route::get('/', 'PreguntaController@index')->name('index');
 
+// buscador tabs
 Route::get('/mes', 'PreguntaController@mes')->name('index.mes');
 Route::get('/activas', 'PreguntaController@activas')->name('index.activas');
 Route::get('/populares', 'PreguntaController@populares')->name('index.populares');
@@ -39,24 +40,28 @@ Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback')
 
 Route::get('/create', 'PreguntaController@create')->name('pregunta.create');
 Route::get('/user/{id}', 'UserController@show')->name('user.profile');
+// ver pregunta
 Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
 Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
 
 // Buscador Index
-Route::get('buscar','PreguntaController@index')->name('index.buscar');
+Route::get('buscar', 'PreguntaController@index')->name('index.buscar');
 // Buscador usuarios
-Route::post('buscarUsuarios','UserController@index')->name('users.buscar');
+Route::post('buscarUsuarios', 'UserController@index')->name('users.buscar');
 // Buscador Etiquetas
-Route::post('create/buscarEtiquetas','PreguntaController@buscarEtiquetas')->name('etiquetas.buscar');
+Route::post('create/buscarEtiquetas', 'PreguntaController@buscarEtiquetas')->name('etiquetas.buscar');
 
 // Perfil de usuario
 Route::post('/user/{id}', 'UserController@update')->name('pregunta.actualizar');
 
-// coger el favorito, añadir y borrar
+// coger el favorito, añadir y borrar por AJAX
 Route::get('/getFavorito/{idUsuario}/{idPregunta}', 'UserController@getFavorito')->name('user.getFavorito');
 Route::get('/setFavorito/{idUsuario}/{idPregunta}', 'UserController@setFavorito')->name('user.setFavorito');
 Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavorito')->name('user.unsetFavorito');
+// votos por AJAX
+Route::get('/votosGetAll/{preguntaId}', 'VotosController@countAllByPreguntaId')->name('voto.votosGetAll');
+Route::get('/votacion/{accion}/{idUsuario}/{idPregunta}', 'VotosController@votacion');
 
 
 // Respuestas
@@ -64,4 +69,4 @@ Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder
 
 //comentarios
 Route::get('/commentform', 'RespuestaController@comments');
-Route::post('/comentar', 'ComentarioController@store');
+Route::post('/comentar', 'ComentarioController@store')->name('respuesta.comentar');
