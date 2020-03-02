@@ -76,18 +76,28 @@
             </tbody>
         </table>
         <br>
-        <h2>Respuestas</h2>
-        <hr>
+        <div id="divRespuestas">
+            <h2>Respuestas</h2>
+            <hr>
             @foreach($respuestas as $respuesta)
-                        @php
-                            $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
-                        @endphp
-                        <h3><a href="/preguntas/{{$preguntarespondida->id}}">{{$preguntarespondida->titulo}}</a></h3>
+                @php
+                    $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
+                @endphp
+                <h3><a href="/preguntas/{{$preguntarespondida->id}}">{{$preguntarespondida->titulo}}</a></h3>
 
 
-                    <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p></p>
+                <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p></p>
 
 
             @endforeach
+        </div>
+        <div id="divFavoritos">
+            <h2>Favoritos</h2>
+            <hr>
+            @foreach($favoritos as $favorito)
+                <h3><a href="/preguntas/{{$favorito->pregunta_id}}">{{$favorito->pregunta_id}}</a></h3>
+            @endforeach
+        </div>
+
     </div>
 @endsection
