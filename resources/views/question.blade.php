@@ -39,7 +39,8 @@
                                         <i class="fas fa-arrow-down red ml-2"></i>
                                     </div>
                                     <div class="ml-2">
-                                        {{$pregunta->votos}}
+                                        <script src="{{secure_asset('js/votos.js')}}"></script>
+                                        <span id="votos-count"></span>
                                     </div>
                                 </div>
                             </div>
