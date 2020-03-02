@@ -6,10 +6,8 @@
             <h2 class="mb-3 col-12">Búsqueda de usuarios</h2>
             <form method="POST" action="{{route('users.buscar')}}" class="col-4 search " >
                 @csrf
-                <input type="text" placeholder="Filtrar por usuario" class="w-100 pl-4 mt-1 searchTerm" name="buscar">
-                <svg id="lupa">
-                    <path d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
-                </svg>
+                <input type="text" placeholder="Filtrar por usuario" class="w-100 pl-3 mt-1 searchTerm" name="buscar">
+
             </form>
             <ul class="col-8 nav pl-4 " role="tablist">
                 <li class="nav-item ">
