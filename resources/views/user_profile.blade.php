@@ -5,10 +5,13 @@
         <div id="profile_container">
 
             <div id="user_data" class="col-8 mt-4">
-                @if(Auth::user()->google_id == null)
-                    <img src="{{Storage::url($usuario->url_foto)}}" id="user_img">
-                @else
-                    <img src="{{$usuario->url_foto}}" id="user_img">
+                <!-- o foto de la api de google o sino la guardada en nuestra base de datos -->
+                @if(Auth::user() != null)
+                    @if(Auth::user()->google_id == null)
+                        <img src="{{Storage::url($usuario->url_foto)}}" id="user_img">
+                    @else
+                        <img src="{{$usuario->url_foto}}" id="user_img">
+                    @endif
                 @endif
                 <div id="user">
                     <h1 id="username" class="text-capitalize">{{$usuario->nombre}}</h1>

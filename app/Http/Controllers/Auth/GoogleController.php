@@ -48,6 +48,7 @@ class GoogleController extends Controller
                 $newUser->google_id = $user->id;
                 $newUser->password = Hash::make('123');
                 $newUser->url_foto = $user->avatar;
+                $newUser->sector_donde_trabaja = 'S-1';
                 $newUser->save();
                 Auth::login($newUser);
 
