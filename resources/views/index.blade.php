@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+
     <div class="row mt-4">
         <div class="col-md-9">
             <div class="main">
@@ -36,6 +37,7 @@
 
 
             @foreach($preguntas as $pregunta)
+
                 <div class="pregunta row border-bottom p-3 ">
                     <div class="d-flex col-3" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
                         <div class="votos text-center  col-4">
@@ -51,9 +53,15 @@
                                         $votoNum = $voto->numVotos;
                                         }
                                 @endphp
+{{--                                @php--}}
+{{--                                        $usuario = \App\User::find($pregunta->user_id)->get();--}}
+{{--                                @endphp--}}
+
+
                                 @if($existenVotos)
                                     @break
                                 @endif
+
                             @endforeach
 
                             @if($existenVotos ?? '')
@@ -63,6 +71,8 @@
                             @endif
 
                         </div>
+
+
                         <div class="respuestas text-center  col-4">
                             <p><span>Respuestas</span></p>
                             @foreach($respuestas as $respuesta)

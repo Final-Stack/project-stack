@@ -20,8 +20,4 @@
     margin: 2%;
 }
 
-@media screen and (max-width: 1120px){
-    .etiquetas-titulo {
-        color: blue;
-    }
-}
+
