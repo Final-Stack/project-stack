@@ -4,7 +4,14 @@
     height: 70px;
 }
 
-.search {
+#buscador {
+    width: 300rem;
+}
+
+@media screen and (max-width: 575px) {
+    #buscador {
+        width: 60%;
+    }
 }
 
 .searchTerm {
