@@ -103,19 +103,18 @@
                         </div>
                     </div>
                     <div class="col-9 ">
-                        <h3><a href="preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
+                        <h3><a href="/preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                         <div class="etiquetas float-left">
                             @php
                                 $tag = $pregunta->etiquetas;
                                 $tags = explode(",", $tag);
                                 foreach ($tags as $t){
                                 if ($t != '') {
-                                    echo '<a class="pr-2" href="buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
+                                    echo '<a class="pr-2" href="/buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
                                 }}
                             @endphp
                         </div>
-                        <span class="float-right ">creada por <a
-                                href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></span>
+                        <div class="float-right ">creada por <a href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></div>
                     </div>
                 </div>
             @endforeach
