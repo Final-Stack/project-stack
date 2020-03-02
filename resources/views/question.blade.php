@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-
+    <!-- ID de la pregunta-->
+    <input hidden id="idPregunta" value="{{$pregunta->id}}">
     <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
@@ -26,7 +27,6 @@
                                     <div id="fav-container">
                                         <!-- comprobar si esta pregunta es favorita o no, y poner un icono u otro-->
                                         <input hidden id="idUsuario" value="{{Auth::user()->id}}">
-                                        <input hidden id="idPregunta" value="{{$pregunta->id}}">
                                         <script src="{{secure_asset('js/favoritos.js')}}"></script>
                                     </div>
                                 @endif
@@ -35,8 +35,10 @@
                                 <div class="col d-flex flex-row ">
                                     <p class="align-content-center mr-2 text-secondary">Votos</p>
                                     <div class="d-flex flex-column">
-                                        <i class="fas fa-arrow-up green ml-2"></i>
-                                        <i class="fas fa-arrow-down red ml-2"></i>
+                                        @if(Auth::user() != null)
+                                            <i class="fas fa-arrow-up green ml-2"></i>
+                                            <i class="fas fa-arrow-down red ml-2"></i>
+                                        @endif
                                     </div>
                                     <div class="ml-2">
                                         <script src="{{secure_asset('js/votos.js')}}"></script>
