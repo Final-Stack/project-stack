@@ -124,7 +124,7 @@
                             </div>
 
                             <!-- Registrar con google -->
-                            <a href="{{ url('auth/google') }}" class="btn btn-lg btn-success btn-block mt-3 disabled">
+                            <a href="{{ url('auth/google') }}" class="btn btn-lg btn-success btn-block mt-3">
                                 <strong>Registrarse Con Google</strong>
                             </a>
                         </form>
