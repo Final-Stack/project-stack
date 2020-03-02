@@ -2,12 +2,12 @@
 
 @section('content')
 
-    <!-- TODO  si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
+    <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
-            <div class="card mt-4 rounded-0 no-resuelta">
+            <div class="card mt-4 mb-4 rounded-0 no-resuelta">
                 @else
-                    <div class="card mt-4 rounded-0 resuelta">
+                    <div class="card mt-4 mb-4 rounded-0 resuelta">
                         @endif
                         <div class="row">
                             <div class="h1 card-title col-12 m-3">
@@ -19,7 +19,7 @@
                                 <span class="text-secondary">Preguntado</span> {{$pregunta->created_at}}
                             </div>
                             <div class="col-2 mt-3 mb-3">
-                                <span class="text-secondary">Veces visitado</span> {{$pregunta->visita}}
+                                <span class="text-secondary">Visitas</span> {{$pregunta->visita}}
                             </div>
                             <div class="col-2 m-1">
                                 @if(Auth::user() != null)
@@ -68,7 +68,8 @@
                         <hr>
                         <!-- Zona de respuestas-->
                         @foreach($respuestas as $respuesta)
-                            <div class="">
+                            <div>
+                                <div class="col mt-3">Respuesta</div>
                                 <div class="card-body text-black-50 m-4 rounded">
                                     {{$respuesta->descripcion}}
                                 </div>
@@ -83,32 +84,53 @@
                                 @php
                                     $comentarios = \App\Comentario::where('respuesta_id' , '=' , $respuesta->id)->get();
                                 @endphp
-                                <div class="h4 col">Comentarios</div>
-                                <hr>
-                                @foreach($comentarios as $comentario)
-                                    {{$comentario}}
-                                @endforeach
-                                <a id="add_comment_{{$respuesta->id}}" class="add_comment">Añadir comentario</a>
-                                <form id="formu_comentar_{{$respuesta->id}}" action="/comentar" method="post"
-                                      class="ocultar">
-                                    @csrf
-                                    <textarea class="form-control" name="comentario"></textarea>
-                                    <input class="form-control" type="submit" value="Comentar" id="comentar">
-                                    <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
-                                </form>
-                                <hr>
+                                <div class="card-footer border-0">
+                                    <div class="col mt-3">Comentarios {{sizeof($comentarios)}}</div>
+                                    <hr class="border-0">
+                                    @foreach($comentarios as $comentario)
+                                        <div class="col row no-gutters">
+                                            <div class="col">
+                                                {{$comentario->descripcion}}
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-secondary">Comentado por <a
+                                                        class="text-primary"
+                                                        href="{{route('user.profile',['id'=>$comentario->user_id])}}">{{$comentario->user->nombre}}</a> el </span> {{$comentario->created_at}}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <hr>
+                                    <a id="add_comment_{{$respuesta->id}}"
+                                       class="add_comment btn btn-link text-primary">Añadir
+                                        comentario</a>
+                                    <div class="row">
+                                        <form id="formu_comentar_{{$respuesta->id}}"
+                                              action="{{route('respuesta.comentar')}}"
+                                              method="post"
+                                              class="ocultar offset-1 col-10 form-group">
+                                            @csrf
+                                            <textarea class="form-control" name="comentario" maxlength="191"></textarea>
+                                            <input class="form-control btn btn-primary" type="submit" value="Comentar"
+                                                   id="comentar">
+                                            <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         @endforeach
-
-                        <h2>Añadir respuesta</h2>
-                        <form id="formu_solucionar" action="/respuesta" method="post">
-                            @csrf
-                            <textarea class="form-control" name="solucion"></textarea>
-                            <input class="form-control" type="submit" value="Enviar solucion" id="solucionar">
-                            <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
-                        </form>
+                        <div class="no-gutters col border-top">
+                            <div class="h2 mt-3">Añadir respuesta</div>
+                            <form id="formu_solucionar" action="{{route('pregunta.responder')}}" method="post"
+                                  class="form-group">
+                                @csrf
+                                <textarea class="form-control" name="solucion" maxlength="191"></textarea>
+                                <input class="form-control btn btn-primary" type="submit" value="Enviar solucion"
+                                       id="solucionar">
+                                <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
+                            </form>
+                        </div>
                     </div>
             </div>
-
+    </div>
 
 @endsection

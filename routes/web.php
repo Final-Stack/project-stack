@@ -65,4 +65,4 @@ Route::post('/respuesta', 'RespuestaController@store')->name('pregunta.responder
 
 //comentarios
 Route::get('/commentform', 'RespuestaController@comments');
-Route::post('/comentar', 'ComentarioController@store');
+Route::post('/comentar', 'ComentarioController@store')->name('respuesta.comentar');
