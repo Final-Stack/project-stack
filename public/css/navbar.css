@@ -19,31 +19,40 @@
     border-color: #f7941d;
     outline: none;
     color: #bf8751;
-    margin-top: -20px;
+    margin-top: -7px;
     padding-left: 25px;
+     min-width: 130% !important;
 }
 
 .searchTerm:focus {
-    color: #11a89e;
+color: #11a89e;
 }
 
 .actionbutton {
-    padding: 13px !important;
-    height: 48px;
+padding: 13px !important;
+height: 48px;
 }
 
 #lupa {
-    position: absolute;
-    margin-left: 5px;
-    margin-top: -10px;
-    width: 18px;
-    height: 18px;
-    color: gainsboro;
+position: absolute;
+margin-left: 5px;
+margin-top: 3px;
+width: 18px;
+height: 18px;
+color: gainsboro;
 }
 
 #profile_img {
     border: 1px solid #bbf2f7;
     border-radius: 100%;
-    width: 40%;
+    width: 3%;
     height: auto;
+}
+#nav_container{
+padding: 0 12%;
+    max-height: 70px;
+}
+
+.menu{
+    margin-top: -7px;
 }

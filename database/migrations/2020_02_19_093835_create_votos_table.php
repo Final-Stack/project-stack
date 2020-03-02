@@ -17,6 +17,7 @@ class CreateVotosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('respuesta_id')->nullable();
             $table->unsignedBigInteger('pregunta_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
