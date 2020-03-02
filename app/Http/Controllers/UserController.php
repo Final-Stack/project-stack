@@ -64,6 +64,10 @@ class UserController extends Controller
         $preguntas = $usuario->preguntas;
         $respuestas = $usuario->respuestas;
 
+        $favoritos = DB::table('preguntas')
+            ->join('favoritos','favoritos.pregunta_id', '=', 'preguntas.id')
+            ->select('preguntas.id as pregunta_id');
+
         $fechaCreacion = Carbon::parse($usuario->created_at);
         $fechaActual = Carbon::now();
         $diferencia = $fechaActual->diffInDays($fechaCreacion);
@@ -81,7 +85,13 @@ class UserController extends Controller
         }
 
 
-        return view('user_profile', ['usuario' => $usuario, 'preguntas' => $preguntas, 'respuestas' => $respuestas, 'tiempo' => $diasDiferencia]);
+        return view('user_profile', [
+            'usuario' => $usuario,
+            'preguntas' => $preguntas,
+            'respuestas' => $respuestas,
+            'favoritos' => $favoritos,
+            'tiempo' => $diasDiferencia
+        ]);
     }
 
     /**

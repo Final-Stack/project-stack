@@ -1,9 +1,13 @@
 .dar-fav {
-    color: whitesmoke;
+    color: #747474;
+
 }
 
 .quitar-fav {
     color: #fff000;
+    stroke: black;
+    stroke-width: 20;
+
 }
 
 .etiquetas-titulo {
@@ -21,3 +25,31 @@
 }
 
 
+
+#fav-container button {
+    background: #ebe6ee;
+}
+
+.resuelta {
+    border-color: rgba(79, 219, 51, 1) !important;
+    -webkit-box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
+    -moz-box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
+    box-shadow: 0 0 5px 0 rgba(79, 219, 51, 1);
+}
+
+.no-resuelta {
+    border: 12px #a88c00 !important;
+    -webkit-box-shadow: 0 0 5px 0 #a88c00;
+    -moz-box-shadow: 0 0 5px 0 #a88c00;
+    box-shadow: 0 0 5px 0 #a88c00;
+}
+
+.green:hover {
+    color: green;
+    cursor: pointer;
+}
+
+.red:hover {
+    color: red;
+    cursor: pointer;
+}

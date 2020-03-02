@@ -47,7 +47,7 @@
                                 @php
                                     $existenVotos = false;
                                     $votoNum = -1;
-                                        if($pregunta->id == $voto->pregunta_id)
+                                        if($pregunta->pregunta_id == $voto->pregunta_id)
                                         {
                                         $existenVotos = true;
                                         $votoNum = $voto->numVotos;

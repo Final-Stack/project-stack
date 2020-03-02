@@ -2,15 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use App\Comentario;
-use App\Respuesta;
-use App\User;
+use App\Voto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
-class ComentarioController extends Controller
+class VotosController extends Controller
 {
+    /**
+     * Devuelve el total de votos dado una id de pregunta
+     *
+     * @param int $preguntaId
+     * @return mixed
+     */
+    public function countAllByPreguntaId(int $preguntaId)
+    {
+
+        $votos = Voto::where('pregunta_id', $preguntaId)->count();
+
+        return $votos;
+    }
+
+    /**
+     * Votar o quitar el voto dado el usuario y el id pregunta
+     *
+     * @param string $accion
+     * @param int $idUsuario
+     * @param int $idPregunta
+     * @return mixed
+     */
+    public function votacion(string $accion, int $idUsuario, int $idPregunta)
+    {
+        $existeVoto = DB::table('votos')
+            ->select(DB::raw('*'))
+            ->where('user_id', '=', $idUsuario, 'and')
+            ->where('pregunta_id', '=', $idPregunta)
+            ->get();
+
+        switch ($accion) {
+            case"mas":
+                if (sizeof($existeVoto) == 0) {
+                    // no tiene voto esta persona, hay que votar
+                    $voto = new Voto;
+                    $voto->pregunta_id = $idPregunta;
+                    $voto->user_id = $idUsuario;
+                    $voto->save();
+
+                } // else-> tiene voto esta persona, no se hace nada
+                break;
+            case "menos":
+                if (sizeof($existeVoto) > 0) {
+                    // tiene voto esta persona, hay que quitar voto
+                    DB::table('votos')
+                        ->where('user_id', '=', $idUsuario, 'and')
+                        ->where('pregunta_id', '=', $idPregunta)
+                        ->delete();
+
+                } // else->no tiene voto esta persona, no se hace nada
+                break;
+        }
+        // luego se devuelve el total de votos
+        return $this->countAllByPreguntaId($idPregunta);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
