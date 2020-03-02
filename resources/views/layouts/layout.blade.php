@@ -15,8 +15,6 @@
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/index.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/profile.css')}}">
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
-    <!-- JS  -->
-    <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
 
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
@@ -29,9 +27,6 @@
 <div class="container-fluid mt-5 pt-5">
     @yield('content')
 </div>
-<script src="{{ secure_asset('js/tags.js') }}"></script>
-<script src="{{ secure_asset('js/profile.js') }}"></script>
-<script src="{{ secure_asset('js/navbar.js') }}"></script>
 <script src="{{secure_asset('js/comments.js')}}" ></script>
 </body>
 <!-- Font awesome -->
