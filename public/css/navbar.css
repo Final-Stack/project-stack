@@ -43,10 +43,10 @@ color: gainsboro;
 }
 
 #profile_img {
-border: 1px solid #bbf2f7;
-border-radius: 100%;
-width: 40%;
-height: auto;
+    border: 1px solid #bbf2f7;
+    border-radius: 100%;
+    width: 3%;
+    height: auto;
 }
 #nav_container{
 padding: 0 12%;
