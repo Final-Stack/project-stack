@@ -37,7 +37,6 @@ class PreguntaController extends Controller
 
         $respuestas = DB::table('respuestas')
             ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
-
             ->groupBy('pregunta_id')
             ->get();
 
@@ -146,6 +145,7 @@ class PreguntaController extends Controller
 
     public function semana()
     {
+        $titulo = 'Preguntas de esta semana';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -165,12 +165,14 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
     public function dia()
     {
+        $titulo = 'Preguntas del dia';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -190,12 +192,14 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
     public function mes()
     {
+        $titulo = 'Preguntas de este mes';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -215,12 +219,14 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
     public function populares()
     {
+        $titulo = 'Preguntas populares';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -240,12 +246,14 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
     public function reciente()
     {
+        $titulo = 'Preguntas recientes';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -265,12 +273,14 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
     public function activas()
     {
+        $titulo = 'Preguntas sin resolver';
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
             ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'users.id as user_id')
@@ -290,7 +300,8 @@ class PreguntaController extends Controller
         return view('index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
-            'votos' => $votos
+            'votos' => $votos,
+            'titulo' => $titulo
         ]);
     }
 
@@ -304,5 +315,29 @@ class PreguntaController extends Controller
             ->get();
 
         return $etiquetas;
+    }
+
+    public function preguntasEtiquetas($etiqueta) {
+        $preguntas = DB::table('preguntas')
+            ->join('users', 'users.id', '=', 'preguntas.user_id')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre','preguntas.user_id')
+            ->where('preguntas.etiquetas', 'like', '%' . $etiqueta . '%')
+            ->paginate(10);
+
+        $respuestas = DB::table('respuestas')
+            ->select(DB::raw('count(*) as numRespuestas, pregunta_id'))
+            ->groupBy('pregunta_id')
+            ->get();
+
+        $votos = DB::table('votos')
+            ->select(DB::raw('count(*) as numVotos, pregunta_id'))
+            ->groupBy('pregunta_id')
+            ->get();
+
+        return view('index', [
+            'preguntas' => $preguntas,
+            'respuestas' => $respuestas,
+            'votos' => $votos
+        ]);
     }
 }

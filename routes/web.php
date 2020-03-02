@@ -21,6 +21,7 @@ Route::get('/populares', 'PreguntaController@populares')->name('index.populares'
 Route::get('/hoy', 'PreguntaController@dia')->name('index.hoy');
 Route::get('/semana', 'PreguntaController@semana')->name('index.semana');
 Route::get('/reciente', 'PreguntaController@reciente')->name('index.reciente');
+Route::get('buscarEtiquetas/{etiqueta}','PreguntaController@preguntasEtiquetas')->name('index.etiquetas');
 
 //Busqueda de usuarios
 Route::get('/users', 'UserController@index')->name('users');

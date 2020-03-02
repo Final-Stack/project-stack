@@ -62,17 +62,18 @@ class UserController extends Controller
     {
         $usuario = User::find($id);
         $preguntas = $usuario->preguntas;
+        $respuestas = $usuario->respuestas;
 
         $fechaCreacion = Carbon::parse($usuario->created_at);
         $fechaActual = Carbon::now();
         $diferencia = $fechaActual->diffInDays($fechaCreacion);
 
         switch ($diferencia) {
-            case $diferencia = 0:
+            case $diferencia == 0:
                 $diasDiferencia = "La cuenta ha sido creada hoy";
                 break;
-            case $diferencia < 1 && $diferencia < 360;
-                $diasDiferencia = 'Miembro desde hace ' . $fechaActual->diffInYears($fechaCreacion) . ' dias';
+            case $diferencia > 1 && $diferencia < 360;
+                $diasDiferencia = 'Miembro desde hace ' . $fechaActual->diffInDays($fechaCreacion) . ' dias';
                 break;
             case $diferencia > 360:
                 $diasDiferencia = 'Miembro desde hace ' . $fechaActual->diffInYears($fechaCreacion) . ' año(s)';
@@ -80,7 +81,7 @@ class UserController extends Controller
         }
 
 
-        return view('user_profile', ['usuario' => $usuario, 'preguntas' => $preguntas, 'tiempo' => $diasDiferencia]);
+        return view('user_profile', ['usuario' => $usuario, 'preguntas' => $preguntas, 'respuestas' => $respuestas, 'tiempo' => $diasDiferencia]);
     }
 
     /**

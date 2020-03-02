@@ -1,12 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
+
     <div class="row mt-4">
         <div class="col-md-9">
             <div class="main">
                 @if(Auth::user() != null)
                     <div>
-                        <h2 class="mb-3 float-left">Preguntas más recientes</h2>
+                        <h2 class="mb-3 float-left rango_pregunta">{{$titulo ?? 'Preguntas sin resolver'}}</h2>
                         <a class="float-right btn btn-primary" href="{{ route('pregunta.create')}} "
                            data-value="active">Hacer una pregunta</a>
                     </div>
@@ -36,10 +37,11 @@
 
 
             @foreach($preguntas as $pregunta)
+
                 <div class="pregunta row border-bottom p-3 ">
-                    <div class="d-flex col-5" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
+                    <div class="d-flex col-3" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
                         <div class="votos text-center  col-4">
-                            <span class="col-12">Votos</span>
+                            <p><span class="col-12">Votos</span></p>
 
                             @foreach($votos as $voto)
                                 @php
@@ -51,20 +53,28 @@
                                         $votoNum = $voto->numVotos;
                                         }
                                 @endphp
+{{--                                @php--}}
+{{--                                        $usuario = \App\User::find($pregunta->user_id)->get();--}}
+{{--                                @endphp--}}
+
+
                                 @if($existenVotos)
                                     @break
                                 @endif
+
                             @endforeach
 
                             @if($existenVotos ?? '')
-                                <span class="col-12">{{$votoNum}}</span>
+                                <p><span class="col-12">{{$votoNum}}</span></p>
                             @else
-                                <span class="col-12">0</span>
+                                <p><span class="col-12">0</span></p>
                             @endif
 
                         </div>
+
+
                         <div class="respuestas text-center  col-4">
-                            <span>Respuestas</span>
+                            <p><span>Respuestas</span></p>
                             @foreach($respuestas as $respuesta)
                                 @php
                                     $existenRespuestas = false;
@@ -82,25 +92,26 @@
                             @endforeach
 
                             @if($existenRespuestas ?? '')
-                                <span class="col-12">{{$respuestasNum}}</span>
+                                <p><span class="col-12">{{$respuestasNum}}</span></p>
                             @else
-                                <span class="col-12">0</span>
+                                <p><span class="col-12">0</span></p>
                             @endif
                         </div>
                         <div class="visitas text-center col-4 ">
-                            <span class="col-12">Visitas</span>
-                            <span class="col-12">{{$pregunta->visita}}</span>
+                            <p><span class="col-12">Visitas</span></p>
+                            <p><span class="col-12">{{$pregunta->visita}}</span></p>
                         </div>
                     </div>
-                    <div class="col-5 ">
+                    <div class="col-9 ">
                         <h3><a href="preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                         <div class="etiquetas float-left">
                             @php
                                 $tag = $pregunta->etiquetas;
                                 $tags = explode(",", $tag);
                                 foreach ($tags as $t){
-                                echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
-                                }
+                                if ($t != '') {
+                                    echo '<a class="pr-2" href="buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
+                                }}
                             @endphp
                         </div>
                         <span class="float-right ">creada por <a
@@ -108,10 +119,13 @@
                     </div>
                 </div>
             @endforeach
-            {{$preguntas->links()}}
+            <div id="paginacion">
+                {{$preguntas->links()}}
+            </div>
+
         </div>
 
-        <aside class="col-md-2 h-100">
+        <aside class="col-md-2 h-100 aside">
             <div class="row etiquetas-titulo border">
                 Etiquetas más usadas
             </div>

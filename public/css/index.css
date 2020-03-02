@@ -16,6 +16,16 @@
     padding: 1em;
 }
 
+.aside {
+    margin-left: 5%;
+}
+
+#paginacion {
+    margin: 2%;
+}
+
+
+
 #fav-container button {
     background: #ebe6ee;
 }
