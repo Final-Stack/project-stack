@@ -28,9 +28,6 @@
 <div class="container-fluid mt-5 pt-5">
     @yield('content')
 </div>
-<script src="{{ secure_asset('js/tags.js') }}"></script>
-<script src="{{ secure_asset('js/profile.js') }}"></script>
-<script src="{{ secure_asset('js/navbar.js') }}"></script>
 <script src="{{secure_asset('js/comments.js')}}" ></script>
 </body>
 <!-- Font awesome -->

@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-
+    <!-- ID de la pregunta-->
+    <input hidden id="idPregunta" value="{{$pregunta->id}}">
     <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
@@ -16,7 +17,8 @@
                         </div>
                         <div class="row">
                             <div class="col-5 ml-3 mt-3 mb-3">
-                                <span class="text-secondary">Preguntado</span> {{$pregunta->created_at}}
+                                <span
+                                    class="text-secondary">Preguntado</span> {{Carbon\Carbon::parse($pregunta->created_at)->locale('es')->isoFormat('LLLL')}}
                             </div>
                             <div class="col-2 mt-3 mb-3">
                                 <span class="text-secondary">Visitas</span> {{$pregunta->visita}}
@@ -26,7 +28,6 @@
                                     <div id="fav-container">
                                         <!-- comprobar si esta pregunta es favorita o no, y poner un icono u otro-->
                                         <input hidden id="idUsuario" value="{{Auth::user()->id}}">
-                                        <input hidden id="idPregunta" value="{{$pregunta->id}}">
                                         <script src="{{secure_asset('js/favoritos.js')}}"></script>
                                     </div>
                                 @endif
@@ -35,8 +36,10 @@
                                 <div class="col d-flex flex-row ">
                                     <p class="align-content-center mr-2 text-secondary">Votos</p>
                                     <div class="d-flex flex-column">
-                                        <i class="fas fa-arrow-up green ml-2"></i>
-                                        <i class="fas fa-arrow-down red ml-2"></i>
+                                        @if(Auth::user() != null)
+                                            <i class="fas fa-arrow-up green ml-2"></i>
+                                            <i class="fas fa-arrow-down red ml-2"></i>
+                                        @endif
                                     </div>
                                     <div class="ml-2">
                                         <script src="{{secure_asset('js/votos.js')}}"></script>
@@ -75,7 +78,7 @@
                                     {{$respuesta->descripcion}}
                                 </div>
                                 <div class="card-header">
-                                    {{$respuesta->created_at}}
+                                    {{Carbon\Carbon::parse($respuesta->created_at)->locale('es')->isoFormat('LLLL')}}
                                     <div class="d-flex justify-content-end">
                                         Repuesta enviada por&nbsp<a class="text-primary"
                                                                     href="{{route('user.profile',['id'=>$pregunta->user_id])}}">
@@ -98,7 +101,7 @@
                                             <div class="col">
                                                 <span class="text-secondary">Comentado por <a
                                                         class="text-primary"
-                                                        href="{{route('user.profile',['id'=>$comentario->user_id])}}">{{$comentario->user->nombre}}</a> el </span> {{$comentario->created_at}}
+                                                        href="{{route('user.profile',['id'=>$comentario->user_id])}}">{{$comentario->user->nombre}}</a> el </span> {{Carbon\Carbon::parse($comentario->created_at)->locale('es')->isoFormat('LLLL')}}
                                             </div>
                                         </div>
                                     @endforeach
