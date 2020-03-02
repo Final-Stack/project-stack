@@ -17,7 +17,8 @@
                         </div>
                         <div class="row">
                             <div class="col-5 ml-3 mt-3 mb-3">
-                                <span class="text-secondary">Preguntado</span> {{$pregunta->created_at}}
+                                <span
+                                    class="text-secondary">Preguntado</span> {{Carbon\Carbon::parse($pregunta->created_at)->locale('es')->isoFormat('LLLL')}}
                             </div>
                             <div class="col-2 mt-3 mb-3">
                                 <span class="text-secondary">Visitas</span> {{$pregunta->visita}}
@@ -77,7 +78,7 @@
                                     {{$respuesta->descripcion}}
                                 </div>
                                 <div class="card-header">
-                                    {{$respuesta->created_at}}
+                                    {{Carbon\Carbon::parse($respuesta->created_at)->locale('es')->isoFormat('LLLL')}}
                                     <div class="d-flex justify-content-end">
                                         Repuesta enviada por&nbsp<a class="text-primary"
                                                                     href="{{route('user.profile',['id'=>$pregunta->user_id])}}">
@@ -100,7 +101,7 @@
                                             <div class="col">
                                                 <span class="text-secondary">Comentado por <a
                                                         class="text-primary"
-                                                        href="{{route('user.profile',['id'=>$comentario->user_id])}}">{{$comentario->user->nombre}}</a> el </span> {{$comentario->created_at}}
+                                                        href="{{route('user.profile',['id'=>$comentario->user_id])}}">{{$comentario->user->nombre}}</a> el </span> {{Carbon\Carbon::parse($comentario->created_at)->locale('es')->isoFormat('LLLL')}}
                                             </div>
                                         </div>
                                     @endforeach
