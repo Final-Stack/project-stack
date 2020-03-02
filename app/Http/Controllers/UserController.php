@@ -65,8 +65,10 @@ class UserController extends Controller
         $respuestas = $usuario->respuestas;
 
         $favoritos = DB::table('preguntas')
-            ->join('favoritos','favoritos.pregunta_id', '=', 'preguntas.id')
-            ->select('preguntas.id as pregunta_id');
+            ->join('favoritos', 'favoritos.pregunta_id', '=', 'preguntas.id')
+            ->select('preguntas.id as pregunta_id', 'preguntas.*')
+            ->where('favoritos.user_id', '=', $id)
+            ->get();
 
         $fechaCreacion = Carbon::parse($usuario->created_at);
         $fechaActual = Carbon::now();
