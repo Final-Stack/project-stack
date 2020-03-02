@@ -39,16 +39,19 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img" class="border"> <span
-                            class="caret"></span>
+                        @if(Auth::user()->google_id == null)
+                            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img" class="border">
+                        @else
+                            <img src="{{ Auth::user()->url_foto}}" id="profile_img" class="border">
+                        @endif
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <div class="dropdown-item">
-                            <a href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
-                                perfil {{Auth::user()->nombre}}</a>
-                        </div>
+                        <a class="dropdown-item"
+                           href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
+                            perfil <span class="text-capitalize"> {{Auth::user()->nombre}}</span>
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
