@@ -76,8 +76,10 @@
                                 <div class="card-header">
                                     {{$respuesta->created_at}}
                                     <div class="d-flex justify-content-end">
-                                        Repuesta enviada por
-                                        {{$respuesta->user->nombre}}
+                                        Repuesta enviada por&nbsp<a class="text-primary"
+                                                                    href="{{route('user.profile',['id'=>$pregunta->user_id])}}">
+                                            {{$respuesta->user->nombre}}
+                                        </a>
                                     </div>
                                 </div>
 
@@ -132,5 +134,4 @@
                     </div>
             </div>
     </div>
-
 @endsection
