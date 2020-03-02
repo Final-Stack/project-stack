@@ -109,8 +109,9 @@
                                 $tag = $pregunta->etiquetas;
                                 $tags = explode(",", $tag);
                                 foreach ($tags as $t){
-                                echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
-                                }
+                                if ($t != '') {
+                                    echo '<a class="pr-2" href="buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
+                                }}
                             @endphp
                         </div>
                         <span class="float-right ">creada por <a

@@ -37,6 +37,7 @@
         <table class="table table-borderless">
             <thead>
             <tr>
+
                 <th scope="col">Titulo</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Estado</th>
@@ -62,11 +63,12 @@
                     <td>{{$pregunta->visita}}</td>
                     <td>
                         @php
-                            $tag = $pregunta->etiquetas;
-                            $tags = explode(",", $tag);
-                            foreach ($tags as $t){
-                            echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
-                            }
+                        $tag = $pregunta->etiquetas;
+                        $tags = explode(",", $tag);
+                        foreach ($tags as $t){
+                        if ($t != '') {
+                            echo '<mark class="rounded col text-capitalize">' . $t . '</mark>';
+                        }}
                         @endphp
                     </td>
                 </tr>
