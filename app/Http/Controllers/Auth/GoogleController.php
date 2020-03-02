@@ -41,7 +41,7 @@ class GoogleController extends Controller
 
             } else {
                 $newUser = u::create([
-                    'name' => $user->nombre,
+                    'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'password' => encrypt('123456dummy')
@@ -49,8 +49,8 @@ class GoogleController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect()->route('index');
-
+                return redirect('/home');
+                */
                 return "else del finduser al meterse con google ";
             }
 
