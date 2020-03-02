@@ -64,8 +64,9 @@
                         $tag = $pregunta->etiquetas;
                         $tags = explode(",", $tag);
                         foreach ($tags as $t){
-                        echo '<mark class="rounded p-1 mr-1">'.$t.'</mark>';
-                        }
+                        if ($t != '') {
+                            echo '<mark class="rounded col text-capitalize">' . $t . '</mark>';
+                        }}
                     @endphp
                 </td>
             </tr>

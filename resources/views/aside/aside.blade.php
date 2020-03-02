@@ -11,12 +11,13 @@ foreach ($preguntas as $pregunta) {
     foreach ($tags as $t) {
         if (!in_array($t, $evitarRepetidos)) {
             array_push($evitarRepetidos, $t);
-            $d = route('index.etiquetas',['etiqueta'=>$t]);
+            if ($t != '') {
             echo '<div class="row border">
-                        <a href="'.$d.'"><mark class="rounded col text-capitalize">
+                        <a href="buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">
                             <i class="fas fa-tag"></i>
                             ' . $t . '</mark><a/>
                   </div>';
+            }
         }
     }
 }

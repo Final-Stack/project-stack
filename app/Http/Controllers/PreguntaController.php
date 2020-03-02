@@ -310,7 +310,7 @@ class PreguntaController extends Controller
     public function preguntasEtiquetas($etiqueta) {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre','preguntas.user_id')
             ->where('preguntas.etiquetas', 'like', '%' . $etiqueta . '%')
             ->paginate(10);
 
@@ -329,8 +329,5 @@ class PreguntaController extends Controller
             'respuestas' => $respuestas,
             'votos' => $votos
         ]);
-
-
-        return ;
     }
 }
