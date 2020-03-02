@@ -33,7 +33,7 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,16 +42,17 @@ class ComentarioController extends Controller
 
         $comentario->descripcion = request('comentario');
         $comentario->respuesta_id = request('respuesta_id');
+        $idpregunta =  request('pregunta_id');
 
         $comentario->save();
 
-        return redirect('/');
+        return redirect('preguntas/' . $idpregunta);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -62,7 +63,7 @@ class ComentarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function edit(rc $rc)
@@ -73,8 +74,8 @@ class ComentarioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rc  $rc
+     * @param \Illuminate\Http\Request $request
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -85,7 +86,7 @@ class ComentarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rc  $rc
+     * @param \App\rc $rc
      * @return \Illuminate\Http\Response
      */
     public function destroy(rc $rc)
