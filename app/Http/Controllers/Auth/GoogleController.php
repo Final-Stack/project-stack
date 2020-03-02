@@ -53,7 +53,6 @@ class GoogleController extends Controller
 
                 return redirect()->route('index');
 
-                return "else del finduser al meterse con google ";
             }
 
         } catch (Exception $e) {

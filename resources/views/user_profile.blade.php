@@ -5,18 +5,22 @@
         <div id="profile_container">
 
             <div id="user_data" class="col-8 mt-4">
-                <img src="{{Storage::url($usuario->url_foto)}}" id="user_img">
+                @if(Auth::user()->google_id == null)
+                    <img src="{{Storage::url($usuario->url_foto)}}" id="user_img">
+                @else
+                    <img src="{{$usuario->url_foto}}" id="user_img">
+                @endif
                 <div id="user">
-                    <h1 id="username">{{$usuario->nombre}}</h1>
+                    <h1 id="username" class="text-capitalize">{{$usuario->nombre}}</h1>
                     <h3 id="user_biography">{{$usuario->biografia ?? 'Sin biografia'}}</h3>
 
                     @if(Auth::user() != null && Auth::user()->id == $usuario->id)
-                        <input class="form-control" type="button" value="Cambiar biografia" id="boton_cambio">
+                        <input class="form-control btn btn-info" type="button" value="Cambiar biografia" id="boton_cambio">
                         <form style="display: none" id="formu_cambio" action="/user/{{$usuario->id}}" method="post">
                             @csrf
-                            <textarea class="form-control" name="biografia"></textarea>
-                            <input class="form-control" type="submit" value="Confirmar cambio" id="confirmar_cambio">
-                            <input class="form-control" type="button" value="Cancelar cambio" id="cancelar_cambio">
+                            <textarea class="form-control" name="biografia" id="bio"></textarea>
+                            <input class="form-control btn btn-success" type="submit" value="Confirmar cambio" id="confirmar_cambio">
+                            <input class="form-control btn btn-danger" type="button" value="Cancelar cambio" id="cancelar_cambio">
                         </form>
                     @endif
                 </div>
