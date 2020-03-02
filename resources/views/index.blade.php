@@ -110,12 +110,11 @@
                                 $tags = explode(",", $tag);
                                 foreach ($tags as $t){
                                 if ($t != '') {
-                                    echo '<a class="pr-2" href="buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
+                                    echo '<a class="pr-2" href="/buscarEtiquetas/'.$t.'"><mark class="rounded col text-capitalize">' . $t . '</mark><a/>';
                                 }}
                             @endphp
                         </div>
-                        <span class="float-right ">creada por <a
-                                href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></span>
+                        <div class="float-right ">creada por <a href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></div>
                     </div>
                 </div>
             @endforeach
