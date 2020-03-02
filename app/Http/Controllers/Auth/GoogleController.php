@@ -40,7 +40,7 @@ class GoogleController extends Controller
                 return redirect()->route('index');
 
             } else {
-                /*$newUser = User::create([
+                $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
@@ -49,8 +49,8 @@ class GoogleController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect('/home');
-                */
+                return redirect()->route('index');
+
                 return "else del finduser al meterse con google ";
             }
 
