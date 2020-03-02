@@ -1,17 +1,10 @@
 
-#buscador {
-    width: 50%;
-    height: 20%;
-}
-
 #logo {
-    max-width: 90px;
-    margin-top: -15px;
-    margin-right: 10px;
+    width: 90px;
+    height: 70px;
 }
 
 .search {
-    display: flex;
 }
 
 .searchTerm {
@@ -21,16 +14,10 @@
     color: #bf8751;
     margin-top: -7px;
     padding-left: 25px;
-    min-width: 130% !important;
 }
 
 .searchTerm:focus {
     color: #11a89e;
-}
-
-.actionbutton {
-    padding: 13px !important;
-    height: 48px;
 }
 
 #lupa {
@@ -39,22 +26,14 @@
     margin-top: 3px;
     width: 18px;
     height: 18px;
-    color: gainsboro;
+}
+
+path {
+    fill: gray;
 }
 
 #profile_img {
-    border: 1px solid #bbf2f7;
-    border-radius: 100%;
-    width: 8%;
-    height: auto;
-    margin-left: 60%;
+    width: 60px;
+    height: 60px;
 }
 
-#nav_container {
-    padding: 0 12%;
-    max-height: 70px;
-}
-
-.menu {
-    margin-top: -7px;
-}
