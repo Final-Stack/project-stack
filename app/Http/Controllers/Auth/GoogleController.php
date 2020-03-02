@@ -40,8 +40,8 @@ class GoogleController extends Controller
                 return redirect()->route('index');
 
             } else {
-                $newUser = User::create([
-                    'name' => $user->name,
+                $newUser = u::create([
+                    'name' => $user->nombre,
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'password' => encrypt('123456dummy')
