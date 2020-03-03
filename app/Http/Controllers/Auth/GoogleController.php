@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -31,27 +32,28 @@ class GoogleController extends Controller
 
             $user = Socialite::driver('google')->user();
 
-            $finduser = User::where('google_id', $user->id)->first();
+            $existUser = User::where('email', $user->email)->first();
 
-            if ($finduser) {
+            if ($existUser) {
 
-                Auth::login($finduser);
+                Auth::login($existUser);
 
                 return redirect()->route('index');
 
             } else {
-                /*$newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => encrypt('123456dummy')
-                ]);
-
+                // create a new user
+                $newUser = new User;
+                $newUser->nombre = $user->name;
+                $newUser->email = $user->email;
+                $newUser->google_id = $user->id;
+                $newUser->password = Hash::make('123');
+                $newUser->url_foto = $user->avatar;
+                $newUser->sector_donde_trabaja = 'S-1';
+                $newUser->save();
                 Auth::login($newUser);
 
-                return redirect('/home');
-                */
-                return "else del finduser al meterse con google ";
+                return redirect()->route('index');
+
             }
 
         } catch (Exception $e) {

@@ -5,12 +5,14 @@ let cancelarcambio = document.getElementById('cancelar_cambio');
 document.getElementById('divFavoritos').style.display = 'none';
 document.getElementById('divRespuestas').style.display = 'none';
 
-cambiarbiografia.addEventListener("click", function(){
+cambiarbiografia.addEventListener("click", function () {
+    let old_biografia = document.getElementById('user_biography').innerText;
     cambiarbiografia.style.display = 'none';
+    document.getElementById('bio').value = old_biografia;
     formubiografia.style.display = 'inline-block';
 });
 
-cancelarcambio.addEventListener("click", function(){
+cancelarcambio.addEventListener("click", function () {
     cambiarbiografia.style.display = 'inline-block';
     formubiografia.style.display = 'none';
 });
