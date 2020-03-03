@@ -45,6 +45,9 @@ Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
 Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
 
+// pregunta, dar como resuelta
+Route::get('/preguntas/resuelta/{preguntaId}', 'PreguntaController@resuelta')->name('pregunta.resuelta');
+
 // Buscador Index
 Route::get('buscar', 'PreguntaController@index')->name('index.buscar');
 // Buscador usuarios
@@ -62,6 +65,7 @@ Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavor
 // votos por AJAX
 Route::get('/votosGetAll/{preguntaId}', 'VotosController@countAllByPreguntaId')->name('voto.votosGetAll');
 Route::get('/votacion/{accion}/{idUsuario}/{idPregunta}', 'VotosController@votacion');
+Route::get('/getVoto/{idUsuario}/{idPregunta}', 'VotosController@getVoto');
 
 
 // Respuestas

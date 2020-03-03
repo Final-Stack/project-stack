@@ -6,8 +6,7 @@
 .quitar-fav {
     color: #fff000;
     stroke: black;
-    stroke-width: 20;
-
+    stroke-width: 50;
 }
 
 .etiquetas-titulo {
@@ -22,12 +21,6 @@
 
 #paginacion {
     margin: 2%;
-}
-
-
-
-#fav-container button {
-    background: #ebe6ee;
 }
 
 .resuelta {
@@ -54,7 +47,11 @@
     cursor: pointer;
 }
 
-.tag_link{
+.fa-arrow-up {
+    margin-top: -17px;
+}
+
+.tag_link {
     background-color: transparent;
 }
 
