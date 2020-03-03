@@ -22,9 +22,10 @@ class UserController extends Controller
         if ($request->buscar != null) {
             $usuarios = DB::table('users')
                 ->where('nombre', 'like', '%' . $request->buscar . '%')
-                ->get();
+                ->paginate(10);
         } else {
-            $usuarios = User::all();
+            $usuarios = DB::table('users')
+                ->paginate(15);
         }
 
         return view('perfil.busquedaUsuarios', [

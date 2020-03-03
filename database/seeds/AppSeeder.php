@@ -27,7 +27,7 @@ class AppSeeder extends Seeder
                 'email' => 'usuario' . $i . '@usuario' . $i . '.com',
                 'password' => Hash::make('123'),
                 'sector_donde_trabaja' => $faker->randomElement($sectores),
-                'url_foto' => 'img/default.png'
+                'url_foto' => '/img/default.png'
             ]);
 
             // crearle preguntas de prueba
