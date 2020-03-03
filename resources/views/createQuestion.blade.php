@@ -34,7 +34,7 @@
             <p>No se ha encontrado ninguna etiqueta</p>
         </div>
 
-        <div type="text" id="etiquetas" class="mb-3">
+        <div  id="etiquetas" class="mb-3">
 
         </div>
 
