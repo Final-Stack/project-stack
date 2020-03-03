@@ -5,13 +5,21 @@
 }
 
 #buscador {
+    margin-top: 7px;
     width: 300rem;
 }
 
 @media screen and (max-width: 575px) {
     #buscador {
-        width: 60%;
+        width: 45%;
     }
+
+    #navbarNav{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-left: 7%;
+    }
+
 }
 
 .searchTerm {

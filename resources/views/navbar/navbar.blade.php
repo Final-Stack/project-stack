@@ -21,25 +21,25 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse bg-white" id="navbarNav">
-        <div class="nav-item m-3">
+    <div class="collapse navbar-collapse bg-white row " id="navbarNav">
+        <div class="nav-item m-md-3 m-sm-0 col-6">
             <a class="btn btn-warning text-nowrap" href="{{route('users')}}">
                 Buscar usuarios
             </a>
         </div>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav col-6">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown menu">
+                <li class="nav-item dropdown menu ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
@@ -51,7 +51,7 @@
                         @endif
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right col-sm-3" aria-labelledby="navbarDropdown">
 
                         <a class="dropdown-item"
                            href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
