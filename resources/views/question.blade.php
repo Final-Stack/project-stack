@@ -106,7 +106,7 @@
                                         </div>
                                     @endforeach
                                     <hr>
-                                    @if($pregunta->estado == 0)
+                                    @if(Auth::user() != null)
                                         <a id="add_comment_{{$respuesta->id}}"
                                            class="add_comment btn btn-link text-primary">Añadir
                                             comentario</a>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        @if($pregunta->estado == 0)
+                        @if(Auth::user() != null)
                             <div class="no-gutters col border-top">
                                 <div class="h2 mt-3">Añadir respuesta</div>
                                 <form id="formu_solucionar" action="{{route('pregunta.responder')}}" method="post"
