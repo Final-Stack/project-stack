@@ -45,6 +45,9 @@ Route::get('/preguntas/{id}', 'PreguntaController@show')->name('pregunta.show');
 
 Route::post('/preguntas/guardar', 'PreguntaController@store')->name('pregunta.store');
 
+// pregunta, dar como resuelta
+Route::get('/preguntas/resuelta/{preguntaId}', 'PreguntaController@resuelta')->name('pregunta.resuelta');
+
 // Buscador Index
 Route::get('buscar', 'PreguntaController@index')->name('index.buscar');
 // Buscador usuarios

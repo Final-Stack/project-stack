@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class PreguntaController extends Controller
 {
@@ -118,6 +119,15 @@ class PreguntaController extends Controller
     public function edit(rc $rc)
     {
         //
+    }
+
+    public function resuelta(int $preguntaId)
+    {
+        $pregunta = Pregunta::find($preguntaId);
+        $pregunta->estado = 1;
+        $pregunta->save();
+
+        return Redirect::back();
     }
 
     /**
@@ -317,10 +327,11 @@ class PreguntaController extends Controller
         return $etiquetas;
     }
 
-    public function preguntasEtiquetas($etiqueta) {
+    public function preguntasEtiquetas($etiqueta)
+    {
         $preguntas = DB::table('preguntas')
             ->join('users', 'users.id', '=', 'preguntas.user_id')
-            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre','preguntas.user_id')
+            ->select('preguntas.titulo', 'preguntas.id as pregunta_id', 'preguntas.visita', 'preguntas.updated_at', 'preguntas.etiquetas', 'preguntas.descripcion', 'preguntas.estado', 'users.nombre', 'preguntas.user_id')
             ->where('preguntas.etiquetas', 'like', '%' . $etiqueta . '%')
             ->paginate(10);
 

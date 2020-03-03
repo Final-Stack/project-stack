@@ -48,6 +48,13 @@
                                 </div>
                             </div>
                         </div>
+                        @if(Auth::user() != null && Auth::user()->id == $pregunta->user_id && $pregunta->estado == 0)
+                            <div class="row no-gutters">
+                                <div class="col-12"></div>
+                                <a href="{{route('pregunta.resuelta',['preguntaId'=>$pregunta->id])}}"
+                                   class="btn btn-outline-success ml-3 mb-3">Dar como resuelta</a>
+                            </div>
+                        @endif
                         <div class="border-bottom"></div>
 
                         <div class="card-body text-black-50 m-4 rounded">
@@ -55,6 +62,10 @@
                                 {{$pregunta->descripcion}}
                             </div>
                         </div>
+                        <div class="ml-3 mb-3">Preguntado por <a
+                                href="{{route('user.profile',['id'=>$pregunta->user->id])}}">{{$pregunta->user->nombre}}</a>
+                        </div>
+
                         <div class="card-footer border">
                             @php
                                 $tag = $pregunta->etiquetas;
