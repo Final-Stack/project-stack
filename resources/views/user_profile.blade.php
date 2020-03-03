@@ -4,18 +4,20 @@
     <div id="user_container">
         <div id="profile_container" class="p-3 row">
 
-            <div id="user_data" class="col-12 col-sm-8 mt-4 flex-wrap">
+            <div id="user_data" class="col-12 col-sm-8 mt-4 flex-wrap d-flex">
                 <!-- o foto de la api de google o sino la guardada en nuestra base de datos -->
-                @if(Auth::user() != null)
-                    @if(Auth::user()->google_id == null)
-                        <img src="{{secure_asset($usuario->url_foto)}}" id="user_img"
-                             class="float-md-left-left mx-auto ">
+                <div class="d-flex justify-content-center col-12">
+                    @if(Auth::user() != null)
+                        @if(Auth::user()->google_id == null)
+                            <img src="{{secure_asset($usuario->url_foto)}}" id="user_img"
+                                 class=" justify-content-center">
+                        @else
+                            <img src="{{$usuario->url_foto}}" id="user_img" class="justify-content-center">
+                        @endif
                     @else
-                        <img src="{{$usuario->url_foto}}" id="user_img" class="float-sm-left">
+                        <img src="{{secure_asset($usuario->url_foto)}}" id="user_img" class="justify-content-center">
                     @endif
-                @else
-                    <img src="{{secure_asset($usuario->url_foto)}}" id="user_img" class="">
-                @endif
+                </div>
                 <div id="user" class="row no-gutters">
                     <h1 id="username" class="text-capitalize text-center col-12">{{$usuario->nombre}}</h1>
                     <h5 id="user_biography"
@@ -37,8 +39,9 @@
             </div>
 
             <div id="user_information" class="row col-sm-4 mt-4 mx-auto">
-                <p class="w-100"><i class="fas fa-envelope-square mr-2 fa-2x"></i>{{$usuario->email}}</p>
-                <p class="w-100"><i class="fas fa-briefcase mr-2 fa-2x"></i>{{$usuario->sector_donde_trabaja}}</p>
+                <p class="w-100 text-nowrap"><i class="fas fa-envelope-square mr-2 fa-2x"></i>{{$usuario->email}}</p>
+                <p class="w-100 text-nowrap"><i
+                        class="fas fa-briefcase mr-2 fa-2x"></i>{{$usuario->sector_donde_trabaja}}</p>
                 <p class="w-100 text-nowrap"><i class="fas fa-history mr-2 fa-2x"></i>{{$tiempo}}</p>
             </div>
 
