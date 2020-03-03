@@ -9,15 +9,18 @@ $(document).ready(function () {
 
     // poner el total de votos
     countVotos();
+    ifVotado();
 
     // listener de los botones up y down
     up.on('click', function () {
         console.log('up');
         votar('mas', idUsuario, idPregunta);
+        $('#up').css('color', 'green');
     });
     down.on('click', function () {
         console.log('down');
         votar('menos', idUsuario, idPregunta);
+        $('#up').css('color', 'black');
     });
 
     /**
@@ -54,6 +57,19 @@ $(document).ready(function () {
             success: function (data) {
                 contenedorConElNumero.empty();
                 contenedorConElNumero.html(data);
+            }
+        });
+    }
+
+    function ifVotado() {
+        $.ajax({
+            url: '/getVoto/' + idUsuario + '/' + idPregunta,
+            method: 'GET',
+            async: true,
+            success: function (data) {
+                if (data > 0) {
+                    $('#up').css('color', 'green');
+                }
             }
         });
     }

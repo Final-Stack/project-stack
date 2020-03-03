@@ -66,6 +66,16 @@ class VotosController extends Controller
         return $this->countAllByPreguntaId($idPregunta);
     }
 
+    public function getVoto(int $idUsuario, int $idPregunta)
+    {
+        $existeVoto = DB::table('votos')
+            ->select(DB::raw('*'))
+            ->where('user_id', '=', $idUsuario, 'and')
+            ->where('pregunta_id', '=', $idPregunta)
+            ->get();
+        return $this->countAllByPreguntaId($idPregunta);
+    }
+
 
     /**
      * Display a listing of the resource.
