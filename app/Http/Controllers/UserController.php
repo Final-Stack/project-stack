@@ -27,7 +27,7 @@ class UserController extends Controller
             $usuarios = User::all();
         }
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -88,7 +88,7 @@ class UserController extends Controller
         }
 
 
-        return view('user_profile', [
+        return view('perfil.user_profile', [
             'usuario' => $usuario,
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
@@ -143,7 +143,7 @@ class UserController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -152,12 +152,12 @@ class UserController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('preguntas', 'preguntas.user_id', '=', 'users.id')
-            ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
+            ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(preguntas.id)'), 'ASC')
             ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -166,12 +166,12 @@ class UserController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('respuestas', 'respuestas.user_id', '=', 'users.id')
-            ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
+            ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(respuestas.id)'), 'ASC')
             ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
