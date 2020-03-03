@@ -91,12 +91,13 @@ function meterEtiqueta(etiqueta, id) {
     });
     a.appendChild(textoA);
 
-    let span = document.createElement('span');
+    let span = document.createElement('p');
     span.id = id;
 
     span.style.backgroundColor = '#1DEEDC';
     span.style.padding = '5px';
-    span.style.marginRight = '10px'
+    span.style.marginRight = '10px';
+    span.style.display = 'inline-block';
     let texto = document.createTextNode(etiqueta);
 
     span.appendChild(texto);
@@ -104,7 +105,8 @@ function meterEtiqueta(etiqueta, id) {
 
     div.appendChild(span);
 
-    let etiquetas = document.getElementsByTagName("span");
+    let etiquetas = document.getElementsByTagName("p");
+    console.log(etiquetas[1].textContent+"gfhgjolsaaaa");
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
@@ -120,7 +122,7 @@ function borrarSpan(id) {
     let span = document.getElementById(id);
     span.remove();
 
-    let etiquetas = document.getElementsByTagName("span");
+    let etiquetas = document.getElementsByTagName("p");
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
@@ -152,12 +154,14 @@ function añadirEtiqueta() {
     });
     a.appendChild(textoA);
 
-    let span = document.createElement('span');
+    let span = document.createElement('p');
     span.id = etiquetaNueva;
 
     span.style.backgroundColor = '#1DEEDC';
     span.style.padding = '5px';
-    span.style.marginRight = '10px'
+    span.style.marginRight = '10px';
+    span.style.display = 'inline-block';
+
     let texto = document.createTextNode(etiquetaNueva);
 
     span.appendChild(texto);
@@ -165,8 +169,9 @@ function añadirEtiqueta() {
 
     div.appendChild(span);
 
-    let etiquetas = document.getElementsByTagName("span");
+    let etiquetas = document.getElementsByTagName("p");
     let input = document.getElementById('tag_block');
+    console.log(etiquetas[0].textContent+"holsaaaa");
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
         etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
