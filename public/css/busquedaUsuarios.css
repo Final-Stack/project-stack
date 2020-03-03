@@ -1,0 +1,14 @@
+.imgUsuario {
+    width: 48px;
+    height: 48px;
+}
+
+.lista-usuarios {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+#formulario {
+    align-self: center;
+}

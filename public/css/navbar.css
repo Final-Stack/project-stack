@@ -1,0 +1,60 @@
+
+#logo {
+    width: 90px;
+    height: 70px;
+}
+
+#buscador {
+    margin-top: 7px;
+    width: 300rem;
+
+}
+
+@media screen and (max-width: 575px) {
+    #buscador {
+        width: 45%;
+    }
+
+    #user_search{
+        float: left;
+        margin: 10% 10%;
+    }
+
+    #user_actions{
+        position: absolute;
+        right: 1%;
+        max-width: 30%;
+    }
+
+}
+
+.searchTerm {
+    height: 40px;
+    border-color: #f7941d;
+    outline: none;
+    color: #bf8751;
+    margin-top: -7px;
+    padding-left: 25px;
+}
+
+.searchTerm:focus {
+    color: #11a89e;
+}
+
+#lupa {
+    position: absolute;
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+}
+
+#lupa path {
+    fill: gray;
+}
+
+#profile_img {
+    width: 60px;
+    height: 60px;
+}
+
