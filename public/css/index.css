@@ -57,3 +57,34 @@
 .tag_link{
     background-color: transparent;
 }
+
+
+@media screen and (max-width: 1130px) {
+    #info_pregunta{
+        display: flex;
+        align-content: space-evenly;
+        flex-direction: column;
+
+    }
+    .contenido{
+        padding: 20px;
+    }
+    .propietario{
+        position: absolute;
+        bottom: 3%;
+        right: 3%;
+    }
+    #paginacion{
+        position: absolute;
+        left: 32%;
+    }
+}
+.etiquetas{
+    display: flex;
+    flex-wrap: wrap;
+}
+.question_info{
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 5px;
+}

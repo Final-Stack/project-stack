@@ -100,7 +100,7 @@ function meterEtiqueta(etiqueta, id) {
     let texto = document.createTextNode(etiqueta);
 
     span.appendChild(texto);
-    span.appendChild(a)
+    span.appendChild(a);
 
     div.appendChild(span);
 
