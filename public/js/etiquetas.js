@@ -43,8 +43,6 @@ function mostrarEtiquetas(data) {
             }
         }
 
-        console.log(arraySplit);
-
         for (let u = 0; u < arraySplit.length; u++) {
             if (!arrayEtiquetas.includes(arraySplit[u])) {
                 arrayEtiquetas.push(arraySplit[u])
@@ -106,13 +104,12 @@ function meterEtiqueta(etiqueta, id) {
     div.appendChild(span);
 
     let etiquetas = document.getElementsByTagName("p");
-    console.log(etiquetas[1].textContent+"gfhgjolsaaaa");
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
         etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
     }
-    input.value = etiquetasIntroducir.join().slice(1);
+    input.value = etiquetasIntroducir.join().slice(0);
 
     console.log(etiquetasIntroducir.join().slice(1));
 }
@@ -171,7 +168,6 @@ function añadirEtiqueta() {
 
     let etiquetas = document.getElementsByTagName("p");
     let input = document.getElementById('tag_block');
-    console.log(etiquetas[0].textContent+"holsaaaa");
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
         etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
