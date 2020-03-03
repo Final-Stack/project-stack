@@ -21,13 +21,13 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse bg-white row " id="navbarNav">
+    <div class="collapse navbar-collapse bg-white" id="navbarNav">
         <div class="nav-item m-md-3 m-sm-0 col-6">
-            <a class="btn btn-warning text-nowrap" href="{{route('users')}}">
+            <a id="user_search" class="btn btn-warning text-nowrap" href="{{route('users')}}">
                 Buscar usuarios
             </a>
         </div>
-        <ul class="navbar-nav col-6">
+        <ul id="user_actions" class="navbar-nav col-6">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
