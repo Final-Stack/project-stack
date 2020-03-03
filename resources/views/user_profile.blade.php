@@ -12,18 +12,23 @@
                     @else
                         <img src="{{$usuario->url_foto}}" id="user_img" class="float-sm-left">
                     @endif
+                @else
+                    <img src="{{secure_asset($usuario->url_foto)}}" id="user_img">
                 @endif
                 <div id="user col-12">
                     <h1 id="username" class="text-capitalize text-center mt-3">{{$usuario->nombre}}</h1>
                     <h5 id="user_biography" class="float-right text-center">{{$usuario->biografia ?? 'Sin biografia'}}</h5>
 
                     @if(Auth::user() != null && Auth::user()->id == $usuario->id)
-                        <input class="form-control btn btn-info" type="button" value="Cambiar biografia" id="boton_cambio">
+                        <input class="form-control btn btn-info" type="button" value="Cambiar biografia"
+                               id="boton_cambio">
                         <form style="display: none" id="formu_cambio" action="/user/{{$usuario->id}}" method="post">
                             @csrf
                             <textarea class="form-control" name="biografia" id="bio"></textarea>
-                            <input class="form-control btn btn-success" type="submit" value="Confirmar cambio" id="confirmar_cambio">
-                            <input class="form-control btn btn-danger" type="button" value="Cancelar cambio" id="cancelar_cambio">
+                            <input class="form-control btn btn-success" type="submit" value="Confirmar cambio"
+                                   id="confirmar_cambio">
+                            <input class="form-control btn btn-danger" type="button" value="Cancelar cambio"
+                                   id="cancelar_cambio">
                         </form>
                     @endif
                 </div>
@@ -126,7 +131,6 @@
                     <button class="btn btn-warning ml-3" onclick="mostrarPreguntas()">Preguntas</button>
                 </li>
             </ul>
-
             <table class="table table-borderless table-bordered table-striped col-12 mt-3">
                     <thead>
                     <tr>

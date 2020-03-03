@@ -8,7 +8,7 @@
     <form id="buscador" action="{{route('index.buscar')}}" class="form-inline">
         @csrf
         <div class="search w-100 d-flex">
-            <input type="text" class="w-100 searchTerm" name="buscar">
+            <input type="text" class="w-100 searchTerm" name="buscar" placeholder="Buscar...">
             <svg id="lupa">
                 <path
                     d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
@@ -31,11 +31,11 @@
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link text-nowrap" href="{{ route('login') }}">{{ __('nombres.login') }}</a>
                 </li>
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('nombres.register') }}</a>
                     </li>
                 @endif
             @else
@@ -44,7 +44,7 @@
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
                         @if(Auth::user()->google_id == null)
-                            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img"
+                            <img src="{{secure_asset( Auth::user()->url_foto)}}" id="profile_img"
                                  class="border rounded-circle">
                         @else
                             <img src="{{ Auth::user()->url_foto}}" id="profile_img" class="border rounded-circle">
