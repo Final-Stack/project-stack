@@ -76,7 +76,7 @@ class UserController extends Controller
         $diferencia = $fechaActual->diffInDays($fechaCreacion);
 
         switch ($diferencia) {
-            case $diferencia == 0:
+            case $diferencia = 0:
                 $diasDiferencia = "La cuenta ha sido creada hoy";
                 break;
             case $diferencia > 1 && $diferencia < 360;
