@@ -2,6 +2,7 @@
 <html lang="{{app()->getLocale()}}">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="{{secure_asset('img/finalstack-logo.png')}}"/>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,7 +18,6 @@
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/busquedaUsuarios.css')}}">
     <!-- JS  -->
     <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
-
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="{{secure_asset('css/app.css')}}">
 </head>
@@ -29,9 +29,6 @@
 <div class="container-fluid mt-5 pt-5">
     @yield('content')
 </div>
-<script src="{{ secure_asset('js/tags.js') }}"></script>
-<script src="{{ secure_asset('js/profile.js') }}"></script>
-<script src="{{ secure_asset('js/navbar.js') }}"></script>
 <script src="{{secure_asset('js/comments.js')}}" ></script>
 </body>
 <!-- Font awesome -->

@@ -1,28 +1,32 @@
-<nav id="nav_container" class="navbar navbar-expand-sm navbar-light bg-light shadow fixed-top">
+<nav id="nav_container" class="navbar navbar-expand-sm navbar-light bg-white shadow fixed-top">
     <!-- Contenedor con el logo y/o nombre -->
-    <a class="navbar-brand" href="{{route('index')}}">
-        <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}" alt="logo">
+    <a class="navbar-brand " href="{{route('index')}}">
+        <img id="logo" src="{{secure_asset('img/finalstack-logo.png')}}" alt="logo" class="d-inline-block align-top">
     </a>
 
     <!-- Contenedor con el buscador por titulo -->
-    <form id="buscador" action="{{route('index.buscar')}}">
+    <form id="buscador" action="{{route('index.buscar')}}" class="form-inline">
         @csrf
-        <div>
-            <div class="search">
-                <input type="text" class="w-100 searchTerm" name="buscar">
-                <svg id="lupa">
-                    <path
-                        d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
-                </svg>
-            </div>
+        <div class="search w-100 d-flex">
+            <input type="text" class="w-100 searchTerm" name="buscar">
+            <svg id="lupa">
+                <path
+                    d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path>
+            </svg>
         </div>
     </form>
-    <!-- Right Side Of Navbar -->
+       <!-- Right Side Of Navbar -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+    <div class="collapse navbar-collapse bg-white" id="navbarNav">
+        <div class="nav-item m-3">
+            <a class="btn btn-warning text-nowrap" href="{{route('users')}}">
+                Buscar usuarios
+            </a>
+        </div>
         <ul class="navbar-nav">
             <!-- Authentication Links -->
             @guest
@@ -39,16 +43,20 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img" class="border"> <span
-                            class="caret"></span>
+                        @if(Auth::user()->google_id == null)
+                            <img src="{{Storage::url( Auth::user()->url_foto)}}" id="profile_img"
+                                 class="border rounded-circle">
+                        @else
+                            <img src="{{ Auth::user()->url_foto}}" id="profile_img" class="border rounded-circle">
+                        @endif
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <div class="dropdown-item">
-                            <a href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
-                                perfil {{Auth::user()->nombre}}</a>
-                        </div>
+                        <a class="dropdown-item"
+                           href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
+                            perfil <span class="text-capitalize"> {{Auth::user()->nombre}}</span>
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

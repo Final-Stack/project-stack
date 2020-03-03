@@ -8,18 +8,18 @@
             </div>
             <div class="form-group">
                 <h5><strong class="">Titulo</strong></h5>
-                <input type="text" class="w-100" name="titulo" >
+                <input type="text" class="w-100" name="titulo" required>
             </div>
             <div class="form-group">
                 <h5><strong class="">Descripcion</strong></h5>
-                <textarea class="w-100" name="descripcion"></textarea>
+                <textarea class="w-100" name="descripcion" required></textarea>
             </div>
             <div class="form-group ">
                 <h5><strong class="">Etiquetas</strong></h5>
-                <input class="col-sm-12 col-md-7 col-xl-8  mr-3 mb-2" type="text" onkeyup="buscarEtiquetas()" id="tag" name="tag"> <input class="col-sm-12 col-md-4 col-xl-3  btn btn-info" type="button" value="Añadir Etiqueta" onclick="añadirEtiqueta()">
+                <input class="col-sm-12 col-md-7 col-xl-8  mr-3 mb-2" type="text" onkeyup="buscarEtiquetas()" id="tag" name="tag" required> <input class="col-sm-12 col-md-4 col-xl-3  btn btn-info" type="button" value="Añadir Etiqueta" onclick="añadirEtiqueta()">
             </div>
 
-            <div id="tag_container" name="tag_container" class="mb-3">
+            <div id="tag_container" name="tag_container" class="mb-3 d-flex flex-wrap">
 
             </div>
 
@@ -37,6 +37,5 @@
             </div>
         </form>
 
-
-
+        <script src="{{secure_asset('js/etiquetas.js')}}" ></script>
 @endsection

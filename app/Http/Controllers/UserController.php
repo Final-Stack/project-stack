@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -65,8 +66,10 @@ class UserController extends Controller
         $respuestas = $usuario->respuestas;
 
         $favoritos = DB::table('preguntas')
-            ->join('favoritos','favoritos.pregunta_id', '=', 'preguntas.id')
-            ->select('preguntas.id as pregunta_id');
+            ->join('favoritos', 'favoritos.pregunta_id', '=', 'preguntas.id')
+            ->select('preguntas.id as pregunta_id', 'preguntas.*')
+            ->where('favoritos.user_id', '=', $id)
+            ->get();
 
         $fechaCreacion = Carbon::parse($usuario->created_at);
         $fechaActual = Carbon::now();
@@ -120,7 +123,7 @@ class UserController extends Controller
 
         $usuario->update();
 
-        return redirect(route('index'));
+        return Redirect::back();
     }
 
     /**
