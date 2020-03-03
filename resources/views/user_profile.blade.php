@@ -8,7 +8,7 @@
                 <!-- o foto de la api de google o sino la guardada en nuestra base de datos -->
                 @if(Auth::user() != null)
                     @if(Auth::user()->google_id == null)
-                        <img src="{{Storage::url($usuario->url_foto)}}" id="user_img" class="float-md-left-left mx-auto ">
+                        <img src="{{secure_asset($usuario->url_foto)}}" id="user_img" class="float-md-left-left mx-auto ">
                     @else
                         <img src="{{$usuario->url_foto}}" id="user_img" class="float-sm-left">
                     @endif
