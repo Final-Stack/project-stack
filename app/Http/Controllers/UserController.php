@@ -154,7 +154,7 @@ class UserController extends Controller
             ->join('preguntas', 'preguntas.user_id', '=', 'users.id')
             ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
             ->orderBy(DB::raw('count(preguntas.id)'), 'ASC')
-            ->groupBy('users.id')
+            ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
             ->get();
 
         return view('busquedaUsuarios', [
@@ -168,7 +168,7 @@ class UserController extends Controller
             ->join('respuestas', 'respuestas.user_id', '=', 'users.id')
             ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
             ->orderBy(DB::raw('count(respuestas.id)'), 'ASC')
-            ->groupBy('users.id')
+            ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
             ->get();
 
         return view('busquedaUsuarios', [

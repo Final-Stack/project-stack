@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-        <form action="{{route('pregunta.store')}}" id="formulario" method="post" class="p-4 mt-5 col-6 bg-white mx-auto align-bottom">
+        <form action="{{route('pregunta.store')}}" id="formulario" method="post" class="p-4 mt-5 col-sm-12 col-md-6 bg-white mx-auto align-bottom">
             @csrf
             <div class="form-group text-center">
                 <h2>Formula una pregunta</h2>
