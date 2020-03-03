@@ -46,7 +46,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos
@@ -60,7 +60,7 @@ class PreguntaController extends Controller
      */
     public function create()
     {
-        return view('createQuestion');
+        return view('preguntas.createQuestion');
     }
 
     /**
@@ -103,7 +103,7 @@ class PreguntaController extends Controller
         $respuestas = $pregunta->respuestas;
 
 
-        return view('question', [
+        return view('preguntas.question', [
             'pregunta' => $pregunta,
             'respuestas' => $respuestas
         ]);
@@ -172,7 +172,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -199,7 +199,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -226,7 +226,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -253,7 +253,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -280,7 +280,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -307,7 +307,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos,
@@ -345,7 +345,7 @@ class PreguntaController extends Controller
             ->groupBy('pregunta_id')
             ->get();
 
-        return view('index', [
+        return view('preguntas.index', [
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
             'votos' => $votos
