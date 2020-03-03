@@ -10,20 +10,20 @@
                 @else
                     <div class="card mt-4 mb-4 rounded-0 resuelta">
                         @endif
-                        <div class="row">
+                        <div class="row no-gutters">
                             <div class="h1 card-title col-12 m-3">
                                 {{$pregunta->titulo}}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-5 ml-3 mt-3 mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-8 col-md-5 m-3">
                                 <span
                                     class="text-secondary">Preguntado</span> {{Carbon\Carbon::parse($pregunta->created_at)->locale('es')->isoFormat('LLLL')}}
                             </div>
-                            <div class="col-2 mt-3 mb-3">
+                            <div class="col-2 col-md-2 m-3 text-nowrap">
                                 <span class="text-secondary">Visitas</span> {{$pregunta->visita}}
                             </div>
-                            <div class="col-2 m-1">
+                            <div class="col-3 col-md-1 mr-3 ml-3">
                                 @if(Auth::user() != null)
                                     <div id="fav-container">
                                         <!-- comprobar si esta pregunta es favorita o no, y poner un icono u otro-->
@@ -32,13 +32,13 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="col-2 mt-3 mb-3 mr-3 ">
+                            <div class="col-2 col-md-1 mt-3 mb-3 mr-3 ">
                                 <div class="col d-flex flex-row ">
                                     <p class="align-content-center mr-2 text-secondary">Votos</p>
                                     <div class="d-flex flex-column">
                                         @if(Auth::user() != null)
-                                            <i class="fas fa-arrow-up green ml-2"></i>
-                                            <i class="fas fa-arrow-down red ml-2"></i>
+                                            <i class="fas fa-arrow-up fa-2x green ml-2" id="up"></i>
+                                            <i class="fas fa-arrow-down fa-2x red ml-2"></i>
                                         @endif
                                     </div>
                                     <div class="ml-2">
@@ -64,7 +64,7 @@
                                 }
                             @endphp
                         </div>
-                        <div class="row">
+                        <div class="row no-gutters">
                             <div class="h3 card-title col-12 m-3">
                                 Respuestas {{sizeof($respuestas)}}
                             </div>
@@ -110,17 +110,18 @@
                                         <a id="add_comment_{{$respuesta->id}}"
                                            class="add_comment btn btn-link text-primary">Añadir
                                             comentario</a>
-                                        <div class="row">
+                                        <div class="row no-gutters">
                                             <form id="formu_comentar_{{$respuesta->id}}"
                                                   action="{{route('respuesta.comentar')}}"
-                                                  method="post"
-                                                  class="ocultar offset-1 col-10 form-group">
+                                                  method="post" class="ocultar offset-1 col-10 form-group">
                                                 @csrf
                                                 <textarea class="form-control" name="comentario"
                                                           maxlength="191"></textarea>
-                                                <input class="form-control btn btn-primary" type="submit"
-                                                       value="Comentar"
-                                                       id="comentar">
+                                                <div class="row no-gutters">
+                                                    <input class="btn btn-primary btn-block mt-3 offset-3 col-6"
+                                                           type="submit"
+                                                           value="Comentar" id="comentar">
+                                                </div>
                                                 <input type="hidden" value="{{$respuesta->id}}" name="respuesta_id">
                                             </form>
                                         </div>
@@ -135,8 +136,11 @@
                                       class="form-group">
                                     @csrf
                                     <textarea class="form-control" name="solucion" maxlength="191"></textarea>
-                                    <input class="form-control btn btn-primary" type="submit" value="Enviar respuesta"
-                                           id="solucionar">
+                                    <div class="row no-gutters">
+                                        <input class="btn btn-primary btn-block mt-3 offset-3 col-6" type="submit"
+                                               value="Enviar respuesta"
+                                               id="solucionar">
+                                    </div>
                                     <input type="hidden" value="{{$pregunta->id}}" name="pregunta_id">
                                 </form>
                             </div>

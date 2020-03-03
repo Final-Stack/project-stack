@@ -62,6 +62,7 @@ Route::get('/unsetFavorito/{idUsuario}/{idPregunta}', 'UserController@unsetFavor
 // votos por AJAX
 Route::get('/votosGetAll/{preguntaId}', 'VotosController@countAllByPreguntaId')->name('voto.votosGetAll');
 Route::get('/votacion/{accion}/{idUsuario}/{idPregunta}', 'VotosController@votacion');
+Route::get('/getVoto/{idUsuario}/{idPregunta}', 'VotosController@getVoto');
 
 
 // Respuestas
