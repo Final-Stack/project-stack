@@ -12,9 +12,10 @@
     max-width: 255px !important;
 }
 #user_img{
+    border: 0.1px solid;
     border-radius: 100%;
-    max-width: 70%;
-    max-height: 120px;
+    width: 150px;
+    height: 150px;
 }
 #profile_container{
     display:flex;
