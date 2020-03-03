@@ -5,13 +5,27 @@
 }
 
 #buscador {
+    margin-top: 7px;
     width: 300rem;
+
 }
 
 @media screen and (max-width: 575px) {
     #buscador {
-        width: 60%;
+        width: 45%;
     }
+
+    #user_search{
+        float: left;
+        margin: 10% 10%;
+    }
+
+    #user_actions{
+        position: absolute;
+        right: 1%;
+        max-width: 30%;
+    }
+
 }
 
 .searchTerm {

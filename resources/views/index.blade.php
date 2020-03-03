@@ -14,22 +14,22 @@
                 @endif
 
                 <ul class="w-100 nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('index.reciente')}}">Mas recientes</a>
+                    <li class="nav-item col-4 col-md-2 text-center">
+                        <a class="nav-link" href="{{route('index.reciente')}}">Recientes</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item col-4 col-md-2 text-center">
                         <a class="nav-link " href="{{route('index.activas')}}">Activas</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item col-4 col-md-2 text-center">
                         <a class="nav-link" href="{{route('index.populares')}}">Populares</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item col-4 col-md-2 text-center">
                         <a class="nav-link" href="{{route('index.hoy')}}">Hoy</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item col-4 col-md-2 text-center">
                         <a class="nav-link" href="{{route('index.semana')}}">Semana</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item col-4 col-md-2 text-center">
                         <a class="nav-link" href="{{route('index.mes')}}">Mes</a>
                     </li>
                 </ul>
@@ -38,10 +38,13 @@
 
             @foreach($preguntas as $pregunta)
 
-                <div class="pregunta row border-bottom p-3 ">
-                    <div class="d-flex col-3" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
+                <div class="pregunta row border-bottom p-3">
+                    <div class="d-flex col-3" id="info_pregunta" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
                         <div class="votos text-center  col-4">
-                            <p><span class="col-12">Votos</span></p>
+                            <p>
+                                <img id="logo" src="{{secure_asset('img/like.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <span class="col-12 d-none d-md-block">Votos</span>
+                            </p>
 
                             @foreach($votos as $voto)
                                 @php
@@ -73,8 +76,11 @@
                         </div>
 
 
-                        <div class="respuestas text-center  col-4">
-                            <p><span>Respuestas</span></p>
+                        <div class="respuestas text-center col-4">
+                            <p>
+                                <img id="logo" src="{{secure_asset('img/faqs.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <span class="d-none d-md-block">Respuestas</span>
+                            </p>
                             @foreach($respuestas as $respuesta)
                                 @php
                                     $existenRespuestas = false;
@@ -98,11 +104,14 @@
                             @endif
                         </div>
                         <div class="visitas text-center col-4 ">
-                            <p><span class="col-12">Visitas</span></p>
+                            <p>
+                                <img id="logo" src="{{secure_asset('img/eye.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <span class="col-12 d-none d-md-block">Visitas</span>
+                            </p>
                             <p><span class="col-12">{{$pregunta->visita}}</span></p>
                         </div>
                     </div>
-                    <div class="col-9 ">
+                    <div class="col-9 contenido">
                         <h3><a href="/preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
                         <div class="etiquetas float-left">
                             @php
@@ -114,7 +123,7 @@
                                 }}
                             @endphp
                         </div>
-                        <div class="float-right ">creada por <a href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></div>
+                        <div class="float-right propietario">creada por <a href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></div>
                     </div>
                 </div>
             @endforeach
@@ -124,7 +133,7 @@
 
         </div>
 
-        <aside class="col-md-2 h-100 aside">
+        <aside class="col-md-2 d-md-block d-none h-100 aside">
             <div class="row etiquetas-titulo border">
                 Etiquetas más usadas
             </div>
