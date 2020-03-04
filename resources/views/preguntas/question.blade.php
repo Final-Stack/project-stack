@@ -159,4 +159,10 @@
                     </div>
             </div>
     </div>
+
+    <!-- Div de carga de ajax-->
+    <div id="wait" class="position-absolute">
+        <img src='{{secure_asset('img/ajax-loader.gif')}}' width="164" height="128" alt="cargando"/>
+    </div>
+    <script src="{{secure_asset('js/loading.js')}}"></script>
 @endsection
