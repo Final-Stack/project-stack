@@ -26,7 +26,8 @@
                     @if(Auth::user() != null && Auth::user()->id == $usuario->id)
                         <input class="btn btn-info col" type="button" value="Cambiar biografia"
                                id="boton_cambio">
-                        <form style="display: none" id="formu_cambio" action="/user/{{$usuario->id}}" method="post">
+                        <form style="display: none" id="formu_cambio"
+                              action="{{route('pregunta.actualizar',['id'=>$usuario->id])}}" method="post">
                             @csrf
                             <textarea class="form-control" name="biografia" id="bio" maxlength="190"></textarea>
                             <input class="form-control btn btn-success" type="submit" value="Confirmar cambio"
@@ -49,8 +50,8 @@
         <br>
         <div id="divPreguntas">
 
-            <h3 class="col-4 float-left">Preguntas</h3>
-            <ul class="col-8  col-md-7 col-lg-5  nav float-right pl-3 mb-3" role="tablist">
+         <!--   <h3 class="col-4 float-left">Preguntas</h3>
+            <ul class="col-8  col-md-7 col-lg-5  nav float-right pl-3 mb-3 border" role="tablist">
                 <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
                     <button class="btn btn-success" onclick="mostrarRespuestas()">Respuestas</button>
                 </li>
@@ -58,6 +59,19 @@
                     <button class="btn btn-warning ml-2" onclick="mostrarFavoritos()">Favoritos</button>
                 </li>
             </ul>
+-->
+            <!-- Tab list-->
+            <div class="row no-gutters">
+                <div class="h3 active">Preguntas</div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
+                    </li>
+                </ul>
+            </div>
 
             <table id="tabla" class="table table-borderless table-bordered table-striped mt-3 ">
                 <thead>
@@ -72,7 +86,7 @@
                 <tbody>
                 @foreach($preguntas as $pregunta)
                     <tr>
-                        <td><a href="/preguntas/{{$pregunta->id}}">{{$pregunta->titulo}}</a></td>
+                        <td><a href="{{route('pregunta.show',['id'=>$pregunta->id])}}">{{$pregunta->titulo}}</a></td>
                         <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
                         <td>
                             @switch($pregunta->estado)
@@ -104,38 +118,47 @@
 
         <br>
         <div id="divRespuestas">
-            <h4 class="col-4 float-left">Respuestas</h4>
-            <ul class="col-8  col-md-7 col-lg-5  nav float-right pl-3 mb-3" role="tablist">
-                <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-success mr-3" onclick="mostrarPreguntas()">Preguntas</button>
-                </li>
-                <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-warning ml-2" onclick="mostrarFavoritos()">Favoritos</button>
-                </li>
-            </ul>
+            <!-- Tab list-->
+            <div class="row no-gutters">
+                <div class="h3">Respuestas</div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
+                    </li>
+                </ul>
+            </div>
 
             @foreach($respuestas as $respuesta)
                 @php
                     $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
                 @endphp
-                <h3><a href="/preguntas/{{$preguntarespondida->id}}">{{$preguntarespondida->titulo}}</a></h3>
+                <h3>
+                    <a href="{{route('pregunta.show',['id'=>$preguntarespondida->id])}}">{{$preguntarespondida->titulo}}</a>
+                </h3>
 
 
-                <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p></p>
+                <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p>
 
 
             @endforeach
         </div>
         <div id="divFavoritos">
-            <h3 class="col-4 float-left">Favoritos</h3>
-            <ul class="col-8  col-md-7 col-lg-5  nav float-right pl-2 mb-3" role="tablist">
-                <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-success mr-3" onclick="mostrarRespuestas()">Respuestas</button>
-                </li>
-                <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-warning ml-3" onclick="mostrarPreguntas()">Preguntas</button>
-                </li>
-            </ul>
+            <!-- Tab list-->
+            <div class="row no-gutters">
+                <div class="h3">Favoritos</div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
+                    </li>
+                </ul>
+            </div>
+
             <table class="table table-borderless table-bordered table-striped col-12 mt-3">
                 <thead>
                 <tr>
