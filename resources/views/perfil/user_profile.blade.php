@@ -32,9 +32,9 @@
                                 @csrf
                                 <div class="row no-gutters">
                                     <textarea class="form-control" name="biografia" id="bio" maxlength="190"></textarea>
-                                    <input class="col-5 btn btn-success m-3" type="submit"
+                                    <input class="col-6 col-md-5 btn btn-success m-md-3" type="submit"
                                            value="Confirmar cambio" id="confirmar_cambio">
-                                    <input class="col-5 btn btn-danger m-3" type="button" value="Cancelar cambio"
+                                    <input class="col-6 col-md-5 btn btn-danger m-md-3" type="button" value="Cancelar cambio"
                                            id="cancelar_cambio">
                                 </div>
                             </form>
@@ -60,7 +60,7 @@
 
         </div>
 
-        <div class="mt-3">
+        <div class="mt-3 overflow-auto">
             <div id="divPreguntas">
                 <!-- Tab list-->
                 <div class="row no-gutters">
