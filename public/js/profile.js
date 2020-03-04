@@ -9,7 +9,9 @@ if (cambiarbiografia != null) {
     cambiarbiografia.addEventListener("click", function () {
         let old_biografia = document.getElementById('user_biography').innerText;
         cambiarbiografia.style.display = 'none';
-        document.getElementById('bio').value = old_biografia;
+        if (old_biografia != 'Sin biografia'){
+            document.getElementById('bio').value = old_biografia;
+        }
         formubiografia.style.display = 'inline-block';
     });
 }

@@ -100,3 +100,8 @@
     margin-left: 5px;
 }
 
+/* Loading */
+#wait {
+    top: 7%;
+    left: 45%;
+}
