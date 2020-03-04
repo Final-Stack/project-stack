@@ -1,8 +1,8 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/fnexus/Reto2/master/index/img/logo_chiquito.png" alt="Logo empresa"/>
+    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/finalstack-logo.png" alt="Logo empresa"/>
 </p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/fnexus/Reto2/master/index/img/index_photo.png" alt="Logo empresa"/>
+    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/Captura%20de%20pantalla%202020-03-04%20a%20las%2010.09.20.png" alt="Logo empresa"/>
 </p>
 
 <p align="center">
