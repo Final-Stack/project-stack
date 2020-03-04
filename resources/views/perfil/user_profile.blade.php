@@ -131,19 +131,32 @@
                     </ul>
                 </div>
 
-                @foreach($respuestas as $respuesta)
-                    @php
-                        $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
-                    @endphp
-                    <h3>
-                        <a href="{{route('pregunta.show',['id'=>$preguntarespondida->id])}}">{{$preguntarespondida->titulo}}</a>
-                    </h3>
+                <table class="table table-borderless table-bordered table-striped col-12 mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">Pregunta</th>
+                        <th class="d-none d-md-block" scope="col">Respuesta</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($respuestas as $respuesta)
+                        @php
+                            $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
+                        @endphp
+                        <tr>
+                            <td>
+                                <a href="{{route('pregunta.show',['id'=>$preguntarespondida->id])}}">{{$preguntarespondida->titulo}}</a>
+                            </td>
+                            <td class="d-none d-md-block">{{$respuesta->descripcion}}</td>
+                            <td><strong
+                                    id="answer"></strong> {{Carbon\Carbon::parse($respuesta->created_at)->locale('es')->isoFormat('LLLL')}}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
 
-
-                    <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p>
-
-
-                @endforeach
             </div>
             <div id="divFavoritos">
                 <!-- Tab list-->
