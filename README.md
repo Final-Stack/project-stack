@@ -1,43 +1,36 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/finalstack-logo.png" alt="Logo empresa" style="max-width=20px"/>
+    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/finalstack-logo.png" alt="Logo empresa" width=100/>
 </p>
 <p align="center">
     <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/Captura%20de%20pantalla%202020-03-04%20a%20las%2010.09.20.png" alt="Logo empresa"/>
 </p>
 
 <p align="center">
-  <a href="https://opensource.org/licenses/Apache-2.0">
-    <img src="https://img.shields.io/badge/License-Apache-green">
+  <a href="https://laravel.com/">
+    <img src="https://img.shields.io/badge/Laravel-6.X-red">
   </a>
-  <a href="https://github.com/SAMAifyWEB/RETO1">
-    <img src="https://img.shields.io/badge/Version-2.0-yellowgreen">
+  <a href="https://www.heroku.com/">
+    <img src="https://img.shields.io/badge/Heroku-cloud_server-9e7cc1">
  </a>
- <p align="center">
-    <img src="https://img.shields.io/badge/HTML-5-e34f26">
-    <img src="https://img.shields.io/badge/CSS-3-orange">
-    <img src="https://img.shields.io/badge/JavaScript-Last_Version-f7df1e">
-    <img src="https://img.shields.io/badge/MySQL-v5.7.28-00758f">
-    <img src="https://img.shields.io/badge/PHP-v7.2-8892be">
-    <img src="https://img.shields.io/badge/JQuery-v3.4.1-0769ad">
-</p>
-
+    
 <p align="center">
+  <a href="#manual">Manual/documentación</a> •
   <a href="#acceso">Acceso a la aplicación web</a> •
   <a href="#librerias">Librerías</a> •
   <a href="#desarrolladores">Desarrolladores</a> •
   <a href="#licencia">Licencia</a> •
   <a href="#soporte">Soporte</a>
 </p>
+
+## Manual/documentación:
+Enlace [manual](https://github.com/Final-Stack/project-stack/tree/master/01-Documentacion)
+
  
 ## Acceso a la aplicación web:
 Enlace app [Heroku](https://final-stack.herokuapp.com)
 
 ## Librerías utilizadas:
- - <a href="https://jquerymodal.com/">jQueryModal</a>
- - <a href="https://kenwheeler.github.io/slick/">Slick</a>
- - <a href="https://github.com/PHPMailer/PHPMailer">PHPMailer</a>
-
-
+ - <a href="https://carbon.nesbot.com/">Carbon (date)</a>
 
 ## Desarrolladores y RRS
 
