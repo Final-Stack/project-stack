@@ -37,15 +37,15 @@
 
 
             @foreach($preguntas as $pregunta)
-
-                <div class="pregunta row border-bottom p-3">
-                    <div class="d-flex col-3" id="info_pregunta" onclick="window.location.href='preguntas/{{$pregunta->pregunta_id}}'">
+                <div class="pregunta row border-bottom p-3"
+                     onclick="window.location.href='{{route('pregunta.show',['id'=>$pregunta->pregunta_id])}}'">
+                    <div class="d-flex col-3" id="info_pregunta">
                         <div class="votos text-center  col-4">
                             <p>
-                                <img id="logo" src="{{secure_asset('img/like.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <img id="logo" src="{{secure_asset('img/like.png')}}" alt="logo"
+                                     class="question_info d-sm-block d-md-none">
                                 <span class="col-12 d-none d-md-block">Votos</span>
                             </p>
-
                             @foreach($votos as $voto)
                                 @php
                                     $existenVotos = false;
@@ -56,29 +56,22 @@
                                         $votoNum = $voto->numVotos;
                                         }
                                 @endphp
-{{--                                @php--}}
-{{--                                        $usuario = \App\User::find($pregunta->user_id)->get();--}}
-{{--                                @endphp--}}
-
-
                                 @if($existenVotos)
                                     @break
                                 @endif
-
                             @endforeach
-
                             @if($existenVotos ?? '')
                                 <p><span class="col-12">{{$votoNum}}</span></p>
                             @else
                                 <p><span class="col-12">0</span></p>
                             @endif
-
                         </div>
 
 
                         <div class="respuestas text-center col-4">
                             <p>
-                                <img id="logo" src="{{secure_asset('img/faqs.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <img id="logo" src="{{secure_asset('img/faqs.png')}}" alt="logo"
+                                     class="question_info d-sm-block d-md-none">
                                 <span class="d-none d-md-block">Respuestas</span>
                             </p>
                             @foreach($respuestas as $respuesta)
@@ -105,14 +98,17 @@
                         </div>
                         <div class="visitas text-center col-4 ">
                             <p>
-                                <img id="logo" src="{{secure_asset('img/eye.png')}}" alt="logo" class="question_info d-sm-block d-md-none">
+                                <img id="logo" src="{{secure_asset('img/eye.png')}}" alt="logo"
+                                     class="question_info d-sm-block d-md-none">
                                 <span class="col-12 d-none d-md-block">Visitas</span>
                             </p>
                             <p><span class="col-12">{{$pregunta->visita}}</span></p>
                         </div>
                     </div>
                     <div class="col-9 contenido">
-                        <h3><a href="/preguntas/{{$pregunta->pregunta_id}}" class="w-100">{{$pregunta->titulo}}</a></h3>
+                        <h3><a href="{{route('pregunta.show',['id'=>$pregunta->pregunta_id])}}"
+                               class="w-100">{{$pregunta->titulo}}</a>
+                        </h3>
                         <div class="etiquetas float-left">
                             @php
                                 $tag = $pregunta->etiquetas;
@@ -123,7 +119,9 @@
                                 }}
                             @endphp
                         </div>
-                        <div class="float-right propietario">creada por <a href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a></div>
+                        <div class="float-right propietario">creada por <a
+                                href="{{route('user.profile',['id'=>$pregunta->user_id])}}">{{$pregunta->nombre}}</a>
+                        </div>
                     </div>
                 </div>
             @endforeach

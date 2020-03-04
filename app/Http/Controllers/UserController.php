@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Pregunta;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,7 +26,7 @@ class UserController extends Controller
                 ->paginate(15);
         }
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -55,10 +53,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      *
-     * @param \App\rc $rc
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -77,19 +75,19 @@ class UserController extends Controller
         $diferencia = $fechaActual->diffInDays($fechaCreacion);
 
         switch ($diferencia) {
-            case $diferencia = 0:
+            case 0:
                 $diasDiferencia = "La cuenta ha sido creada hoy";
                 break;
-            case $diferencia > 1 && $diferencia < 360;
+            case $diferencia > 1 && $diferencia < 365;
                 $diasDiferencia = 'Miembro desde hace ' . $fechaActual->diffInDays($fechaCreacion) . ' dias';
                 break;
-            case $diferencia > 360:
+            case $diferencia > 365:
                 $diasDiferencia = 'Miembro desde hace ' . $fechaActual->diffInYears($fechaCreacion) . ' año(s)';
                 break;
         }
 
 
-        return view('user_profile', [
+        return view('perfil.user_profile', [
             'usuario' => $usuario,
             'preguntas' => $preguntas,
             'respuestas' => $respuestas,
@@ -113,8 +111,8 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\rc $rc
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -144,7 +142,7 @@ class UserController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -153,12 +151,12 @@ class UserController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('preguntas', 'preguntas.user_id', '=', 'users.id')
-            ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
+            ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(preguntas.id)'), 'ASC')
-            ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
+            ->groupBy('users.id', 'users.nombre', 'users.email', 'users.url_foto')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -167,12 +165,12 @@ class UserController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('respuestas', 'respuestas.user_id', '=', 'users.id')
-            ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto')
+            ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(respuestas.id)'), 'ASC')
-            ->groupBy('users.id', 'users.nombre','users.email','users.url_foto')
+            ->groupBy('users.id', 'users.nombre', 'users.email', 'users.url_foto')
             ->get();
 
-        return view('busquedaUsuarios', [
+        return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
         ]);
     }
@@ -182,7 +180,7 @@ class UserController extends Controller
      *
      * @param int $idUsuario
      * @param int $idPregunta
-     * @return \Illuminate\Support\Collection
+     * @return string
      */
     public function getFavorito(int $idUsuario, int $idPregunta)
     {

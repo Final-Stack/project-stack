@@ -1,7 +1,6 @@
-$( document ).ready(function() {
-    let div = document.getElementById('vacioContainer').style.display = 'none';
-    let input = document.getElementById('etiquetas').style.display = 'none';
-});
+let div = document.getElementById('vacioContainer').style.display = 'none';
+let input = document.getElementById('etiquetas').style.display = 'none';
+
 
 function buscarEtiquetas() {
     let etiqueta = document.getElementById('tag').value;
@@ -49,9 +48,9 @@ function mostrarEtiquetas(data) {
             }
         }
     }
-    console.log(arrayEtiquetas);
+    //console.log(arrayEtiquetas);
 
-    divEtiquetas.innerHTML= "";
+    divEtiquetas.innerHTML = "";
     for (let x = 0; x < arrayEtiquetas.length; x++) {
         let span = document.createElement('mark');
         span.style.padding = '5px';
@@ -75,7 +74,7 @@ function mostrarVacio() {
 
 function meterEtiqueta(etiqueta, id) {
     let divEtiquetas = document.getElementById('tag_container');
-    divEtiquetas.innerHTML= "";
+    divEtiquetas.innerHTML = "";
 
     let div = document.getElementById('etiquetas');
     div.style.display = 'block';
@@ -107,7 +106,7 @@ function meterEtiqueta(etiqueta, id) {
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
-        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
+        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0, -1))
     }
     input.value = etiquetasIntroducir.join().slice(0);
 
@@ -123,20 +122,20 @@ function borrarSpan(id) {
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
-        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
+        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0, -1))
     }
     input.value = etiquetasIntroducir.join();
 
     console.log(etiquetasIntroducir.join());
 }
 
-function añadirEtiqueta() {
+function anyadirEtiqueta() {
     let etiquetaNueva = document.getElementById('tag').value;
 
     document.getElementById('vacioContainer').style.display = 'none';
 
     let divEtiquetas = document.getElementById('tag_container');
-    divEtiquetas.innerHTML= "";
+    divEtiquetas.innerHTML = "";
 
 
     let div = document.getElementById('etiquetas');
@@ -170,7 +169,7 @@ function añadirEtiqueta() {
     let input = document.getElementById('tag_block');
     let etiquetasIntroducir = [];
     for (let i = 1; i < etiquetas.length; i++) {
-        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0,-1))
+        etiquetasIntroducir.push(etiquetas.item(i).textContent.slice(0, -1))
     }
     input.value = etiquetasIntroducir.join();
 
