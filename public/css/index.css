@@ -102,6 +102,7 @@
 
 /* Loading */
 #wait {
+    z-index: 999999;
     top: 7%;
     left: 45%;
 }
