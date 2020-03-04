@@ -102,13 +102,13 @@
                                 @endswitch
                             </td>
                             <td class="text-center">{{$pregunta->visita}}</td>
-                            <td>
+                            <td class="d-flex flex-wrap">
                                 @php
                                     $tag = $pregunta->etiquetas;
                                     $tags = explode(",", $tag);
                                     foreach ($tags as $t){
                                     if ($t != '') {
-                                        echo '<mark class="rounded col text-capitalize mb-2 mr-2">' . $t . '</mark> <br><br>';
+                                        echo '<mark class="rounded text-capitalize mb-2 mr-2 pl-2 pr-2">' .$t. '</mark>';
                                     }}
                                 @endphp
                             </td>
@@ -200,13 +200,13 @@
                                 @endswitch
                             </td>
                             <td>{{$favorito->visita}}</td>
-                            <td>
+                            <td class="d-flex flex-wrap">
                                 @php
                                     $tag = $favorito->etiquetas;
                                     $tags = explode(",", $tag);
                                     foreach ($tags as $t){
                                     if ($t != '') {
-                                        echo '<mark class="rounded col text-capitalize mr-2">' . $t . '</mark>';
+                                        echo '<mark class="rounded text-capitalize mr-2 mb-2 pl-2 pr-2">' . $t . '</mark>';
                                     }}
                                 @endphp
                             </td>
