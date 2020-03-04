@@ -2,205 +2,220 @@
 
 @section('content')
     <div id="user_container">
-        <div id="profile_container" class="p-3 row">
 
-            <div id="user_data" class="col-12 col-sm-8 mt-4 flex-wrap d-flex">
+        <!-- Contenedor del perfil del usuario con su información-->
+        <div id="profile_container" class="row m-2">
+
+            <!-- Información principal-->
+            <div id="user_data" class="col-12 col-md-8">
                 <!-- o foto de la api de google o sino la guardada en nuestra base de datos -->
-                <div class="d-flex justify-content-center col-12">
-                    @if(Auth::user() != null)
-                        @if(Auth::user()->google_id == null)
-                            <img src="{{secure_asset($usuario->url_foto)}}" id="user_img"
-                                 class=" justify-content-center">
-                        @else
-                            <img src="{{$usuario->url_foto}}" id="user_img" class="justify-content-center">
-                        @endif
+                <div class="col-12 text-center">
+                    @if(Auth::user() != null && Auth::user()->google_id != null)
+                        <img src="{{$usuario->url_foto}}" id="user_img" class="rounded-circle border" alt="user_img">
                     @else
-                        <img src="{{secure_asset($usuario->url_foto)}}" id="user_img" class="justify-content-center">
+                        <img src="{{secure_asset($usuario->url_foto)}}" id="user_img" class="rounded-circle border"
+                             alt="user_img">
                     @endif
                 </div>
-                <div id="user" class="row no-gutters">
-                    <h1 id="username" class="text-capitalize text-center col-12">{{$usuario->nombre}}</h1>
-                    <h5 id="user_biography"
-                        class="text-center text-break col-12">{{$usuario->biografia ?? 'Sin biografia'}}</h5>
 
+                <div id="user" class="row no-gutters text-center mt-2">
+                    <div id="username" class="col-12 h1 text-capitalize">{{$usuario->nombre}}</div>
+                    <div id="user_biography"
+                         class="col-12 h5 text-black-50">{{$usuario->biografia ?? 'Sin biografia'}}</div>
                     @if(Auth::user() != null && Auth::user()->id == $usuario->id)
-                        <input class="btn btn-info col" type="button" value="Cambiar biografia"
-                               id="boton_cambio">
-                        <form style="display: none" id="formu_cambio"
-                              action="{{route('pregunta.actualizar',['id'=>$usuario->id])}}" method="post">
-                            @csrf
-                            <textarea class="form-control" name="biografia" id="bio" maxlength="190"></textarea>
-                            <input class="form-control btn btn-success" type="submit" value="Confirmar cambio"
-                                   id="confirmar_cambio">
-                            <input class="form-control btn btn-danger" type="button" value="Cancelar cambio"
-                                   id="cancelar_cambio">
-                        </form>
+                        <div class="col-12 d-flex justify-content-center">
+                            <p class="btn btn-link" id="boton_cambio">Cambiar biografia
+                                <i class="fas fa-edit"></i>
+                            </p>
+                            <form style="display: none" id="formu_cambio"
+                                  action="{{route('pregunta.actualizar',['id'=>$usuario->id])}}" method="post">
+                                @csrf
+                                <div class="row no-gutters">
+                                    <textarea class="form-control" name="biografia" id="bio" maxlength="190"></textarea>
+                                    <input class="col-5 btn btn-success m-3" type="submit"
+                                           value="Confirmar cambio" id="confirmar_cambio">
+                                    <input class="col-5 btn btn-danger m-3" type="button" value="Cancelar cambio"
+                                           id="cancelar_cambio">
+                                </div>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
 
-            <div id="user_information" class="row col-sm-4 mt-4 mx-auto">
-                <p class="w-100 text-nowrap"><i class="fas fa-envelope-square mr-2 fa-2x"></i>{{$usuario->email}}</p>
-                <p class="w-100 text-nowrap"><i
-                        class="fas fa-briefcase mr-2 fa-2x"></i>{{$usuario->sector_donde_trabaja}}</p>
-                <p class="w-100 text-nowrap"><i class="fas fa-history mr-2 fa-2x"></i>{{$tiempo}}</p>
+            <!-- Información secundaria-->
+            <div id="user_information" class="col-12 col-md-4 mt-3 mt-md-0">
+                <div class="row no-gutters">
+                    <p class="col-12 text-nowrap">
+                        <i class="fas fa-envelope-square mr-2 fa-2x"></i>{{$usuario->email}}
+                    </p>
+                    <p class="col-12 text-nowrap">
+                        <i class="fas fa-briefcase mr-2 fa-2x"></i>{{$usuario->sector_donde_trabaja}}
+                    </p>
+                    <p class="col-12 text-nowrap">
+                        <i class="fas fa-history mr-2 fa-2x"></i>{{$tiempo}}
+                    </p>
+                </div>
             </div>
 
         </div>
-        <br>
-        <div id="divPreguntas">
 
-         <!--   <h3 class="col-4 float-left">Preguntas</h3>
-            <ul class="col-8  col-md-7 col-lg-5  nav float-right pl-3 mb-3 border" role="tablist">
-                <li class="nav-item float-right col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-success" onclick="mostrarRespuestas()">Respuestas</button>
-                </li>
-                <li class="nav-item float-right pl-4 col-6 col-sm-3 col-md-4 col-lg-5">
-                    <button class="btn btn-warning ml-2" onclick="mostrarFavoritos()">Favoritos</button>
-                </li>
-            </ul>
--->
-            <!-- Tab list-->
-            <div class="row no-gutters">
-                <div class="h3 active">Preguntas</div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="mt-3">
+            <div id="divPreguntas">
+                <!-- Tab list-->
+                <div class="row no-gutters">
+                    <div class="h3 active">Preguntas</div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <table id="tabla" class="table table-borderless table-bordered table-striped mt-3 ">
-                <thead>
-                <tr>
-                    <th scope="col">Titulo</th>
-                    <th class="d-none d-md-block" scope="col">Descripcion</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col"> Visitas</th>
-                    <th scope="col">Etiquetas</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($preguntas as $pregunta)
+                <table id="tabla" class="table table-borderless table-bordered table-striped mt-3 ">
+                    <thead>
                     <tr>
-                        <td><a href="{{route('pregunta.show',['id'=>$pregunta->id])}}">{{$pregunta->titulo}}</a></td>
-                        <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
-                        <td>
-                            @switch($pregunta->estado)
-                                @case(0)
-                                Sin resolver
-                                @break
-                                @case(1)
-                                Resuelta
-                                @break
-                            @endswitch
-                        </td>
-                        <td class="text-center">{{$pregunta->visita}}</td>
-                        <td>
-                            @php
-                                $tag = $pregunta->etiquetas;
-                                $tags = explode(",", $tag);
-                                foreach ($tags as $t){
-                                if ($t != '') {
-                                    echo '<mark class="rounded col text-capitalize mb-2 mr-2">' . $t . '</mark> <br><br>';
-                                }}
-                            @endphp
-                        </td>
+                        <th scope="col">Titulo</th>
+                        <th class="d-none d-md-block" scope="col">Descripcion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col"> Visitas</th>
+                        <th scope="col">Etiquetas</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-
-
-        <br>
-        <div id="divRespuestas">
-            <!-- Tab list-->
-            <div class="row no-gutters">
-                <div class="h3">Respuestas</div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
-                    </li>
-                </ul>
+                    </thead>
+                    <tbody>
+                    @foreach($preguntas as $pregunta)
+                        <tr>
+                            <td><a href="{{route('pregunta.show',['id'=>$pregunta->id])}}">{{$pregunta->titulo}}</a>
+                            </td>
+                            <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
+                            <td>
+                                @switch($pregunta->estado)
+                                    @case(0)
+                                    Sin resolver
+                                    @break
+                                    @case(1)
+                                    Resuelta
+                                    @break
+                                @endswitch
+                            </td>
+                            <td class="text-center">{{$pregunta->visita}}</td>
+                            <td>
+                                @php
+                                    $tag = $pregunta->etiquetas;
+                                    $tags = explode(",", $tag);
+                                    foreach ($tags as $t){
+                                    if ($t != '') {
+                                        echo '<mark class="rounded col text-capitalize mb-2 mr-2">' . $t . '</mark> <br><br>';
+                                    }}
+                                @endphp
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
+            <div id="divRespuestas">
+                <!-- Tab list-->
+                <div class="row no-gutters">
+                    <div class="h3">Respuestas</div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarFavoritos()">Favoritos</a>
+                        </li>
+                    </ul>
+                </div>
 
-            @foreach($respuestas as $respuesta)
-                @php
-                    $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
-                @endphp
-                <h3>
-                    <a href="{{route('pregunta.show',['id'=>$preguntarespondida->id])}}">{{$preguntarespondida->titulo}}</a>
-                </h3>
-
-
-                <p><strong id="answer">{{$respuesta->descripcion}}</strong> <p>{{$respuesta->created_at}}</p>
-
-
-            @endforeach
-        </div>
-        <div id="divFavoritos">
-            <!-- Tab list-->
-            <div class="row no-gutters">
-                <div class="h3">Favoritos</div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
-                    </li>
-                </ul>
-            </div>
-
-            <table class="table table-borderless table-bordered table-striped col-12 mt-3">
-                <thead>
-                <tr>
-                    <th scope="col">Titulo</th>
-                    <th class="d-none d-md-block" scope="col">Descripcion</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Visitas</th>
-                    <th scope="col">Etiquetas</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($favoritos as $favorito)
+                <table class="table table-borderless table-bordered table-striped col-12 mt-3">
+                    <thead>
                     <tr>
-                        <td><a href="/preguntas/{{$favorito->pregunta_id}}">{{$favorito->titulo}}</a></td>
-                        <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
-                        <td>
-                            @switch($favorito->estado)
-                                @case(0)
-                                Sin resolver
-                                @break
-                                @case(1)
-                                Resuelta
-                                @break
-                            @endswitch
-                        </td>
-                        <td>{{$favorito->visita}}</td>
-                        <td>
-                            @php
-                                $tag = $favorito->etiquetas;
-                                $tags = explode(",", $tag);
-                                foreach ($tags as $t){
-                                if ($t != '') {
-                                    echo '<mark class="rounded col text-capitalize mr-2">' . $t . '</mark>';
-                                }}
-                            @endphp
-                        </td>
+                        <th scope="col">Pregunta</th>
+                        <th class="d-none d-md-block" scope="col">Respuesta</th>
+                        <th scope="col">Fecha</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                    @foreach($respuestas as $respuesta)
+                        @php
+                            $preguntarespondida = \App\Pregunta::where('id', '=' , $respuesta->pregunta_id)->first();
+                        @endphp
+                        <tr>
+                            <td>
+                                <a href="{{route('pregunta.show',['id'=>$preguntarespondida->id])}}">{{$preguntarespondida->titulo}}</a>
+                            </td>
+                            <td class="d-none d-md-block">{{$respuesta->descripcion}}</td>
+                            <td><strong
+                                    id="answer"></strong> {{Carbon\Carbon::parse($respuesta->created_at)->locale('es')->isoFormat('LLLL')}}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
 
+            </div>
+            <div id="divFavoritos">
+                <!-- Tab list-->
+                <div class="row no-gutters">
+                    <div class="h3">Favoritos</div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarRespuestas()">Respuestas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="mostrarPreguntas()">Preguntas</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <table class="table table-borderless table-bordered table-striped col-12 mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">Titulo</th>
+                        <th class="d-none d-md-block" scope="col">Descripcion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Visitas</th>
+                        <th scope="col">Etiquetas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($favoritos as $favorito)
+                        <tr>
+                            <td>
+                                <a href="{{route('pregunta.show',['id'=>$favorito->pregunta_id])}}">{{$favorito->titulo}}</a>
+                            </td>
+                            <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
+                            <td>
+                                @switch($favorito->estado)
+                                    @case(0)
+                                    Sin resolver
+                                    @break
+                                    @case(1)
+                                    Resuelta
+                                    @break
+                                @endswitch
+                            </td>
+                            <td>{{$favorito->visita}}</td>
+                            <td>
+                                @php
+                                    $tag = $favorito->etiquetas;
+                                    $tags = explode(",", $tag);
+                                    foreach ($tags as $t){
+                                    if ($t != '') {
+                                        echo '<mark class="rounded col text-capitalize mr-2">' . $t . '</mark>';
+                                    }}
+                                @endphp
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <script src="{{ secure_asset('js/profile.js') }}"></script>
 @endsection
