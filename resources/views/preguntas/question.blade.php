@@ -6,7 +6,7 @@
     <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
-            <div class="card mt-4 mb-4 rounded-0 no-resuelta">
+            <div class="card mt-5 mb-4 rounded-0 no-resuelta">
                 @else
                     <div class="card mt-4 mb-4 rounded-0 resuelta">
                         @endif
