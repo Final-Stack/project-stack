@@ -15,7 +15,7 @@
             </svg>
         </div>
     </form>
-       <!-- Right Side Of Navbar -->
+    <!-- Right Side Of Navbar -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,10 +55,8 @@
 
                     <div class="dropdown-menu dropdown-menu-right col-sm-3" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item"
-                           href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
-                            perfil <span class="text-capitalize"> {{Auth::user()->nombre}}</span>
-                        </a>
+                        <a class="dropdown-item" href="{{route('user.profile',['id'=>Auth::user()->id])}}"> Mi
+                            perfil </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

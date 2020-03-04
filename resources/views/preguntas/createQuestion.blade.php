@@ -22,7 +22,7 @@
                        onkeyup="buscarEtiquetas()" id="tag"
                        name="tag" required>
                 <input class="btn btn-info col-12 ml-sm-3 mr-sm-3 col-sm-5 mt-3 mt-sm-0" type="button"
-                       value="Añadir Etiqueta" onclick="añadirEtiqueta()">
+                       value="Añadir Etiqueta" onclick="anyadirEtiqueta()">
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             <p>No se ha encontrado ninguna etiqueta</p>
         </div>
 
-        <div  id="etiquetas" class="mb-3">
+        <div id="etiquetas" class="mb-3">
 
         </div>
 
