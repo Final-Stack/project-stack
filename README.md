@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/finalstack-logo.png" alt="Logo empresa" style="max-height=20px"/>
+    <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/finalstack-logo.png" alt="Logo empresa" style="max-width=20px"/>
 </p>
 <p align="center">
     <img src="https://raw.githubusercontent.com/Final-Stack/project-stack/desarrollo/public/img/Captura%20de%20pantalla%202020-03-04%20a%20las%2010.09.20.png" alt="Logo empresa"/>
