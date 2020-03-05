@@ -188,7 +188,7 @@
                             <td>
                                 <a href="{{route('pregunta.show',['id'=>$favorito->pregunta_id])}}">{{$favorito->titulo}}</a>
                             </td>
-                            <td class="d-none d-md-block">{{$pregunta->descripcion}}</td>
+                            <td class="d-none d-md-block">{{--$pregunta->descripcion--}}</td>
                             <td>
                                 @switch($favorito->estado)
                                     @case(0)

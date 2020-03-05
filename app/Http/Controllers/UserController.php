@@ -142,7 +142,7 @@ class UserController extends Controller
     {
         $usuarios = DB::table('users')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(15);
 
         return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
