@@ -73,7 +73,7 @@ class VotosController extends Controller
             ->where('user_id', '=', $idUsuario, 'and')
             ->where('pregunta_id', '=', $idPregunta)
             ->get();
-        return $this->countAllByPreguntaId($idPregunta);
+        return $existeVoto->count();
     }
 
 
