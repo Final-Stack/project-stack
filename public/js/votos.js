@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    let idUsuario = $('#idUsuario').val();
+    let idUsuarioPregunta = $('#idUsuarioPregunta').val();
+    let idUsuarioSesion = $('#idUsuarioSesion').val();
     let idPregunta = $('#idPregunta').val();
     let up = $('.fa-arrow-up');
     let down = $('.fa-arrow-down');
@@ -14,12 +15,12 @@ $(document).ready(function () {
     // listener de los botones up y down
     up.on('click', function () {
         console.log('up');
-        votar('mas', idUsuario, idPregunta);
+        votar('mas', idUsuarioSesion, idPregunta);
         $('#up').css('color', 'green');
     });
     down.on('click', function () {
         console.log('down');
-        votar('menos', idUsuario, idPregunta);
+        votar('menos', idUsuarioSesion, idPregunta);
         $('#up').css('color', 'black');
     });
 
@@ -63,7 +64,7 @@ $(document).ready(function () {
 
     function ifVotado() {
         $.ajax({
-            url: '/getVoto/' + idUsuario + '/' + idPregunta,
+            url: '/getVoto/' + idUsuarioSesion + '/' + idPregunta,
             method: 'GET',
             async: true,
             success: function (data) {

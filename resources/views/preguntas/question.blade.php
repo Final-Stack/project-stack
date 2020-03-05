@@ -2,11 +2,8 @@
 
 @section('content')
     <!-- ID de la pregunta-->
-    @if(Auth::user() != null)
-        <input hidden id="idPregunta" value="0">
-    @else
-        <input hidden id="idPregunta" value="{{Auth::user()->id}}">
-    @endif
+    <input hidden id="idPregunta" value="{{$pregunta->id}}">
+    <input hidden id="idUsuarioPregunta" value="{{$pregunta->id}}">
     <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
@@ -31,7 +28,7 @@
                                 @if(Auth::user() != null)
                                     <div id="fav-container">
                                         <!-- comprobar si esta pregunta es favorita o no, y poner un icono u otro-->
-                                        <input hidden id="idUsuario" value="{{Auth::user()->id}}">
+                                        <input hidden id="idUsuarioSesion" value="{{Auth::user()->id}}">
                                         <script src="{{secure_asset('js/favoritos.js')}}"></script>
                                     </div>
                                 @endif

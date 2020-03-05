@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    let idUsuario = $('#idUsuario').val();
+    let idUsuario = $('#idUsuarioSesion').val();
     let idPregunta = $('#idPregunta').val();
     let favContainer = $('#fav-container');
 
