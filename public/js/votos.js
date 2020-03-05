@@ -69,6 +69,7 @@ $(document).ready(function () {
             async: true,
             success: function (data) {
                 if (data > 0) {
+                    console.log(data)
                     $('#up').css('color', 'green');
                 }
             }

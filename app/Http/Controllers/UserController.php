@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorito;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class UserController extends Controller
         if ($request->buscar != null) {
             $usuarios = DB::table('users')
                 ->where('nombre', 'like', '%' . $request->buscar . '%')
-                ->paginate(10);
+                ->paginate(15);
         } else {
             $usuarios = DB::table('users')
                 ->paginate(15);
@@ -155,7 +156,7 @@ class UserController extends Controller
             ->select(DB::raw('count(preguntas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(preguntas.id)'), 'ASC')
             ->groupBy('users.id', 'users.nombre', 'users.email', 'users.url_foto')
-            ->get();
+            ->paginate(15);
 
         return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
@@ -169,7 +170,7 @@ class UserController extends Controller
             ->select(DB::raw('count(respuestas.id)'), 'users.id', 'users.nombre', 'users.email', 'users.url_foto', 'users.google_id')
             ->orderBy(DB::raw('count(respuestas.id)'), 'ASC')
             ->groupBy('users.id', 'users.nombre', 'users.email', 'users.url_foto')
-            ->get();
+            ->paginate(15);
 
         return view('perfil.busquedaUsuarios', [
             'usuarios' => $usuarios
@@ -209,9 +210,11 @@ class UserController extends Controller
     public function setFavorito(int $idUsuario, int $idPregunta)
     {
         try {
-            DB::table('favoritos')->insert(
-                ['user_id' => $idUsuario, 'pregunta_id' => $idPregunta]
-            );
+            $fav = new Favorito;
+            $fav->user_id = $idUsuario;
+            $fav->pregunta_id = $idPregunta;
+            $fav->save();
+
             return 'Set favorito correcto';
         } catch (\Exception $e) {
             return $e;

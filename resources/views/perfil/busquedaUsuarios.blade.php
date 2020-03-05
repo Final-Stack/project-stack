@@ -36,7 +36,7 @@
                     </div>
                 </div>
             @endforeach
-           {{-- {{$usuarios->links()}} --}}
+            {{$usuarios->links()}}
         </div>
     </div>
 @endsection
