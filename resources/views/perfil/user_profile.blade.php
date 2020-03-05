@@ -176,7 +176,6 @@
                     <thead>
                     <tr>
                         <th scope="col">Titulo</th>
-                        <th class="d-none d-md-block" scope="col">Descripcion</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Visitas</th>
                         <th scope="col">Etiquetas</th>
@@ -188,7 +187,6 @@
                             <td>
                                 <a href="{{route('pregunta.show',['id'=>$favorito->pregunta_id])}}">{{$favorito->titulo}}</a>
                             </td>
-                            <td class="d-none d-md-block">{{--$pregunta->descripcion--}}</td>
                             <td>
                                 @switch($favorito->estado)
                                     @case(0)
