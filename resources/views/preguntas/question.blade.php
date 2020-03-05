@@ -2,7 +2,11 @@
 
 @section('content')
     <!-- ID de la pregunta-->
-    <input hidden id="idPregunta" value="{{$pregunta->id}}">
+    @if(Auth::user() != null)
+        <input hidden id="idPregunta" value="0">
+    @else
+        <input hidden id="idPregunta" value="{{Auth::user()->id}}">
+    @endif
     <!-- si esta resuelta poner un div con borde verde o amarillo si no esta resuelta-->
     <div class="container">
         @if($pregunta->estado == 0)
