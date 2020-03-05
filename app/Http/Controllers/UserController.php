@@ -74,6 +74,7 @@ class UserController extends Controller
         $fechaActual = Carbon::now();
         $diferencia = $fechaActual->diffInDays($fechaCreacion);
 
+        $diasDiferencia = "";
         switch ($diferencia) {
             case 0:
                 $diasDiferencia = "La cuenta ha sido creada hoy";
